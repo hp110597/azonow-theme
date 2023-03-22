@@ -30863,17 +30863,32 @@
                 <div class="with-flag with-line"></div>
             </div>
             <div class="latest-articles">
-                <div id="post-155424"
-                    class="post-holder clearfix  post-155424 post type-post status-publish format-standard hentry category-marketing odd">
+                <?php 
+                $recent_posts = wp_get_recent_posts(array(
+                    'numberposts' => 6, 
+                    'post_status' => 'publish'));
+                foreach( $recent_posts as $post_item ) : ?>
+                <div id="post-155424" class="post-holder clearfix  post-155424 post type-post status-publish format-standard hentry category-marketing odd">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <header class="post-header">
-                                    <div class="post-category"><a href="https://ahrefs.com/blog/category/marketing/"
-                                            rel="tag">General Marketing</a></div>
-                                    <h2> <a href="https://ahrefs.com/blog/best-wordpress-plugins/"
-                                            title="Permanent Link to The 29 Best WordPress Plugins (Organized by Category)">The
-                                            29 Best WordPress Plugins (Organized by Category)</a></h2>
+                                    <div class="post-category">
+                                        <a href="
+                                        <?php
+                                            $category=get_the_category($post_item['ID'])[0];
+                                            echo get_category_link( $category->term_id );
+                                        ?>" rel="tag">
+                                            <?php 
+                                                echo get_the_category($post_item['ID'])[0]->name;
+                                            ?>
+                                        </a>
+                                    </div>
+                                    <h2>
+                                        <a href="https://ahrefs.com/blog/best-wordpress-plugins/" title="<?php echo $post_item['post_title']; ?>">
+                                            <?php echo $post_item['post_title']; ?>
+                                        </a>
+                                    </h2>
                                     <div class="post-meta"> <span> There are tons of WordPress plugins out there, but
                                             which are the best? Well, here are the top ones you should know about.
                                         </span> <span class="post-author"> <a
@@ -30896,174 +30911,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="post-155215"
-                    class="post-holder clearfix  post-155215 post type-post status-publish format-standard hentry category-link-building even">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <header class="post-header">
-                                    <div class="post-category"><a href="https://ahrefs.com/blog/category/link-building/"
-                                            rel="tag">Link Building</a></div>
-                                    <h2> <a href="https://ahrefs.com/blog/find-competitors-backlinks/"
-                                            title="Permanent Link to How to Find Your Competitors’ Backlinks (And Get Them for Yourself)">How
-                                            to Find Your Competitors’ Backlinks (And Get Them for Yourself)</a></h2>
-                                    <div class="post-meta"> <span> Understanding how your competitors got links can help
-                                            inform your own link building strategy. We'll show you what to do. </span>
-                                        <span class="post-author"> <a
-                                                href="https://ahrefs.com/blog/author/joshua-hardwick/"
-                                                title="Posts by Joshua Hardwick" rel="author"><span
-                                                    class="post-author-avatar"><img
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2019/10/meme-425x425.jpg"
-                                                        data-lazy-type="image"
-                                                        data-src="https://ahrefs.com/blog/wp-content/uploads/2019/10/meme-425x425.jpg"
-                                                        width="30" height="30" alt="Joshua Hardwick"
-                                                        class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo lazy-loaded"
-                                                        style=""><noscript><img
-                                                            src="https://ahrefs.com/blog/wp-content/uploads/2019/10/meme-425x425.jpg"
-                                                            width="30" height="30" alt="Joshua Hardwick"
-                                                            class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo" /></noscript></span><span
-                                                    class="post-author-link">Joshua Hardwick</span></a> </span> <span
-                                            class="post-date">March 21</span>
-                                    </div>
-                                </header>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="post-155464"
-                    class="post-holder clearfix  post-155464 post type-post status-publish format-standard hentry category-keyword-research odd">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <header class="post-header">
-                                    <div class="post-category"><a
-                                            href="https://ahrefs.com/blog/category/keyword-research/" rel="tag">Keyword
-                                            Research</a></div>
-                                    <h2> <a href="https://ahrefs.com/blog/free-keyword-research-tools/"
-                                            title="Permanent Link to The 9 Best Keyword Research Tools">The 9 Best
-                                            Keyword Research Tools</a></h2>
-                                    <div class="post-meta"> <span> Keyword research is a three-step process. Learn what
-                                            they are and how you can achieve great results with these free tools.
-                                        </span> <span class="post-author"> <a
-                                                href="https://ahrefs.com/blog/author/joshua-hardwick/"
-                                                title="Posts by Joshua Hardwick" rel="author"><span
-                                                    class="post-author-avatar"><img
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2019/10/meme-425x425.jpg"
-                                                        data-lazy-type="image"
-                                                        data-src="https://ahrefs.com/blog/wp-content/uploads/2019/10/meme-425x425.jpg"
-                                                        width="30" height="30" alt="Joshua Hardwick"
-                                                        class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo lazy-loaded"
-                                                        style=""><noscript><img
-                                                            src="https://ahrefs.com/blog/wp-content/uploads/2019/10/meme-425x425.jpg"
-                                                            width="30" height="30" alt="Joshua Hardwick"
-                                                            class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo" /></noscript></span><span
-                                                    class="post-author-link">Joshua Hardwick</span></a> </span> <span
-                                            class="post-date">March 20</span></div>
-                                </header>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="post-155229"
-                    class="post-holder clearfix  post-155229 post type-post status-publish format-standard hentry category-general-seo even">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <header class="post-header">
-                                    <div class="post-category"><a href="https://ahrefs.com/blog/category/general-seo/"
-                                            rel="tag">General SEO</a></div>
-                                    <h2> <a href="https://ahrefs.com/blog/ahrefs-hacks/"
-                                            title="Permanent Link to 20 Lesser-Known (Yet Powerful) Ahrefs Hacks">20
-                                            Lesser-Known (Yet Powerful) Ahrefs Hacks</a></h2>
-                                    <div class="post-meta"> <span> Check out these 20 lesser-known use cases to help you
-                                            get everything out of Ahrefs and enhance your SEO efforts. </span> <span
-                                            class="post-author"> <a
-                                                href="https://ahrefs.com/blog/author/andrei-marcel-tit/"
-                                                title="Posts by Andrei Țiț" rel="author"><span
-                                                    class="post-author-avatar"><img
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2022/03/Andrei-Tit-28_cropped.png"
-                                                        data-lazy-type="image"
-                                                        data-src="https://ahrefs.com/blog/wp-content/uploads/2022/03/Andrei-Tit-28_cropped.png"
-                                                        width="30" height="30" alt="Andrei Țiț"
-                                                        class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo lazy-loaded"
-                                                        style=""><noscript><img
-                                                            src="https://ahrefs.com/blog/wp-content/uploads/2022/03/Andrei-Tit-28_cropped.png"
-                                                            width="30" height="30" alt="Andrei Țiț"
-                                                            class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo" /></noscript></span><span
-                                                    class="post-author-link">Andrei Țiț</span></a> </span> <span
-                                            class="post-date">March 20</span></div>
-                                </header>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="post-155190"
-                    class="post-holder clearfix  post-155190 post type-post status-publish format-standard hentry category-content-marketing odd">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <header class="post-header">
-                                    <div class="post-category"><a
-                                            href="https://ahrefs.com/blog/category/content-marketing/" rel="tag">Content
-                                            Marketing</a></div>
-                                    <h2> <a href="https://ahrefs.com/blog/content-marketing-kpis/"
-                                            title="Permanent Link to 2 Types of Content Marketing KPIs You Should Track (Separately)">2
-                                            Types of Content Marketing KPIs You Should Track (Separately)</a></h2>
-                                    <div class="post-meta"> <span> It's uncommon to separate input and output KPIs. But
-                                            doing so will tell you what resources to focus on and get better results.
-                                        </span> <span class="post-author"> <a
-                                                href="https://ahrefs.com/blog/author/mateusz-makosiewicz/"
-                                                title="Posts by Mateusz Makosiewicz" rel="author"><span
-                                                    class="post-author-avatar"><img
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2021/06/mateusz-makosiewicz.png"
-                                                        data-lazy-type="image"
-                                                        data-src="https://ahrefs.com/blog/wp-content/uploads/2021/06/mateusz-makosiewicz.png"
-                                                        width="30" height="30" alt="Mateusz Makosiewicz"
-                                                        class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo lazy-loaded"
-                                                        style=""><noscript><img
-                                                            src="https://ahrefs.com/blog/wp-content/uploads/2021/06/mateusz-makosiewicz.png"
-                                                            width="30" height="30" alt="Mateusz Makosiewicz"
-                                                            class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo" /></noscript></span><span
-                                                    class="post-author-link">Mateusz Makosiewicz</span></a> </span>
-                                        <span class="post-date">March 17</span>
-                                    </div>
-                                </header>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="post-154579"
-                    class="post-holder clearfix latest-product-blog-post post-154579 post type-post status-publish format-standard hentry category-product-blog even">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <header class="post-header">
-                                    <div class="post-category"><a href="https://ahrefs.com/blog/category/product-blog/"
-                                            rel="tag">Product Blog</a></div>
-                                    <h2> <a href="https://ahrefs.com/blog/whats-new-at-ahrefs-feb-2023/"
-                                            title="Permanent Link to What’s new at Ahrefs? (Feb&nbsp;2023)">What’s new
-                                            at Ahrefs? (Feb&nbsp;2023)</a></h2>
-                                    <div class="post-meta"> <span> Introducing Organic search view in Overview 2.0, a
-                                            new treemap chart in Keywords Explorer reports, and more. </span> <span
-                                            class="post-author"> <a href="https://ahrefs.com/blog/author/rebekah/"
-                                                title="Posts by Rebekah Bek" rel="author"><span
-                                                    class="post-author-avatar"><img
-                                                        src="https://secure.gravatar.com/avatar/ac4b4967895d2973c5f25e0ae667b141?s=30&amp;d=mm&amp;r=g"
-                                                        data-lazy-type="image"
-                                                        data-src="https://secure.gravatar.com/avatar/ac4b4967895d2973c5f25e0ae667b141?s=30&amp;d=mm&amp;r=g"
-                                                        width="30" height="30" alt="Avatar"
-                                                        class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 photo avatar-default lazy-loaded"
-                                                        style=""><noscript><img
-                                                            src="https://secure.gravatar.com/avatar/ac4b4967895d2973c5f25e0ae667b141?s=30&#038;d=mm&#038;r=g"
-                                                            width="30" height="30" alt="Avatar"
-                                                            class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 photo avatar-default" /></noscript></span><span
-                                                    class="post-author-link">Rebekah Bek</span></a> </span> <span
-                                            class="post-date">March 8</span></div>
-                                </header>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <div class="section section-show-more ">
                 <div class="row">
