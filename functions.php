@@ -80,6 +80,9 @@ function wp_get_menu_array($current_menu) {
     $menu_name = $current_menu;
     $locations = get_nav_menu_locations();
     $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+    if(isset($menu)){
+        return;
+    }
     $array_menu = wp_get_nav_menu_items( $menu->term_id); 
     $menu = array();
     foreach ($array_menu as $m) {
@@ -114,7 +117,7 @@ if(!function_exists('azonow_menu')){
             $id_object_active_url = get_term_link($id_object_active_id);
         }
         $menu_items = wp_get_menu_array($menu);
-
+        if(isset($menu_items)):
         foreach ($menu_items as $item) : ?>
 
 
@@ -150,8 +153,10 @@ if(!function_exists('azonow_menu')){
     </a>
 </div>
 <?php endif; ?>
-<?php endforeach; ?> <?php }
-    
+<?php endforeach; ?>
+<?php endif;?>
+<?php }
+   
 }
  ?>
 

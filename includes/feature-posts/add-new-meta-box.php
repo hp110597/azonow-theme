@@ -26,7 +26,7 @@ function infor_output($post){
 
 function infor_save($post_id){
     $post_status= get_post_status($post_id);
-    if ( $post_status == 'publish' ) {
+    if ( $post_status == 'publish' && isset($_POST['point-for-post']) ) {
         $data = $_POST['point-for-post'];
         update_post_meta($post_id,'_azonow_point_data',$data);
     }
