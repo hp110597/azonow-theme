@@ -80,30 +80,30 @@ function wp_get_menu_array($current_menu) {
     $menu_name = $current_menu;
     $locations = get_nav_menu_locations();
     $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-    if(isset($menu)){
-        return;
-    }
-    $array_menu = wp_get_nav_menu_items( $menu->term_id); 
-    $menu = array();
-    foreach ($array_menu as $m) {
-        if (empty($m->menu_item_parent)) {
-            $menu[$m->ID] = array();
-            $menu[$m->ID]['ID']      =   $m->ID;
-            $menu[$m->ID]['title']       =   $m->title;
-            $menu[$m->ID]['url']         =   $m->url;
-            $menu[$m->ID]['children']    =   array();
+    if($menu !== false){
+        $array_menu = wp_get_nav_menu_items( $menu->term_id);
+        $menu = array();
+        foreach ($array_menu as $m) {
+            if (empty($m->menu_item_parent)) {
+                $menu[$m->ID] = array();
+                $menu[$m->ID]['ID']      =   $m->ID;
+                $menu[$m->ID]['title']       =   $m->title;
+                $menu[$m->ID]['url']         =   $m->url;
+                $menu[$m->ID]['children']    =   array();
+            }
+        }
+        $submenu = array();
+        foreach ($array_menu as $m) {
+            if ($m->menu_item_parent) {
+                $submenu[$m->ID] = array();
+                $submenu[$m->ID]['ID']       =   $m->ID;
+                $submenu[$m->ID]['title']    =   $m->title;
+                $submenu[$m->ID]['url']  =   $m->url;
+                $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
+            }
         }
     }
-    $submenu = array();
-    foreach ($array_menu as $m) {
-        if ($m->menu_item_parent) {
-            $submenu[$m->ID] = array();
-            $submenu[$m->ID]['ID']       =   $m->ID;
-            $submenu[$m->ID]['title']    =   $m->title;
-            $submenu[$m->ID]['url']  =   $m->url;
-            $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
-        }
-    }
+
     return $menu;
 }
 
@@ -117,7 +117,7 @@ if(!function_exists('azonow_menu')){
             $id_object_active_url = get_term_link($id_object_active_id);
         }
         $menu_items = wp_get_menu_array($menu);
-        if(isset($menu_items)):
+        if(is_array($menu_items) or is_object($menu_items)):
         foreach ($menu_items as $item) : ?>
 
 
