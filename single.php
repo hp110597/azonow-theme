@@ -26060,8 +26060,8 @@
     />
   </head> -->
   <?php
-    the_title();
-    get_header( );
+  the_title();
+  get_header();
   ?>
 
 
@@ -26500,14 +26500,14 @@
                           title="Posts by Bill Widmer"
                           rel="author"
                         >
-                          <span class="fn"><?php the_author_posts_link()  ?></span>
+                          <span class="fn"><?php the_author_posts_link() ?></span>
                           
                         </a>
                       </span>
                       <span
                         class="post-date published updated"
                         itemprop="dateModified"
-                        >Updated: <?php the_time('F j, Y');?></span
+                        >Updated: <?php the_time('F j, Y'); ?></span
                       >
                     </div>
                   </header>
