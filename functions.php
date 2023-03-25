@@ -56,8 +56,7 @@ if (!function_exists('azonow_theme_setup')){
             'default-color' => '#e8e8e8'
         );
         add_theme_support('custom-backgound',$default_background);
-        //Add menu
-        register_nav_menu('primary-menu',__('Primary Menu','azonow'));
+
         //Add sidebar
         $sidebar = array(
             'name' => __('Main sidebar','azonow'),
@@ -71,6 +70,11 @@ if (!function_exists('azonow_theme_setup')){
     }
     add_action('init','azonow_theme_setup');
 }
+//Add menu
+function register_menu(){        
+    register_nav_menu('primary-menu',__('Primary Menu','azonow'));
+}
+add_action('after_setup_theme','register_menu');
 
 
 /**
