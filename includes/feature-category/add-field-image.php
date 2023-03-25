@@ -5,12 +5,13 @@
 // Add field image when create category
 function azonow_add_category_image_field() {
     ?>
-<div class="form-field">
-    <label for="category_image"><?php _e( 'Category Image' ); ?></label>
+<div class="form-field-image">
+    <label for="category_image"><?php _e( 'Category Image','azonow' ); ?></label>
     <input type="hidden" name="category_image" id="category_image" class="category-image" value="">
     <input type="button" class="button category-image-upload" value="Upload Image">
-    <br><br>
+    <br>
     <img src="" class="category-image-preview" style="display:none;width:100px;height:auto;">
+    <p id="image-description"><?php _e( 'Thumbnail for category','azonow' ); ?></p>
 </div>
 <?php
 }
@@ -23,14 +24,14 @@ function azonow_save_category_image_field( $term_id, $tt_id ) {
         add_term_meta( $term_id, 'category_image', $image_url, true );
     }
 }
-add_action( 'created_category', 'azonow_save_category_image_field', 10, 2 );
+add_action( 'created_category', 'azonow_save_category_image_field',10, 2 );
 
-// Thêm trường hình ảnh vào form chỉnh sửa danh mục
+// Add field category image in edit category
 function azonow_edit_category_image_field( $term ) {
     $image_url = get_term_meta( $term->term_id, 'category_image', true );
     ?>
-<tr class="form-field">
-    <th scope="row" valign="top"><label for="category_image"><?php _e( 'Category Image' ); ?></label></th>
+<tr class="form-field-image">
+    <th scope="row" valign="top"><label for="category_image"><?php _e( 'Category Image','azonow' ); ?></label></th>
     <td>
         <input type="hidden" name="category_image" id="category_image" class="category-image"
             value="<?php echo esc_attr( $image_url ); ?>">
@@ -41,6 +42,7 @@ function azonow_edit_category_image_field( $term ) {
             style="width:100px;height:auto;">
         <?php else: ?>
         <img src="" class="category-image-preview" style="display:none;width:100px;height:auto;">
+        <p id="image-description"><?php _e( 'Thumbnail for category','azonow' ); ?></p>
         <?php endif; ?>
     </td>
 </tr>
@@ -48,7 +50,7 @@ function azonow_edit_category_image_field( $term ) {
 }
 add_action( 'category_edit_form_fields', 'azonow_edit_category_image_field' );
 
-// Lưu ảnh khi chỉnh sửa danh mục
+// Save data when save edit category
 function azonow_update_category_image_field( $term_id ) {
     if ( isset( $_POST['category_image'] ) && '' !== $_POST['category_image'] ) {
         $image_url = $_POST['category_image'];
@@ -56,13 +58,3 @@ function azonow_update_category_image_field( $term_id ) {
     }
 }
 add_action( 'edited_category', 'azonow_update_category_image_field' );
-
-
-
-// register scripts for field image
-function azonow_add_category_image_scripts( $hook ) {
-    wp_enqueue_media();
-    wp_enqueue_script( 'category-image-script', get_stylesheet_directory_uri() . '/assets/js/category-image-script.js', array( 'jquery' ), '1.0', true );
-    wp_enqueue_style( 'category-image-style', get_stylesheet_directory_uri() . '/assets/css/category-image-style.css' );
-}
-add_action( 'admin_enqueue_scripts', 'azonow_add_category_image_scripts' );

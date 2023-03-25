@@ -2,3 +2,6 @@
   max-width: 72px;
   max-height: 72px;
 }
+.label-show-in-menu{
+  display: inline-block !important;
+}

@@ -16,65 +16,39 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="clearfix">
                         <div class="logo">
+                            <div class="top-promo top-promo-desktop">
+                                <span class="full-width">
+                                    New to SEO? Read our <a href="https://ahrefs.com/seo">SEO guide</a>.
+                                </span>
+                                <span class="short-width"><a href="https://ahrefs.com/seo">SEO Guide</a></span>
+                            </div>
                             <div class="logo-h2">&nbsp;
-                                <a class="ahrefs" href="#" title="SEO Blog by Ahrefs"
-                                 style="--logo-web: url('<?php echo get_custom_logo()?>;')"></a>
+                                <a class="ahrefs" href="<?php $_SERVER['HTTP_HOST'] ?>" title="SEO Blog by Ahrefs"
+                                    style="--logo-web: url('<?php echo get_custom_logo()?>')"></a>
                             </div>
                         </div>
                         <div class="top-menu">
                             <div class="top-menu-items">
-                                <div class="top-menu-item top-menu-item-hide-on-search"> <a href="#" class="top-menu-el"
-                                        id="top-menu-seo" type="button" data-toggle="dropdown"> SEO <span
-                                            class="caret"></span> </a>
-                                    <ul class="dropdown-menu dropdown-cat-item" aria-labelledby="top-menu-seo"
-                                        role="menu">
-                                        <li><a href="https://ahrefs.com/blog/category/general-seo/">General SEO</a></li>
-                                        <li><a href="https://ahrefs.com/blog/category/keyword-research/">Keyword
-                                                Research</a></li>
-                                        <li><a href="https://ahrefs.com/blog/category/on-page-seo/">On-Page SEO</a></li>
-                                        <li><a href="https://ahrefs.com/blog/category/link-building/">Link Building</a>
-                                        </li>
-                                        <li><a href="https://ahrefs.com/blog/category/technical-seo/">Technical SEO</a>
-                                        </li>
-                                        <li><a href="https://ahrefs.com/blog/category/local-seo/">Local SEO</a></li>
-                                    </ul>
-                                </div>
-                                <div class="top-menu-item top-menu-item-hide-on-search"> <a href="#"
-                                        class="top-menu-el active" id="top-menu-marketing" type="button"
-                                        data-toggle="dropdown"> Marketing <span class="caret"></span> </a>
-                                    <ul class="dropdown-menu dropdown-cat-item" aria-labelledby="top-menu-marketing"
-                                        role="menu">
-                                        <li><a href="https://ahrefs.com/blog/category/marketing/" class="active">General
-                                                Marketing</a></li>
-                                        <li><a href="https://ahrefs.com/blog/category/content-marketing/">Content
-                                                Marketing</a></li>
-                                        <li><a href="https://ahrefs.com/blog/category/affiliate-marketing/">Affiliate
-                                                Marketing</a></li>
-                                        <li><a href="https://ahrefs.com/blog/category/paid-marketing/">Paid
-                                                Marketing</a></li>
-                                        <li><a href="https://ahrefs.com/blog/category/video-marketing/">Video
-                                                Marketing</a></li>
-                                    </ul>
-                                </div>
-                                <div class="top-menu-item top-menu-item-hide-on-search"> <a
-                                        href="https://ahrefs.com/blog/category/data-studies/" class="top-menu-el"
-                                        type="button"> Data &amp; Studies </a></div>
-                                <div class="top-menu-item top-menu-item-hide-on-search"> <a
-                                        href="https://ahrefs.com/blog/category/product-blog/" class="top-menu-el"
-                                        type="button"> Product </a></div>
+                                <?php azonow_menu('primary-menu')?>
+                                <?php if (!is_search()): ?>
                                 <div class="top-menu-item search-menu-form-list-item">
                                     <form method="get" class="top-menu-item-search-form" id="top-menu-searchform-main"
-                                        action="https://ahrefs.com/blog">
+                                        action="">
                                         <div class="top-menu-item-search-container"> <input type="text"
-                                                class="searching" value="" name="s" placeholder="Search the blog..."
-                                                aria-label="Search"> <button type="submit"
-                                                class="btn-submit search-icon">Search</button> <button type="reset"
-                                                class="btn-reset cross-icon"></button></div>
-                                    </form> <span class="search-toggle-icon" id="searchToggle"
-                                        tabindex="0">Search</span>
+                                                class="searching" value="" name="search"
+                                                placeholder="Search the blog..." aria-label="Search">
+                                            <button type="submit" class="btn-submit search-icon">Search</button>
+                                            <button type="reset" class="btn-reset cross-icon"></button>
+                                        </div>
+                                    </form>
+                                    <span class="search-toggle-icon" id="searchToggle" tabindex="0">Search
+                                    </span>
                                 </div>
+                                <?php endif;?>
+
                                 <div class="top-menu-item goto-subscribe-list-item"> <a class="btn btn-goto-subscribe"
-                                        href="#">Subscribe</a></div>
+                                        href="#">Subscribe</a>
+                                </div>
                             </div>
                         </div>
                         <div class="mobile-button-wrap"> <a href="#" id="sMobileMenuButton" class="mobile-button"
@@ -178,3 +152,6 @@
             </div>
         </div>
     </header>
+    <?php 
+    ?>
+    <!-- Single button -->
