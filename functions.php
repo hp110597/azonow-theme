@@ -138,12 +138,13 @@ if(!function_exists('azonow_menu')){
         </li>
         <?php endforeach; ?>
     </ul>
+    <?php if(isset($item['ID'])):?>
     <a href="#" class="top-menu-el <?php echo $result ?>" id="top-menu-<?= $item['ID'] ?> " type="button"
         data-toggle="dropdown" aria-expanded="false">
         <?= $item['title'] ?>
         <span class="caret"></span>
     </a>
-
+    <?php endif;?>
 </div>
 <?php else: ?>
 <div class="top-menu-item top-menu-item-hide-on-search">
