@@ -20509,19 +20509,19 @@ body.author .wp-pagenavi {
   top: 0;
   bottom: 0;
   width: 115px;
-  opacity: 1;
+  opacity: 0;
   transition: opacity .33s ease-out
 }
 
 .post-navigation-left.hidden-nav {
-  opacity: 0;
+  opacity: 1;
   animation: hide_item_animation 0s ease-in .33s;
   animation-fill-mode: forwards
 }
 
 @keyframes hide_item_animation {
   to {
-      visibility: hidden
+      visibility: visible
   }
 }
 
