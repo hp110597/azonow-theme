@@ -56,8 +56,7 @@ if (!function_exists('azonow_theme_setup')){
             'default-color' => '#e8e8e8'
         );
         add_theme_support('custom-backgound',$default_background);
-        //Add menu
-        register_nav_menu('primary-menu',__('Primary Menu','azonow'));
+
         //Add sidebar
         $sidebar = array(
             'name' => __('Main sidebar','azonow'),
@@ -71,6 +70,11 @@ if (!function_exists('azonow_theme_setup')){
     }
     add_action('init','azonow_theme_setup');
 }
+//Add menu
+function register_menu(){        
+    register_nav_menu('primary-menu',__('Primary Menu','azonow'));
+}
+add_action('after_setup_theme','register_menu');
 
 
 /**
@@ -80,27 +84,30 @@ function wp_get_menu_array($current_menu) {
     $menu_name = $current_menu;
     $locations = get_nav_menu_locations();
     $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-    $array_menu = wp_get_nav_menu_items( $menu->term_id); 
-    $menu = array();
-    foreach ($array_menu as $m) {
-        if (empty($m->menu_item_parent)) {
-            $menu[$m->ID] = array();
-            $menu[$m->ID]['ID']      =   $m->ID;
-            $menu[$m->ID]['title']       =   $m->title;
-            $menu[$m->ID]['url']         =   $m->url;
-            $menu[$m->ID]['children']    =   array();
+    if($menu !== false){
+        $array_menu = wp_get_nav_menu_items( $menu->term_id);
+        $menu = array();
+        foreach ($array_menu as $m) {
+            if (empty($m->menu_item_parent)) {
+                $menu[$m->ID] = array();
+                $menu[$m->ID]['ID']      =   $m->ID;
+                $menu[$m->ID]['title']       =   $m->title;
+                $menu[$m->ID]['url']         =   $m->url;
+                $menu[$m->ID]['children']    =   array();
+            }
+        }
+        $submenu = array();
+        foreach ($array_menu as $m) {
+            if ($m->menu_item_parent) {
+                $submenu[$m->ID] = array();
+                $submenu[$m->ID]['ID']       =   $m->ID;
+                $submenu[$m->ID]['title']    =   $m->title;
+                $submenu[$m->ID]['url']  =   $m->url;
+                $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
+            }
         }
     }
-    $submenu = array();
-    foreach ($array_menu as $m) {
-        if ($m->menu_item_parent) {
-            $submenu[$m->ID] = array();
-            $submenu[$m->ID]['ID']       =   $m->ID;
-            $submenu[$m->ID]['title']    =   $m->title;
-            $submenu[$m->ID]['url']  =   $m->url;
-            $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
-        }
-    }
+
     return $menu;
 }
 
@@ -114,7 +121,7 @@ if(!function_exists('azonow_menu')){
             $id_object_active_url = get_term_link($id_object_active_id);
         }
         $menu_items = wp_get_menu_array($menu);
-
+        if(is_array($menu_items) or is_object($menu_items)):
         foreach ($menu_items as $item) : ?>
 
 
@@ -135,12 +142,13 @@ if(!function_exists('azonow_menu')){
         </li>
         <?php endforeach; ?>
     </ul>
+    <?php if(isset($item['ID'])):?>
     <a href="#" class="top-menu-el <?php echo $result ?>" id="top-menu-<?= $item['ID'] ?> " type="button"
         data-toggle="dropdown" aria-expanded="false">
         <?= $item['title'] ?>
         <span class="caret"></span>
     </a>
-
+    <?php endif;?>
 </div>
 <?php else: ?>
 <div class="top-menu-item top-menu-item-hide-on-search">
@@ -150,8 +158,10 @@ if(!function_exists('azonow_menu')){
     </a>
 </div>
 <?php endif; ?>
-<?php endforeach; ?> <?php }
-    
+<?php endforeach; ?>
+<?php endif;?>
+<?php }
+   
 }
  ?>
 
