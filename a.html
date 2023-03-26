@@ -1,3 +1,431 @@
+<!-- <script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["disableCookies"]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+  (function () {
+    var u = "https://analytics.ahrefs.com/";
+    _paq.push(["setTrackerUrl", u + "matomo.php"]);
+    _paq.push(["setSiteId", "2"]);
+    var d = document,
+      g = d.createElement("script"),
+      s = d.getElementsByTagName("script")[0];
+    g.type = "text/javascript";
+    g.async = true;
+    g.defer = true;
+    g.src = u + "matomo.js";
+    s.parentNode.insertBefore(g, s);
+  })();
+</script>
+<script type="text/javascript" id="wp-polls-js-extra">
+  var pollsL10n = {
+    ajax_url: "https:\/\/ahrefs.com\/blog\/wp-admin\/admin-ajax.php",
+    text_wait:
+      "Your last request is still being processed. Please wait a while ...",
+    text_valid: "Please choose a valid poll answer.",
+    text_multiple: "Maximum number of choices allowed: ",
+    show_loading: "1",
+    show_fading: "1",
+  };
+</script>
+<script type="text/javascript" id="Ahrefs-plugins-js-extra">
+  var ahrefs_plugins_l10n = { view_full_size: "View full size" };
+</script>
+<script>
+  /*!
+   * IE10 viewport hack for Surface/desktop Windows 8 bug
+   * Copyright 2014 Twitter, Inc.
+   * Licensed under the Creative Commons Attribution 3.0 Unported License. For
+   * details, see http://creativecommons.org/licenses/by/3.0/.
+   */
+  // See the Getting Started docs for more information:
+  // http://getbootstrap.com/getting-started/#support-ie10-width
+  (function () {
+    "use strict";
+    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+      var msViewportStyle = document.createElement("style");
+      msViewportStyle.appendChild(
+        document.createTextNode("@-ms-viewport{width:auto!important}")
+      );
+      document.querySelector("head").appendChild(msViewportStyle);
+    }
+  })();
+</script>
+<script
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/js/jquery.min.js"
+  id="jquery-js"
+></script>
+<script
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/cache/autoptimize/js/autoptimize_single_419414a19e745950aa3ca9fec168aab4.js"
+  id="modernizr-js"
+></script>
+<script
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/cache/autoptimize/js/autoptimize_single_e649b1a31b5b60b9d46864545f5a57d3.js"
+  id="fancybox-js"
+></script>
+<script>
+  $("#sSubscrBtnRigth").click(function () {
+    $.post(
+      "/blog/mch_subscr.php",
+      {
+        sMail: $("#sMailFooter").val(),
+        sToken:
+          "5d3666a5a3ccc50c552dc54a1d51b2ee4edb1a1182fc82be6a0e78bd8efc1319",
+        uAct: "3",
+        email: $("#emailFoot").val(),
+      },
+      function (data, textStatus) {
+        if (
+          typeof data !== "undefined" &&
+          typeof data.res !== "undefined"
+        ) {
+          $("#subscrResponse").html("");
+          $("#subscrResponse").hide();
+          if (data.res === true) {
+            // success
+            $("#subscrResponse").show();
+            $("#subscrResponse").html(
+              "<div class='subscribe-already'>Thanks! Please verify your email.</div>"
+            );
+            $("#sMailFooter").css("border", "1px solid rgba(0, 0, 0, 0.2)");
+            $("#sMailFooter").css("color", "#333");
+          } else {
+            if (data.error === "subscribed") {
+              // subscribed
+              $("#subscrResponse").show();
+              $("#subscrResponse").html(
+                "<div class='subscribe-already'>Looks like you're subscribed to our blog already.</div>"
+              );
+              $("#sMailFooter").css(
+                "border",
+                "1px solid rgba(0, 0, 0, 0.2)"
+              );
+              $("#sMailFooter").css("color", "#333");
+            } else {
+              // custom error
+              $("#subscrResponse").show();
+              $("#subscrResponse").html(
+                '<div class="subscribe-error">' + data.error + "</div>"
+              );
+              $("#sMailFooter").css("border", "1px solid red");
+              $("#sMailFooter").css("color", "#333");
+              $(".subscr_a").css("color", "red");
+            }
+          }
+        }
+      },
+      "json"
+    );
+    return false;
+  });
+</script>
+<script>
+  $("#sSubscrBtnBottom").click(function () {
+    $.post(
+      "/blog/mch_subscr.php",
+      {
+        sMail: $("#sMailBFooter").val(),
+        sToken:
+          "5d3666a5a3ccc50c552dc54a1d51b2ee4edb1a1182fc82be6a0e78bd8efc1319",
+        uAct: "3",
+        email: $("#emailFoot").val(),
+      },
+      function (data, textStatus) {
+        if (
+          typeof data !== "undefined" &&
+          typeof data.res !== "undefined"
+        ) {
+          $("#subscrBResponse").html("");
+          $("#subscrBResponse").hide();
+          if (data.res === true) {
+            // success
+            $("#subscrBResponse").show();
+            $("#subscrBResponse").html(
+              "<div class='subscribe-already'>Thanks! Please verify your email.</div>"
+            );
+            $("#sMailBFooter").css(
+              "border",
+              "1px solid rgba(0, 0, 0, 0.2)"
+            );
+            $("#sMailBFooter").css("color", "#333");
+          } else {
+            if (data.error === "subscribed") {
+              // subscribed
+              $("#subscrBResponse").show();
+              $("#subscrBResponse").html(
+                "<div class='subscribe-already'>Looks like you're subscribed to our blog already.</div>"
+              );
+              $("#sMailBFooter").css(
+                "border",
+                "1px solid rgba(0, 0, 0, 0.2)"
+              );
+              $("#sMailBFooter").css("color", "#333");
+            } else {
+              // custom error
+              $("#subscrBResponse").show();
+              $("#subscrBResponse").html(
+                '<div class="subscribe-error">' + data.error + "</div>"
+              );
+              $("#sMailBFooter").css("border", "1px solid red");
+              $("#sMailBFooter").css("color", "#333");
+            }
+          }
+        }
+      },
+      "json"
+    );
+    return false;
+  });
+</script>
+<script type="text/javascript">
+  function copyStringToClipboard(string) {
+    function handler(event) {
+      event.clipboardData.setData("text/plain", string);
+      event.preventDefault();
+      document.removeEventListener("copy", handler, true);
+    }
+    document.addEventListener("copy", handler, true);
+    document.execCommand("copy");
+  }
+  function StartTooltip() {
+    var option = {
+      position: $(this).data("position"),
+      size: "medium",
+      maxWidth: 247,
+      fadeIn: 50,
+    };
+    if (typeof Tipped != "undefined") {
+      Tipped.remove($(".ahrefs-icon-info"));
+      $(".ahrefs-icon-info").each(function () {
+        Tipped.create($(this), $("#" + $(this).data("tip")).html(), option);
+      });
+      Tipped.remove($(".metrics_box_title_tooltip"));
+      $(".metrics_box_title_tooltip").each(function () {
+        Tipped.create($(this), $("#" + $(this).data("tip")).html(), option);
+      });
+      Tipped.remove($(".subhead-anchor"));
+      $(".subhead-anchor").each(function (item, index) {
+        var element = Tipped.create(
+          $(this),
+          $("#" + $(this).data("tip")).html(),
+          option
+        );
+        var _that = this;
+        $(this).click(function () {
+          copyStringToClipboard(
+            window.location.href.split("#")[0] + $(this).attr("rel")
+          );
+          $(".tpd-content").text("Copied to clipboard");
+          Tipped.refresh();
+        });
+        $(this).on("mouseleave", function () {
+          $(".tpd-content").text("Copy link");
+          Tipped.refresh();
+        });
+      });
+    }
+  }
+  var ARTICLE_STATES = $(".author-desktop").find(".article-stats");
+  if (typeof ARTICLE_STATES.offset() == "undefined") {
+    var ARTICLE_STATES_POSITION = 0;
+  } else {
+    var ARTICLE_STATES_POSITION =
+      ARTICLE_STATES.offset().top + ARTICLE_STATES.height();
+  }
+  function showHideSharePost(SCROLLTOP) {
+    if (SCROLLTOP > ARTICLE_STATES_POSITION) {
+      $(".share-post").addClass("show");
+    } else {
+      $(".share-post").removeClass("show");
+    }
+  }
+  $(function () {
+    StartTooltip();
+    showHideSharePost($(window).scrollTop());
+    $(window).scroll(function () {
+      var SCROLLTOP = $(this).scrollTop();
+      showHideSharePost(SCROLLTOP);
+    });
+  });
+</script>
+<script>
+  (function ($) {
+    $("#subscribe_button").on("click", function () {
+      var $form = $(this).closest("form");
+      var $thanks = $(this).closest("form").siblings(".subscribe-thanks");
+      var $input = $form.find("#sMailFooter");
+      $.post(
+        "/blog/mch_subscr.php",
+        {
+          sMail: $input.val(),
+          sToken:
+            "5d3666a5a3ccc50c552dc54a1d51b2ee4edb1a1182fc82be6a0e78bd8efc1319",
+          uAct: "3",
+          email: $("#emailFoot").val(),
+        },
+        function (data, textStatus) {
+          if (
+            typeof data !== "undefined" &&
+            typeof data.res !== "undefined"
+          ) {
+            var $response = $form.find("#subscrResponse");
+            $response.empty().hide();
+            if (data.res === true) {
+              // success.
+              $input.removeClass("error");
+              $form.hide();
+              $thanks.show();
+            } else {
+              if (data.error === "subscribed") {
+                // subscribed.
+                $response
+                  .text("Looks like you're subscribed to our blog already")
+                  .show();
+              } else {
+                // custom error.
+                $response.html(data.error).show();
+              }
+              $input.addClass("error").focus();
+            }
+          }
+        },
+        "json"
+      );
+      return false;
+    });
+    $("#subscribe_gotit").on("click", function () {
+      var $form = $(this).closest(".section").find("form");
+      var $thanks = $form.siblings(".subscribe-thanks");
+      var $response = $form.find("#subscrResponse");
+      var $input = $form.find("#sMailFooter");
+      $response.empty().hide();
+      $input.removeClass("error").val("");
+      $thanks.hide();
+      $form.show();
+      return false;
+    });
+  })(jQuery);
+</script>
+<script data-noptimize="1">
+  window.lazySizesConfig = window.lazySizesConfig || {};
+  window.lazySizesConfig.loadMode = 1;
+</script>
+<script
+  defer=""
+  async=""
+  data-noptimize="1"
+  src="https://ahrefs.com/blog/wp-content/plugins/autoptimize/classes/external/js/lazysizes.min.js"
+></script>
+<script
+  defer=""
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/cache/autoptimize/js/autoptimize_single_92a77854e7be2f0cf4350123adf6e4d2.js"
+  id="wp-polls-js"
+></script>
+<script
+  defer=""
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/bootstrap/js/bootstrap.min.js"
+  id="bootstrap-js"
+></script>
+<script
+  defer=""
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/js/jquery.scrollTo.min.js"
+  id="scrollTo-js"
+></script>
+<script
+  defer=""
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/includes/share/js/jquery.sharrre.min.js"
+  id="share-js"
+></script>
+<script
+  defer=""
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/cache/autoptimize/js/autoptimize_single_78695e0755da857435baae96799861f1.js"
+  id="cookie-js"
+></script>
+<script
+  defer=""
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/js/jquery.placeholder.min.js"
+  id="placeholder-js"
+></script>
+<script
+  defer=""
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/cache/autoptimize/js/autoptimize_single_764f80ce7b62103bfe17f5fbbc2bbb6a.js"
+  id="Ahrefs-plugins-js"
+></script>
+<script
+  defer=""
+  type="text/javascript"
+  src="https://ahrefs.com/blog/wp-content/cache/autoptimize/js/autoptimize_single_06ed32cc3fc6e7cc945f41180e4d2f23.js"
+  id="tipped-js"
+></script>
+<script>
+  (function jqIsReady_455() {
+    if (typeof jQuery === "undefined") {
+      setTimeout(jqIsReady_455, 100);
+    } else {
+      jQuery(document).ready(function (jQuery) {
+        jQuery(".sharrre-facebook-155424").each(function () {
+          var self = this;
+          jQuery(this).sharrre({
+            share: {
+              facebook: true,
+            },
+            enableCounter: false,
+            enableHover: false,
+            template: ".",
+            click: function (api, options) {
+              api.simulateClick();
+              api.openPopup("facebook");
+            },
+          });
+        });
+        jQuery(".sharrre-twitter-155424").each(function () {
+          var self = this;
+          jQuery(this).sharrre({
+            share: {
+              twitter: true,
+            },
+            enableCounter: false,
+            enableHover: false,
+            buttons: { twitter: { via: "ahrefs", related: "ahrefs" } },
+            template: ".",
+            click: function (api, options) {
+              api.simulateClick();
+              api.openPopup("twitter");
+            },
+          });
+        });
+        jQuery(".sharrre-linkedin-155424").each(function () {
+          var self = this;
+          jQuery(this).sharrre({
+            share: {
+              linkedin: true,
+            },
+            enableCounter: false,
+            enableHover: false,
+            template: ".",
+            click: function (api, options) {
+              api.simulateClick();
+              api.openPopup("linkedin");
+            },
+          });
+        });
+      });
+    }
+  })();
+</script>
+<script type="text/javascript"> -->
+
 <html
   class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"
   lang="en"
@@ -131,11 +559,6 @@
     />
     <meta name="twitter:creator" content="@ahrefs" />
     <meta name="twitter:site" content="@ahrefs" />
-    <script
-      type="text/javascript"
-      src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=FzToMtzcp0EQKjOpF70Y6bfLFaKO2k1e4krIYg7Gj8cGW5-aemMdCUZ4gsVCsynL_5_xXA0p79DBSyAySyBLtg"
-      charset="UTF-8"
-    ></script>
     <style media="all">
       @charset "UTF-8";
       .wp-block-archives-dropdown label {
@@ -26062,7 +26485,7 @@
     class="post-template-default single single-post postid-155424 single-format-standard"
     style="padding-bottom: 562px"
   >
-    <header id="header">
+    <header id="header" class="">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -26508,9 +26931,7 @@
             </div>
           </div>
           <div class="post-container">
-            <div class="reading-progress">
-              <div style="width: 4.50749%"></div>
-            </div>
+            <div class="reading-progress"><div style="width: 0%"></div></div>
             <div class="container top-inner">
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -26571,9 +26992,71 @@
                         </div>
                         <div id="nav-art-stats"></div>
                         <div
-                          class="post-navigation2 stick"
-                          style="top: 0px; position: fixed"
+                          class="post-navigation2"
+                          style="top: 5px; position: initial"
                         >
+                          <div class="article-stats">
+                            <h6 style="margin-bottom: 8px">Article stats</h6>
+                            <ul class="site">
+                              <li>
+                                <div class="holder">
+                                  <span class="name"
+                                    >Monthly traffic
+                                    <i
+                                      class="ahrefs-icon-info"
+                                      data-position="top"
+                                      data-tip="tooltip__ce__searchTraffic"
+                                    ></i
+                                  ></span>
+                                  <span class="state">185</span>
+                                </div>
+                              </li>
+                              <li>
+                                <div class="holder">
+                                  <span class="name"
+                                    >Linking websites
+                                    <i
+                                      class="ahrefs-icon-info"
+                                      data-position="top"
+                                      data-tip="tooltip__ce__referringDomain"
+                                    ></i
+                                  ></span>
+                                  <span class="state">69</span>
+                                </div>
+                              </li>
+                            </ul>
+                            <small
+                              >Data from
+                              <a
+                                class="article-stats--small-link"
+                                href="https://ahrefs.com/content-explorer"
+                                target="_blank"
+                                >Content Explorer</a
+                              ></small
+                            >
+                          </div>
+                          <div id="tooltip__ce__referringDomain" class="hide">
+                            <p class="text-xs-left">
+                              Shows how many different websites are linking to
+                              this piece of content. As a general rule, the more
+                              websites link to you, the higher you rank in
+                              Google.
+                            </p>
+                          </div>
+                          <div id="tooltip__ce__searchTraffic" class="hide">
+                            <p class="text-xs-left">
+                              Shows estimated monthly search traffic to this
+                              article according to Ahrefs data. The actual
+                              search traffic (as reported in Google Analytics)
+                              is usually 3-5 times bigger.
+                            </p>
+                          </div>
+                          <div id="tooltip__ce__shares" class="hide">
+                            <p class="text-xs-left">
+                              The number of times this article was shared on
+                              Twitter.
+                            </p>
+                          </div>
                           <div class="share-post-top-bottom">
                             <h6>Share this article</h6>
                             <div
@@ -26582,7 +27065,14 @@
                               data-text="The 29 Best WordPress Plugins (Organized by Category)"
                               data-title="Tweet"
                             >
-                              <div class="box">
+                              <div
+                                class="box"
+                                style="
+                                  background-color: rgb(27, 166, 255);
+                                  border: 1px solid rgba(0, 0, 0, 0.2);
+                                  color: white;
+                                "
+                              >
                                 <div class="share">
                                   <i class="fa fa-twitter"></i>
                                 </div>
@@ -26594,7 +27084,14 @@
                               data-text="The 29 Best WordPress Plugins (Organized by Category)"
                               data-title="Like"
                             >
-                              <div class="box">
+                              <div
+                                class="box"
+                                style="
+                                  background-color: rgb(17, 100, 187);
+                                  border: 1px solid rgba(0, 0, 0, 0.2);
+                                  color: white;
+                                "
+                              >
                                 <div class="share">
                                   <i class="fa fa-facebook"></i>
                                 </div>
@@ -26606,7 +27103,14 @@
                               data-text="The 29 Best WordPress Plugins (Organized by Category)"
                               data-title="Share"
                             >
-                              <div class="box">
+                              <div
+                                class="box"
+                                style="
+                                  background-color: rgb(0, 119, 181);
+                                  border: 1px solid rgba(0, 0, 0, 0.2);
+                                  color: white;
+                                "
+                              >
                                 <div class="share">
                                   <i class="fa fa-linkedin"></i>
                                 </div>
@@ -26616,6 +27120,10 @@
                           <div
                             id="fright"
                             class="share-post-top-bottom subscr-fright"
+                            style="
+                              background: url('/blog/wp-content/themes/Ahrefs-4/images/email_80x84.gif')
+                                right top / 33% no-repeat;
+                            "
                           >
                             <div class="subscr-fright-bg-img"></div>
                             <h6>Get the week's best marketing content</h6>
@@ -26681,7 +27189,7 @@
                               >Best WordPress plugins for website design</a
                             >
                           </li>
-                          <li>
+                          <li class="">
                             <a
                               title="Best WordPress plugins for website management &amp; security"
                               href="#management-security"
@@ -26860,7 +27368,7 @@
                           src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image4-9-1.jpg"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image4-9-1.jpg"
                           alt="Elementor drag-and-drop page builder example"
-                          class="wp-image-155434 img-fancybox ls-is-cached lazyloaded"
+                          class="wp-image-155434 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image4-9-1.jpg 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image4-9-1-680x366.jpg 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image4-9-1-768x413.jpg 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image4-9-1-1536x827.jpg 1536w"
                           data-sizes="(max-width: 1999px) 100vw, 1999px"
                           data-fancybox="image-1"
@@ -26918,7 +27426,7 @@
                           src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image2-11.png"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image2-11.png"
                           alt="WooCommerce product display blocks"
-                          class="wp-image-155437 img-fancybox ls-is-cached lazyloaded"
+                          class="wp-image-155437 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image2-11.png 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image2-11-680x374.png 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image2-11-768x423.png 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image2-11-1536x845.png 1536w"
                           data-sizes="(max-width: 1999px) 100vw, 1999px"
                           data-fancybox="image-2"
@@ -26978,7 +27486,7 @@
                           src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image14-5.jpg"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image14-5.jpg"
                           alt="Advanced Custom Fields Pro WordPress UI"
-                          class="wp-image-155439 img-fancybox ls-is-cached lazyloaded"
+                          class="wp-image-155439 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image14-5.jpg 1460w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image14-5-621x425.jpg 621w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image14-5-768x526.jpg 768w"
                           data-sizes="(max-width: 1460px) 100vw, 1460px"
                           data-fancybox="image-3"
@@ -27025,14 +27533,21 @@
                           decoding="async"
                           width="1999"
                           height="972"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%20972%22%3E%3C/svg%3E"
+                          src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11.png"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11.png"
                           alt="WPCode user interface explanation"
-                          class="lazyload wp-image-155441 img-fancybox"
+                          class="wp-image-155441 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11.png 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11-680x331.png 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11-768x373.png 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11-1536x747.png 1536w"
                           data-sizes="(max-width: 1999px) 100vw, 1999px"
                           data-fancybox="image-4"
                           data-caption="WPCode user interface explanation"
+                          sizes="(max-width: 1999px) 100vw, 1999px"
+                          srcset="
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11.png          1999w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11-680x331.png   680w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11-768x373.png   768w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image8-11-1536x747.png 1536w
+                          "
                         />
                       </figure>
                       <p>
@@ -27082,14 +27597,21 @@
                           decoding="async"
                           width="1020"
                           height="652"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201020%20652%22%3E%3C/svg%3E"
+                          src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8.png"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8.png"
                           alt="WPForms form editor UI"
-                          class="lazyload wp-image-155443 img-fancybox"
+                          class="wp-image-155443 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8.png 1020w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8-665x425.png 665w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8-260x166.png 260w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8-768x491.png 768w"
                           data-sizes="(max-width: 1020px) 100vw, 1020px"
                           data-fancybox="image-5"
                           data-caption="WPForms form editor UI"
+                          sizes="(max-width: 1020px) 100vw, 1020px"
+                          srcset="
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8.png         1020w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8-665x425.png  665w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8-260x166.png  260w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image1-8-768x491.png  768w
+                          "
                         />
                       </figure>
                       <p><strong>Cost: </strong>$49.50/year</p>
@@ -27126,14 +27648,20 @@
                           decoding="async"
                           width="1200"
                           height="606"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%20606%22%3E%3C/svg%3E"
+                          src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image9-11.jpg"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image9-11.jpg"
                           alt="TranslatePress language translation plugin"
-                          class="lazyload wp-image-155444 img-fancybox"
+                          class="wp-image-155444 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image9-11.jpg 1200w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image9-11-680x343.jpg 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image9-11-768x388.jpg 768w"
                           data-sizes="(max-width: 1200px) 100vw, 1200px"
                           data-fancybox="image-6"
                           data-caption="TranslatePress language translation plugin"
+                          sizes="(max-width: 1200px) 100vw, 1200px"
+                          srcset="
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image9-11.jpg         1200w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image9-11-680x343.jpg  680w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image9-11-768x388.jpg  768w
+                          "
                         />
                       </figure>
                       <p><strong>Cost: </strong>€89/year (~USD&nbsp;95)</p>
@@ -27171,14 +27699,20 @@
                           decoding="async"
                           width="1178"
                           height="1226"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201178%201226%22%3E%3C/svg%3E"
+                          src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image10-7.jpg"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image10-7.jpg"
                           alt="Formilla live chat WordPress plugin"
-                          class="lazyload wp-image-155445 img-fancybox"
+                          class="wp-image-155445 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image10-7.jpg 1178w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image10-7-408x425.jpg 408w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image10-7-768x799.jpg 768w"
                           data-sizes="(max-width: 1178px) 100vw, 1178px"
                           data-fancybox="image-7"
                           data-caption="Formilla live chat WordPress plugin"
+                          sizes="(max-width: 1178px) 100vw, 1178px"
+                          srcset="
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image10-7.jpg         1178w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image10-7-408x425.jpg  408w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image10-7-768x799.jpg  768w
+                          "
                         />
                       </figure>
                       <p>
@@ -27256,14 +27790,21 @@
                           decoding="async"
                           width="1999"
                           height="970"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%20970%22%3E%3C/svg%3E"
+                          src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1.jpg"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1.jpg"
                           alt="Wordfence dashboard"
-                          class="lazyload wp-image-155447 img-fancybox"
+                          class="wp-image-155447 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1.jpg 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-680x330.jpg 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-768x373.jpg 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-1536x745.jpg 1536w"
                           data-sizes="(max-width: 1999px) 100vw, 1999px"
                           data-fancybox="image-8"
                           data-caption="Wordfence dashboard"
+                          sizes="(max-width: 1999px) 100vw, 1999px"
+                          srcset="
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1.jpg          1999w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-680x330.jpg   680w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-768x373.jpg   768w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-1536x745.jpg 1536w
+                          "
                         />
                       </figure>
                       <p><strong>Cost: </strong>Free ($119/year for premium)</p>
@@ -27372,14 +27913,20 @@ Check out our Marketing Routi"
                           decoding="async"
                           width="1398"
                           height="769"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201398%20769%22%3E%3C/svg%3E"
+                          src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12.jpg"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12.jpg"
                           alt="PublishPress role capabilities dashboard"
-                          class="lazyload wp-image-155449 img-fancybox"
+                          class="wp-image-155449 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12.jpg 1398w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12-680x374.jpg 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12-768x422.jpg 768w"
                           data-sizes="(max-width: 1398px) 100vw, 1398px"
                           data-fancybox="image-9"
                           data-caption="PublishPress role capabilities dashboard"
+                          sizes="(max-width: 1398px) 100vw, 1398px"
+                          srcset="
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12.jpg         1398w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12-680x374.jpg  680w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12-768x422.jpg  768w
+                          "
                         />
                       </figure>
                       <p>
@@ -27418,14 +27965,20 @@ Check out our Marketing Routi"
                           decoding="async"
                           width="1024"
                           height="634"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201024%20634%22%3E%3C/svg%3E"
+                          src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1.jpg"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1.jpg"
                           alt="Membership site built using MemberPress WordPress plugin"
-                          class="lazyload wp-image-155450 img-fancybox"
+                          class="wp-image-155450 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1.jpg 1024w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1-680x421.jpg 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1-768x476.jpg 768w"
                           data-sizes="(max-width: 1024px) 100vw, 1024px"
                           data-fancybox="image-10"
                           data-caption="Membership site built using MemberPress WordPress plugin"
+                          sizes="(max-width: 1024px) 100vw, 1024px"
+                          srcset="
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1.jpg         1024w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1-680x421.jpg  680w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1-768x476.jpg  768w
+                          "
                         />
                       </figure>
                       <p>
@@ -27528,14 +28081,21 @@ Check out our Marketing Routi"
                           decoding="async"
                           width="1999"
                           height="1404"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%201404%22%3E%3C/svg%3E"
+                          src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12.jpg"
                           data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12.jpg"
                           alt="WordPress payment forms using WP Simple Pay"
-                          class="lazyload wp-image-155452 img-fancybox"
+                          class="wp-image-155452 img-fancybox lazyloaded"
                           data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12.jpg 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-605x425.jpg 605w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-768x539.jpg 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-1536x1079.jpg 1536w"
                           data-sizes="(max-width: 1999px) 100vw, 1999px"
                           data-fancybox="image-11"
                           data-caption="WordPress payment forms using WP Simple Pay"
+                          sizes="(max-width: 1999px) 100vw, 1999px"
+                          srcset="
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12.jpg           1999w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-605x425.jpg    605w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-768x539.jpg    768w,
+                            https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-1536x1079.jpg 1536w
+                          "
                         />
                       </figure>
                       <p>
@@ -28381,7 +28941,14 @@ Check out our Marketing Routi"
                         data-text="The 29 Best WordPress Plugins (Organized by Category)"
                         data-title="Tweet"
                       >
-                        <div class="box">
+                        <div
+                          class="box"
+                          style="
+                            background-color: rgb(27, 166, 255);
+                            border: 1px solid rgba(0, 0, 0, 0.2);
+                            color: white;
+                          "
+                        >
                           <div class="share"><i class="fa fa-twitter"></i></div>
                         </div>
                       </div>
@@ -28391,7 +28958,14 @@ Check out our Marketing Routi"
                         data-text="The 29 Best WordPress Plugins (Organized by Category)"
                         data-title="Like"
                       >
-                        <div class="box">
+                        <div
+                          class="box"
+                          style="
+                            background-color: rgb(17, 100, 187);
+                            border: 1px solid rgba(0, 0, 0, 0.2);
+                            color: white;
+                          "
+                        >
                           <div class="share">
                             <i class="fa fa-facebook"></i>
                           </div>
@@ -28403,11 +28977,52 @@ Check out our Marketing Routi"
                         data-text="The 29 Best WordPress Plugins (Organized by Category)"
                         data-title="Share"
                       >
-                        <div class="box">
+                        <div
+                          class="box"
+                          style="
+                            background-color: rgb(0, 119, 181);
+                            border: 1px solid rgba(0, 0, 0, 0.2);
+                            color: white;
+                          "
+                        >
                           <div class="share">
                             <i class="fa fa-linkedin"></i>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="article-stats-footer-grid-item">
+                    <div class="share-post-bottom">
+                      <h6 style="margin-top: 2px">Article stats</h6>
+                    </div>
+                    <div>
+                      <div>
+                        <ul class="site">
+                          <li>
+                            <div class="holder">
+                              <span class="name">Monthly traffic</span>
+                              <span class="state" id="mstat_traffic">185</span>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="holder">
+                              <span class="name">Linking websites</span>
+                              <span class="state" id="mstat_ref_domains"
+                                >69</span
+                              >
+                            </div>
+                          </li>
+                        </ul>
+                        <small
+                          >Data from
+                          <a
+                            class="article-stats--small-link"
+                            href="https://ahrefs.com/content-explorer"
+                            target="_blank"
+                            >Content Explorer</a
+                          ></small
+                        >
                       </div>
                     </div>
                   </div>
@@ -29053,7 +29668,7 @@ Check out our Marketing Routi"
           {
             sMail: $("#sMailFooter").val(),
             sToken:
-              "5d3666a5a3ccc50c552dc54a1d51b2ee4edb1a1182fc82be6a0e78bd8efc1319",
+              "014c6c3f8a9ff1039711d8c82aedb80ae991b69a75d01a1ae2ef646cd2fa215d",
             uAct: "3",
             email: $("#emailFoot").val(),
           },
@@ -29109,7 +29724,7 @@ Check out our Marketing Routi"
           {
             sMail: $("#sMailBFooter").val(),
             sToken:
-              "5d3666a5a3ccc50c552dc54a1d51b2ee4edb1a1182fc82be6a0e78bd8efc1319",
+              "014c6c3f8a9ff1039711d8c82aedb80ae991b69a75d01a1ae2ef646cd2fa215d",
             uAct: "3",
             email: $("#emailFoot").val(),
           },
@@ -29242,7 +29857,7 @@ Check out our Marketing Routi"
             {
               sMail: $input.val(),
               sToken:
-                "5d3666a5a3ccc50c552dc54a1d51b2ee4edb1a1182fc82be6a0e78bd8efc1319",
+                "014c6c3f8a9ff1039711d8c82aedb80ae991b69a75d01a1ae2ef646cd2fa215d",
               uAct: "3",
               email: $("#emailFoot").val(),
             },
@@ -29348,9 +29963,9 @@ Check out our Marketing Routi"
       id="tipped-js"
     ></script>
     <script>
-      (function jqIsReady_455() {
+      (function jqIsReady_992() {
         if (typeof jQuery === "undefined") {
-          setTimeout(jqIsReady_455, 100);
+          setTimeout(jqIsReady_992, 100);
         } else {
           jQuery(document).ready(function (jQuery) {
             jQuery(".sharrre-facebook-155424").each(function () {
@@ -29404,9 +30019,9 @@ Check out our Marketing Routi"
       })();
     </script>
     <script type="text/javascript">
-      (function jqIsReady_181() {
+      (function jqIsReady_747() {
         if (typeof jQuery === "undefined") {
-          setTimeout(jqIsReady_181, 100);
+          setTimeout(jqIsReady_747, 100);
         } else {
           jQuery(document).ready(function () {
             var wpfcWpfcAjaxCall = function (polls) {
@@ -29419,7 +30034,7 @@ Check out our Marketing Routi"
                   data: {
                     action: "wpfc_wppolls_ajax_request",
                     poll_id: poll_id,
-                    nonce: "6fe26af8d1",
+                    nonce: "4935099520",
                   },
                   cache: false,
                   success: function (data) {
@@ -29444,4 +30059,3 @@ Check out our Marketing Routi"
     </script>
   </body>
 </html>
- 

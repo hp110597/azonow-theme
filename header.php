@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html <?php language_attributes()?> style="margin: 0 !important">
+<html <?php language_attributes() ?> style="margin: 0 !important">
 
 <head>
     <meta charset="<?php bloginfo('charset') ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="profile" href="http://gmgp.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo('pingback_url') ?>">
     <?php wp_head() ?>
     <!--Used to add code to header-->
 </head>
 
-<body>
+<body class="post-template-default single single-post postid-155424 single-format-standard"
+    style="padding-bottom: 562px">
     <header id="header">
         <div class="container">
             <div class="row">
@@ -24,27 +26,27 @@
                             </div>
                             <div class="logo-h2">&nbsp;
                                 <a class="ahrefs" href="<?php $_SERVER['HTTP_HOST'] ?>" title="SEO Blog by Ahrefs"
-                                    style="--logo-web: url('<?php echo get_custom_logo()?>')"></a>
+                                    style="--logo-web: url('<?php echo get_custom_logo() ?>')"></a>
                             </div>
                         </div>
                         <div class="top-menu">
                             <div class="top-menu-items">
-                                <?php azonow_menu('primary-menu')?>
+                                <?php azonow_menu('primary-menu') ?>
                                 <?php if (!is_search()): ?>
-                                <div class="top-menu-item search-menu-form-list-item">
-                                    <form method="get" class="top-menu-item-search-form" id="top-menu-searchform-main"
-                                        action="">
-                                        <div class="top-menu-item-search-container"> <input type="text"
-                                                class="searching" value="" name="search"
-                                                placeholder="Search the blog..." aria-label="Search">
-                                            <button type="submit" class="btn-submit search-icon">Search</button>
-                                            <button type="reset" class="btn-reset cross-icon"></button>
-                                        </div>
-                                    </form>
-                                    <span class="search-toggle-icon" id="searchToggle" tabindex="0">Search
-                                    </span>
-                                </div>
-                                <?php endif;?>
+                                    <div class="top-menu-item search-menu-form-list-item">
+                                        <form method="get" class="top-menu-item-search-form" id="top-menu-searchform-main"
+                                            action="">
+                                            <div class="top-menu-item-search-container"> <input type="text"
+                                                    class="searching" value="" name="search"
+                                                    placeholder="Search the blog..." aria-label="Search">
+                                                <button type="submit" class="btn-submit search-icon">Search</button>
+                                                <button type="reset" class="btn-reset cross-icon"></button>
+                                            </div>
+                                        </form>
+                                        <span class="search-toggle-icon" id="searchToggle" tabindex="0">Search
+                                        </span>
+                                    </div>
+                                <?php endif; ?>
 
                                 <div class="top-menu-item goto-subscribe-list-item"> <a class="btn btn-goto-subscribe"
                                         href="#">Subscribe</a>
@@ -152,6 +154,6 @@
             </div>
         </div>
     </header>
-    <?php 
+    <?php
     ?>
     <!-- Single button -->

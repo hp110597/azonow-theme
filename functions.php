@@ -73,6 +73,7 @@ if (!function_exists('azonow_theme_setup')){
 //Add menu
 function register_menu(){        
     register_nav_menu('primary-menu',__('Primary Menu','azonow'));
+    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 }
 add_action('after_setup_theme','register_menu');
 
