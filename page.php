@@ -28883,71 +28883,7 @@
                     </div>
                 </div>
             </div>
-            <div class="section section-ahrefstv">
-                <div class="row">
-                    <div class="form-bg">
-                        <h2><a href="https://www.youtube.com/c/AhrefsCom" target="_blank">ahrefs<span>tv</span></a></h2>
-                        <div class="text"> Actionable digital marketing tutorials on SEO and YouTube marketing.</div>
-                        <div class="tv-wrap">
-                            <div class="tv-items">
-                                <div class="tv-item">
-                                    <div> <a href="https://www.youtube.com/watch?v=iccsLJmylJQ" target="_blank">
-                                            <noscript><img src="https://i.ytimg.com/vi/iccsLJmylJQ/mqdefault.jpg"
-                                                    width="300" height="169"
-                                                    alt="How to Find the Perfect Niche for an Affiliate Marketing Site [2.2]"></noscript><img
-                                                class=" lazy-loaded lazyloaded"
-                                                src="https://i.ytimg.com/vi/iccsLJmylJQ/mqdefault.jpg"
-                                                data-src="https://i.ytimg.com/vi/iccsLJmylJQ/mqdefault.jpg" width="300"
-                                                height="169"
-                                                alt="How to Find the Perfect Niche for an Affiliate Marketing Site [2.2]"
-                                                style="">
-                                            <h3>How to Find the Perfect Niche for an Affiliate Marketing Site [2.2]</h3>
-                                        </a>
-                                        <div class="meta"> <span> 12:03 </span><span> 2K views </span><span> March
-                                                21</span></div>
-                                    </div>
-                                </div>
-                                <div class="tv-item">
-                                    <div> <a href="https://www.youtube.com/watch?v=nAvXcDnKRdU" target="_blank">
-                                            <noscript><img src="https://i.ytimg.com/vi/nAvXcDnKRdU/mqdefault.jpg"
-                                                    width="300" height="169"
-                                                    alt="Keys to Choosing the Right Affiliate Marketing Niche [2.1]"></noscript><img
-                                                class=" lazy-loaded lazyloaded"
-                                                src="https://i.ytimg.com/vi/nAvXcDnKRdU/mqdefault.jpg"
-                                                data-src="https://i.ytimg.com/vi/nAvXcDnKRdU/mqdefault.jpg" width="300"
-                                                height="169"
-                                                alt="Keys to Choosing the Right Affiliate Marketing Niche [2.1]"
-                                                style="">
-                                            <h3>Keys to Choosing the Right Affiliate Marketing Niche [2.1]</h3>
-                                        </a>
-                                        <div class="meta"> <span> 6:00 </span><span> 4K views </span><span> March
-                                                20</span></div>
-                                    </div>
-                                </div>
-                                <div class="tv-item">
-                                    <div> <a href="https://www.youtube.com/watch?v=559bgY-8aV8" target="_blank">
-                                            <noscript><img src="https://i.ytimg.com/vi/559bgY-8aV8/mqdefault.jpg"
-                                                    width="300" height="169"
-                                                    alt="Blueprint to Start Your Affiliate Marketing Website [1.4]"></noscript><img
-                                                class="lazyloaded lazy-loaded"
-                                                src="https://i.ytimg.com/vi/559bgY-8aV8/mqdefault.jpg"
-                                                data-src="https://i.ytimg.com/vi/559bgY-8aV8/mqdefault.jpg" width="300"
-                                                height="169"
-                                                alt="Blueprint to Start Your Affiliate Marketing Website [1.4]"
-                                                style="">
-                                            <h3>Blueprint to Start Your Affiliate Marketing Website [1.4]</h3>
-                                        </a>
-                                        <div class="meta"> <span> 4:18 </span><span> 7K views </span><span> March
-                                                15</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tv-scroll"> <span class="circle  active" data-n="0"></span> <span class="circle "
-                                data-n="1"></span> <span class="circle " data-n="2"></span></div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="section section-category">
                 <div class="row">
                     <div class="form-bg" style="color:black;">
@@ -28978,86 +28914,47 @@
                             <div 
                                 class="tab-pane fade <?php 
                                     esc_html_e($index == 0 ? 'active in' : '');
-                                    esc_html_e($index % 2 !== 0 ? 'count-le-3' : ''); ?>"
+                                    esc_html_e($index % 2 != 0 ? 'count-le-3' : ''); ?>"
                                 id="v-pills-<?php esc_html_e($category->slug ); ?>" 
                                 role="tabpanel"
                                 aria-labelledby="v-pills-<?php esc_html_e($category->slug ); ?>-tab">
+                                <?php $args = array(
+                                        'category__in' => array( $category->term_id ),
+                                        'posts_per_page' => 5,
+                                        'orderby' => 'date',
+                                        'order' => 'DESC'); 
+                                        $query = new WP_Query( $args );
+                                        $counter=0;
+                                        if ( $query->have_posts() ):
+                                            while ( $query->have_posts()): 
+                                                $query->the_post();
+                                                $counter++;
+                                ?>
+                                <?php if($counter==1): ?>
                                 <div>
                                     <header class="post-header"> 
-                                        <a href="https://ahrefs.com/blog/seo-basics/"
-                                            title="Permanent Link to SEO Basics: Beginner's Guide to SEO Success">
-                                            <div class="post-thumbnail"> <noscript><img
-                                                        width="1300" height="800"
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2021/04/seob.png"
-                                                        class="attachment-header-thumbnail size-header-thumbnail" alt=""
-                                                        decoding="async"
-                                                        srcset="https://ahrefs.com/blog/wp-content/uploads/2021/04/seob.png 1300w, https://ahrefs.com/blog/wp-content/uploads/2021/04/seob-680x418.png 680w, https://ahrefs.com/blog/wp-content/uploads/2021/04/seob-768x473.png 768w"
-                                                        sizes="(max-width: 1300px) 100vw, 1300px" /></noscript><img
-                                                    width="1300" height="800"
-                                                    src="https://ahrefs.com/blog/wp-content/uploads/2021/04/seob.png"
-                                                    data-src="https://ahrefs.com/blog/wp-content/uploads/2021/04/seob.png"
-                                                    class="attachment-header-thumbnail size-header-thumbnail lazyloaded lazy-loaded"
-                                                    alt="" decoding="async" data-srcset=""
-                                                    data-sizes="(max-width: 1300px) 100vw, 1300px" style=""
-                                                    sizes="(max-width: 1300px) 100vw, 1300px"
-                                                    srcset="https://ahrefs.com/blog/wp-content/uploads/2021/04/seob.png 1300w, https://ahrefs.com/blog/wp-content/uploads/2021/04/seob-680x418.png 680w, https://ahrefs.com/blog/wp-content/uploads/2021/04/seob-768x473.png 768w">
+                                        <a href="<?php the_permalink(); ?>"
+                                            title="<?php the_title(); ?>">
+                                            <div>
+                                                <?php the_post_thumbnail(); ?>
                                             </div>
-                                            <h3> SEO Basics: Beginner's Guide to SEO Success</h3>
+                                            <h3><?php the_title(); ?></h3>
                                         </a>
-                                        <div class="post-meta"> <span> Get your website set up for SEO success and learn
-                                                the fundamentals of SEO. </span></div>
+                                        <div class="post-meta"> <span> <?php the_excerpt(); ?> </span></div>
                                     </header>
                                 </div>
-                                <div id="post-23610" data-pos="50">
+                                <?php else: ?>
+                                <div>
                                     <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/what-is-seo/"
-                                                title="Permanent Link to What is SEO? Search Engine Optimization Explained">What
-                                                is SEO? Search Engine Optimization Explained</a></h3>
-                                        <div class="post-meta"> <span> Learn what SEO is and how to start optimizing
-                                                your pages for search traffic. </span></div>
+                                        <h3> <a href="<?php the_permalink(); ?>"
+                                                title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+                                        <div class="post-meta"> <span> <?php the_excerpt(); ?></span></div>
                                     </header>
                                 </div>
-                                <div id="post-24114" data-pos="30">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/seo-checklist/"
-                                                title="Permanent Link to The Only SEO Checklist You Need">The Only SEO
-                                                Checklist You Need</a></h3>
-                                        <div class="post-meta"> <span> Give your website and pages the best chance of
-                                                ranking with our SEO checklist. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-33907" data-pos="20">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/seo-best-practices/"
-                                                title="Permanent Link to 12 SEO Best Practices That Everyone Should Follow">12
-                                                SEO Best Practices That Everyone Should Follow</a></h3>
-                                        <div class="post-meta"> <span> Improve your SEO with best practices for every
-                                                type of business. </span></div>
-                                    </header>
-                                </div>
+                                <?php endif; endwhile; endif; ?>
                             </div>
                             <?php endforeach; ?>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section section-guide">
-                <div class="row">
-                    <div> <a href="https://ahrefs.com/seo"> <noscript><img
-                                    src="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social.png"
-                                    srcset="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social.png 1x, https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social_2x.png 2x, https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social_3x.png 3x"></noscript><img
-                                class=" lazy-loaded lazyloaded"
-                                src="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social.png"
-                                data-src="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social.png"
-                                data-srcset=""
-                                srcset="https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social.png 1x, https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social_2x.png 2x, https://ahrefs.com/blog/wp-content/themes/Ahrefs-4/images/blocks/seo-social_3x.png 3x">
-                        </a></div>
-                    <div>
-                        <div class="subtitle">Guide</div> <a href="https://ahrefs.com/seo" class="a-h2">
-                            <h2>Beginner’s<br> Guide to SEO</h2>
-                        </a>
-                        <div class="text">Learn the basics of SEO with our comprehensive beginner's guide.</div> <a
-                            href="https://ahrefs.com/seo" class="start-learning">Start learning →</a>
                     </div>
                 </div>
             </div>
