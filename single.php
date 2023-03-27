@@ -291,11 +291,9 @@
                     </div>
                     <span
                       ><div class="intro-txt">
-                        WordPress plugins make your life easier by allowing you
-                        to add features to your website without learning to code
-                        or hire a developer.
+                        <?php the_excerpt() ?>
                       </div>
-                      <p>
+                      <!-- <p>
                         However,
                         <a href="https://wordpress.org/plugins/"
                           >over 60,000 WordPress plugins</a
@@ -315,7 +313,7 @@
                         This list comes from my more than 12 years of experience
                         building WordPress websites and working closely with my
                         WordPress developer.
-                      </p>
+                      </p> -->
                       <div class="intro-tok toc-closed" id="intro_tok" style="">
                         <div class="intro-title">Contents</div>
                         <ul>
