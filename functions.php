@@ -80,93 +80,73 @@ add_action('after_setup_theme','register_menu');
 /**
  * @Template Function
  */
-function wp_get_menu_array($current_menu) {
-    $menu_name = $current_menu;
-    $locations = get_nav_menu_locations();
-    $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-    if($menu !== false){
-        $array_menu = wp_get_nav_menu_items( $menu->term_id);
-        $menu = array();
-        foreach ($array_menu as $m) {
-            if (empty($m->menu_item_parent)) {
-                $menu[$m->ID] = array();
-                $menu[$m->ID]['ID']      =   $m->ID;
-                $menu[$m->ID]['title']       =   $m->title;
-                $menu[$m->ID]['url']         =   $m->url;
-                $menu[$m->ID]['children']    =   array();
-            }
+
+if(!function_exists('azonow_class_body')){
+    function azonow_class_body(){
+        $term = get_queried_object();
+        $slug="";
+        $term_id="";
+        if(isset($term->slug)){
+            $slug=$term->slug;
         }
-        $submenu = array();
-        foreach ($array_menu as $m) {
-            if ($m->menu_item_parent) {
-                $submenu[$m->ID] = array();
-                $submenu[$m->ID]['ID']       =   $m->ID;
-                $submenu[$m->ID]['title']    =   $m->title;
-                $submenu[$m->ID]['url']  =   $m->url;
-                $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
-            }
+        if(isset($term->term_id)){
+            $term_id = $term->term_id;
+        }
+        if(is_category()){
+            return "archive category category-$slug category-$term_id";
+        }elseif(is_search())
+        {
+            return "search search-results";
         }
     }
-
-    return $menu;
 }
 
-//Render Menu to web
-if(!function_exists('azonow_menu')){
-    function azonow_menu($menu){
-        $id_object_active = get_queried_object();
-        $id_object_active_url="";
-        if(isset($id_object_active->term_id)){
-            $id_object_active_id=$id_object_active->term_id;
-            $id_object_active_url = get_term_link($id_object_active_id);
-        }
-        $menu_items = wp_get_menu_array($menu);
-        if(is_array($menu_items) or is_object($menu_items)):
-        foreach ($menu_items as $item) : ?>
-
-
-<?php if( !empty($item['children']) ):?>
-<div class="top-menu-item top-menu-item-hide-on-search">
-    <ul class="dropdown-menu dropdown-cat-item" aria-labelledby="top-menu-<?= $item['ID'] ?>" role="menu">
-        <?php $result=""?>
-        <?php foreach($item['children'] as $child): ?>
-        <?php
-            if ($id_object_active_url == $child['url']) {
-                $result="active";
+if(!function_exists('wp_get_menu_array')){
+    function wp_get_menu_array($current_menu) {
+        $menu_name = $current_menu;
+        $locations = get_nav_menu_locations();
+        $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+        if($menu !== false){
+            $array_menu = wp_get_nav_menu_items( $menu->term_id);
+            $menu = array();
+            foreach ($array_menu as $m) {
+                if (empty($m->menu_item_parent)) {
+                    $menu[$m->ID] = array();
+                    $menu[$m->ID]['ID']      =   $m->ID;
+                    $menu[$m->ID]['title']       =   $m->title;
+                    $menu[$m->ID]['url']         =   $m->url;
+                    $menu[$m->ID]['children']    =   array();
+                }
             }
-        ?>
-        <li>
-            <a href="<?= $child['url'] ?>">
-                <?= $child['title'] ?>
-            </a>
-        </li>
-        <?php endforeach; ?>
-    </ul>
-    <?php if(isset($item['ID'])):?>
-    <a href="#" class="top-menu-el <?php echo $result ?>" id="top-menu-<?= $item['ID'] ?> " type="button"
-        data-toggle="dropdown" aria-expanded="false">
-        <?= $item['title'] ?>
-        <span class="caret"></span>
-    </a>
-    <?php endif;?>
-</div>
-<?php else: ?>
-<div class="top-menu-item top-menu-item-hide-on-search">
-    <a href="<?= $item['url'] ?>" class="top-menu-el <?php  $result = $id_object_active_url == $item['url'] ? "active" :"";
-        echo $result ?>" type="button">
-        <?= $item['title'] ?>
-    </a>
-</div>
-<?php endif; ?>
-<?php endforeach; ?>
-<?php endif;?>
-<?php }
-   
+            $submenu = array();
+            foreach ($array_menu as $m) {
+                if ($m->menu_item_parent) {
+                    $submenu[$m->ID] = array();
+                    $submenu[$m->ID]['ID']       =   $m->ID;
+                    $submenu[$m->ID]['title']    =   $m->title;
+                    $submenu[$m->ID]['url']  =   $m->url;
+                    $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
+                }
+            }
+        }
+    
+        return $menu;
+    }
 }
- ?>
+
+if(!function_exists('azonow_object_active_url')){
+    function azonow_object_active_url(){
+        $object_active = get_queried_object();
+        $object_active_url="";
+        if(isset($object_active->term_id)){
+            $object_active_id=$object_active->term_id;
+            $object_active_url = get_term_link($object_active_id);
+        }
+        return $object_active_url;
+    }
+}
 
 
-<?php
 
 //Get highly rated post,quantity post depends on parameter
 if(!function_exists('azonow_post_high_vote')){
@@ -318,23 +298,24 @@ if(!function_exists('azonow_pagination')){
 <?php 
 if(!function_exists('azonow_category_list')){
     function azonow_category_list($posts){ 
-        $id_object_active = get_queried_object();
-        $id_object_active_name = "";
-        $id_object_active_url="";
-        if(isset($id_object_active->term_id)){
-            $id_object_active_id=$id_object_active->term_id;
-            $id_object_active_name = get_cat_name($id_object_active_id);
-            $id_object_active_url = get_term_link($id_object_active_id);
-        }
-        ?>
-        <?php
-            $get_author_id = get_the_author_meta('ID');
-            $get_author_gravatar = get_avatar_url($get_author_id, array('size' => 450));
-            $get_author_url = get_author_posts_url($get_author_id);
+
         ?>
         <?php if(have_posts()):?>
             <?php foreach($posts as $key =>$post):?>
-                <div id="post-<?php echo $post->ID ?>" class="post-holder clearfix post-<?php echo $post->ID ?> post type-post status-publish format-standard has-post-thumbnail hentry category-marketing <?php echo (int)$key%2 != 0 ? "odd" : "even"  ?>"><div class="container"><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><header class="post-header"><div class="post-category"><a href="<?php echo $id_object_active_url ?>" rel="tag"><?php echo $id_object_active_name?></a></div><h3> <a href="<?php echo get_permalink( $post->ID ); ?>" rel="bookmark" title="Permanent Link to <?php echo $post->post_title ?>"><?php echo $post->post_title ?></a></h3><div class="post-meta"> <span class="post-author vcard author" itemprop="author"> <span class="post-author-avatar"><img src="<?php echo $get_author_gravatar ?>" data-lazy-type="image" data-src="<?php echo $get_author_gravatar ?>" width="30" height="30" alt="<?php echo get_the_author() ?>" class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo lazy-loaded" style=""><noscript><img src="<?php echo $get_author_gravatar ?>" width="30" height="30" alt="<?php echo get_the_author() ?>" class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo" /></noscript></span> <a href="<?php echo $get_author_url ?>" title="Posts by <?php echo get_the_author() ?>" rel="author"> <span class="fn"><?php echo get_the_author() ?></span> </a> </span> <span class="post-date published updated" itemprop="datePublished"><?php echo get_the_date() ?></span></div></header></div></div></div></div>
+                <?php 
+                    $category_details = get_the_category();
+                    $category_name="Uncategorized";
+                    $category_url = "";
+                    if(isset($category_details[0])){
+                        $category_url = get_category_link($category_details[0]->term_id);
+                        $category_name = $category_details[0]->name;
+                    }
+                    $author_id = $post->post_author;
+                    $author_name = get_the_author_meta('display_name', $author_id);
+                    $get_author_gravatar = get_avatar_url($author_id, array('size' => 450));
+                    $get_author_url = get_author_posts_url($author_id);
+                ?>
+                <div id="post-<?php echo $post->ID ?>" class="post-holder clearfix post-<?php echo $post->ID ?> post type-post status-publish format-standard has-post-thumbnail hentry category-marketing <?php echo (int)$key%2 != 0 ? "odd" : "even"  ?>"><div class="container"><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><header class="post-header"><div class="post-category"><a href="<?php echo $category_url ?>" rel="tag"><?php echo $category_name?></a></div><h3> <a href="<?php echo get_permalink( $post->ID ); ?>" rel="bookmark" title="Permanent Link to <?php echo $post->post_title ?>"><?php printf(__('%1$s','azonow'),$post->post_title) ?></a></h3><div class="post-meta"> <span class="post-author vcard author" itemprop="author"> <span class="post-author-avatar"><img src="<?php echo $get_author_gravatar ?>" data-lazy-type="image" data-src="<?php echo $get_author_gravatar ?>" width="30" height="30" alt="<?php echo $author_name ?>" class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo lazy-loaded" style=""><noscript><img src="<?php echo $get_author_gravatar ?>" width="30" height="30" alt="<?php echo $author_name ?>" class="avatar avatar-30 wp-user-avatar wp-user-avatar-30 alignnone photo" /></noscript></span> <a href="<?php echo $get_author_url ?>" title="Posts by <?php echo $author_name ?>" rel="author"> <span class="fn"><?php echo $author_name ?></span> </a> </span> <span class="post-date published updated" itemprop="datePublished"><?php echo get_the_date() ?></span></div></header></div></div></div></div>
                 
             <?php endforeach;?>
      
