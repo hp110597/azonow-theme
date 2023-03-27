@@ -36,27 +36,27 @@
                                     if( !empty($item['children']) ):
                                 ?>
                                 <div class="top-menu-item top-menu-item-hide-on-search">
-                                    <ul class="dropdown-menu dropdown-cat-item" aria-labelledby="top-menu-<?= $item['ID'] ?>" role="menu">
-                                        <?php $result=""?>
-                                        <?php foreach($item['children'] as $child): ?>
-                                        <?php
-                                            if (azonow_object_active_url() == $child['url']) {
-                                                $result="active";
-                                            }
-                                        ?>
-                                        <li>
-                                            <a href="<?= $child['url'] ?>">
-                                                <?php  printf(__('%1$s','azonow'),$child['title']) ?>
-                                            </a>
-                                        </li>
-                                        <?php endforeach; ?>
-                                    </ul>
                                     <?php if(isset($item['ID'])):?>
-                                    <a href="#" class="top-menu-el <?php echo $result ?>" id="top-menu-<?= $item['ID'] ?> " type="button"
-                                        data-toggle="dropdown" aria-expanded="false">
-                                        <?php  printf(__('%1$s','azonow'),$item['title']) ?>
-                                        <span class="caret"></span>
-                                    </a>
+                                        <ul class="dropdown-menu dropdown-cat-item" aria-labelledby="top-menu-<?= $item['ID'] ?>" role="menu">
+                                            <?php $result=""?>
+                                            <?php foreach($item['children'] as $child): ?>
+                                                <?php
+                                                    if (azonow_object_active_url() == $child['url']) {
+                                                        $result="active";
+                                                    }
+                                                ?>
+                                                <li>
+                                                    <a href="<?= $child['url'] ?>">
+                                                        <?php  printf(__('%1$s','azonow'),$child['title']) ?>
+                                                    </a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                        <a href="#" class="top-menu-el <?php echo $result ?>" id="top-menu-<?= $item['ID'] ?> " type="button"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                            <?php  printf(__('%1$s','azonow'),$item['title']) ?>
+                                            <span class="caret"></span>
+                                        </a>
                                     <?php endif;?>
                                 </div>
                                 <?php else: ?>
@@ -125,15 +125,18 @@
                                     if( !empty($item['children']) ):
                                     ?>
                                         <div class="mobile-menu-block">
+                                            <?php if(isset($item['ID'])):?>
                                             <span
                                                 class="mobile-menu-item mobile-menu-parent mobile-menu-el">
                                                 <?php printf(__('%1$s','azonow'),$item['title']) ?>
                                             </span>
+
                                             <?php foreach($item['children'] as $child): ?>
                                                 <a href="<?= $child['url'] ?>" class="mobile-menu-item mobile-menu-child mobile-menu-el">
                                                     <?php  printf(__('%1$s','azonow'),$child['title']) ?>
                                                 </a>
                                             <?php endforeach; ?>
+                                            <?php endif;?>
                                         </div>
                                     <?php else:?>
                                         <div class="mobile-menu-block">
