@@ -21,8 +21,12 @@
         </form>
     </div>
 </div>
-<div id="container">
-    <?php get_template_part('content')?>
+<div id="container" data-count-search = "<?php echo $search_count ?>">
+    <?php if($search_count > 0):?>
+        <?php get_template_part('content')?>
+    <?php else:?>
+        <?php get_template_part('content','none') ?>
+    <?php endif?>
 </div>
 <?php
     get_footer();

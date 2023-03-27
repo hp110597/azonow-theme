@@ -97,6 +97,8 @@ if(!function_exists('azonow_class_body')){
         }elseif(is_search())
         {
             return "search search-results";
+        }elseif(is_404()){
+            return "error404 animated";
         }
     }
 }
@@ -204,15 +206,24 @@ if(!function_exists('azonow_pagination')){
     function azonow_pagination($number_display){
         $id_object_active = get_queried_object();
         $id_object_active_url="";
-        if(isset($id_object_active->term_id)){
+        if(isset($id_object_active->term_id) && is_category()){
             $id_object_active_id=$id_object_active->term_id;
             $id_object_active_url = get_term_link($id_object_active_id);
+        }else{
+            $id_object_active_url = home_url() . '/';
         }
         $total_page = $GLOBALS['wp_query']->max_num_pages;
         $current_page = max( 1, get_query_var('paged') );
         if($total_page  <2){
             return '';
-        }?>
+        }
+        $val = reset($_GET);
+        $key = key($_GET);
+        parse_str($_SERVER['QUERY_STRING'], $array);
+        $val = reset($array);
+        $key = key($array);
+        $result="$key=$val";
+        ?>
         <div class="wp-pagenavi">
             <?php if($current_page <= 4):?>
             
@@ -223,20 +234,20 @@ if(!function_exists('azonow_pagination')){
                                 <span class="current"><?php echo $i?></span>
                             <?php else:?>
                                 <?php if($current_page < $i):?>
-                                    <a class="page larger" href="<?php echo $id_object_active_url ?>page/<?php echo $i ?>"><?php echo $i?></a>
+                                    <a class="page larger" href="<?php echo $id_object_active_url ?>page/<?php echo $i ?>/?<?php echo $result ?>"><?php echo $i?></a>
                                 <?php else:?>
-                                    <a class="page smaller" href="<?php echo $id_object_active_url ?>page/<?php echo $i ?>"><?php echo $i?></a>
+                                    <a class="page smaller" href="<?php echo $id_object_active_url ?>page/<?php echo $i ?>/?<?php echo $result ?>"><?php echo $i?></a>
                                 <?php endif;?>
                             <?php endif;?>
                         <?php elseif($total_page-$i > 2):?>
                             <?php if($i==$number_display-1):?>
                                 <span class="extend">...</span>
                             <?php elseif($i==$number_display):?>
-                                <a class="last" href="<?php echo $id_object_active_url ?>page/<?php echo ($total_page ) ?>">&gt;</a>
+                                <a class="last" href="<?php echo $id_object_active_url ?>page/<?php echo ($total_page ) ?>/?<?php echo $result ?>">&gt;</a>
                             <?php endif?>
                         <?php else:?>
                             <?php if($i==$number_display):?>
-                                <a class="last" href="<?php echo $id_object_active_url ?>page/<?php echo ($total_page ) ?>">&gt;</a>
+                                <a class="last" href="<?php echo $id_object_active_url ?>page/<?php echo ($total_page ) ?>/?<?php echo $result ?>">&gt;</a>
                             <?php endif?>
                         <?php endif;?>
                     <?php endif;?>
@@ -246,26 +257,26 @@ if(!function_exists('azonow_pagination')){
             <?php for($i=1;$i<=$total_page;$i++):?>
                 <?php if($i<=2):?>
                     <?php if($i==1):?>
-                        <a class="first" href="<?php echo $id_object_active_url ?>page/<?php echo $i ?>">&lt;</a>
+                        <a class="first" href="<?php echo $id_object_active_url ?>page/<?php echo $i ?>/?<?php echo $result ?>">&lt;</a>
                     <?php else:?>
                         <span class="extend">...</span>
                     <?php endif?>
                 <?php elseif($i==3):?>
-                    <a class="page smaller" href="<?php echo $id_object_active_url ?>page/<?php echo $current_page-1 ?>"><?php echo $current_page-1?></a>
+                    <a class="page smaller" href="<?php echo $id_object_active_url ?>page/<?php echo $current_page-1 ?>/?<?php echo $result ?>"><?php echo $current_page-1?></a>
                 
                 <?php elseif($i==4):?>
                     <span class="current"><?php echo $current_page?></span>
                 
                 <?php elseif($i== 5):?>
-                    <a class="page larger" href="<?php echo $id_object_active_url ?>page/<?php echo $current_page+1 ?>"><?php echo $current_page+1?></a>
+                    <a class="page larger" href="<?php echo $id_object_active_url ?>page/<?php echo $current_page+1 ?>/?<?php echo $result ?>"><?php echo $current_page+1?></a>
                 
                 <?php elseif($i== 6):?>
-                    <a class="page larger" href="<?php echo $id_object_active_url ?>page/<?php echo $current_page+2 ?>"><?php echo $current_page+2?></a>
+                    <a class="page larger" href="<?php echo $id_object_active_url ?>page/<?php echo $current_page+2 ?>/?<?php echo $result ?>"><?php echo $current_page+2?></a>
                 
                 <?php elseif($i==7):?>
                     <span class="extend">...</span>
                 <?php elseif($i==8):?>
-                    <a class="last" href="<?php echo $id_object_active_url ?>page/<?php echo $total_page ?>">&gt;</a>
+                    <a class="last" href="<?php echo $id_object_active_url ?>page/<?php echo $total_page ?>/?<?php echo $result ?>">&gt;</a>
                 <?php endif?>
             <?php endfor;?>
             <?php else:?>
@@ -273,7 +284,7 @@ if(!function_exists('azonow_pagination')){
                 <?php for($i=1;$i<=$total_page;$i++):?>
                     <?php if($i<=2):?>
                         <?php if($i==1):?>
-                            <a class="first" href="<?php echo $id_object_active_url ?>page/<?php echo $i ?>">&lt;</a>
+                            <a class="first" href="<?php echo $id_object_active_url ?>page/<?php echo $i ?>/?<?php echo $result ?>">&lt;</a>
                         <?php else:?>
                             <span class="extend">...</span>
                         <?php endif?>
@@ -281,9 +292,9 @@ if(!function_exists('azonow_pagination')){
                         <?php if(($total_page - ($number_display - $i)) == $current_page):?>
                             <span class="current"><?php echo $current_page?></span>
                         <?php elseif(($total_page - ($number_display - $i))>$current_page):?>
-                            <a class="page larger" href="<?php echo $id_object_active_url ?>page/<?php echo ($total_page - ($number_display - $i)) ?>"><?php echo ($total_page - ($number_display - $i))?></a>
+                            <a class="page larger" href="<?php echo $id_object_active_url ?>page/<?php echo ($total_page - ($number_display - $i)) ?>/?<?php echo $result ?>"><?php echo ($total_page - ($number_display - $i))?></a>
                         <?php else:?>
-                            <a class="page smaller" href="<?php echo $id_object_active_url ?>page/<?php echo ($total_page - ($number_display - $i)) ?>"><?php echo ($total_page - ($number_display - $i))?></a>
+                            <a class="page smaller" href="<?php echo $id_object_active_url ?>page/<?php echo ($total_page - ($number_display - $i)) ?>/?<?php echo $result ?>"><?php echo ($total_page - ($number_display - $i))?></a>
                         <?php endif?>
                     <?php endif;?>
                 <?php endfor;?>
