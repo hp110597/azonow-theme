@@ -26,3 +26,6 @@ include_once(INCLUDES . '/feature-category/index.php');
  * @Add feature post
  */
 include_once(INCLUDES . '/feature-posts/index.php');
+
+// add blog style 
+include_once(INCLUDES . '/feature-blog/index.php');
