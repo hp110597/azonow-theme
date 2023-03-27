@@ -9,7 +9,8 @@
     <!--Used to add code to header-->
 </head>
 
-<body>
+
+<body class="<?php echo azonow_class_body() ?>" id="body">
     <header id="header">
         <div class="container">
             <div class="row">
@@ -18,12 +19,12 @@
                         <div class="logo">
                             <div class="top-promo top-promo-desktop">
                                 <span class="full-width">
-                                    <?php _e('New to SEO? Read our','azonow')?> <a href="<?php $_SERVER['HTTP_HOST'] ?>"><?php _e('SEO guide','azonow')?></a>.
+                                    <?php _e('New to SEO? Read our','azonow')?> <a href="<?php echo home_url() ?>"><?php _e('SEO guide','azonow')?></a>.
                                 </span>
-                                <span class="short-width"><a href="<?php $_SERVER['HTTP_HOST'] ?>"><?php _e('SEO guide','azonow')?></a></span>
+                                <span class="short-width"><a href="<?php echo home_url() ?>"><?php _e('SEO guide','azonow')?></a></span>
                             </div>
                             <div class="logo-h2">&nbsp;
-                                <a class="ahrefs" href="<?php $_SERVER['HTTP_HOST'] ?>" title="<?php _e('SEO blog by azonow','azonow') ?>"
+                                <a class="ahrefs" href="<?php echo home_url() ?>" title="<?php _e('SEO blog by azonow','azonow') ?>"
                                     style="--logo-web: url('<?php echo get_custom_logo()?>')"></a>
                             </div>
                         </div>
@@ -72,7 +73,7 @@
                                 <?php if (!is_search()): ?>
                                 <div class="top-menu-item search-menu-form-list-item">
                                     <form method="get" class="top-menu-item-search-form" id="top-menu-searchform-main"
-                                        action="<?php $_SERVER['HTTP_HOST'] ?>">
+                                        action="<?php echo home_url() ?>">
                                         <div class="top-menu-item-search-container"> <input type="text"
                                                 class="searching" value="" name="s"
                                                 placeholder="Search the blog..." aria-label="Search">
@@ -102,17 +103,17 @@
                             <div class="mobile-menu-header">
                                 <div class="logo">
                                     <div class="logo-h2">&nbsp;
-                                        <a class="ahrefs" href="<?php $_SERVER['HTTP_HOST'] ?>" title="<?php _e('SEO blog by azonow','azonow') ?>" style="--logo-web: url('<?php echo get_custom_logo()?>')">
+                                        <a class="ahrefs" href="<?php echo home_url() ?>" title="<?php _e('SEO blog by azonow','azonow') ?>" style="--logo-web: url('<?php echo get_custom_logo()?>')">
                                          </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="top-promo top-promo-mobile"> <?php _e('New to SEO? Read our','azonow')?> <a
-                                    href="<?php $_SERVER['HTTP_HOST'] ?>"><?php _e('SEO guide','azonow')?></a>.</div>
+                                    href="<?php echo home_url() ?>"><?php _e('SEO guide','azonow')?></a>.</div>
                             <div class="mobile-menu-wrap">
                                 <div>
                                     <div class="mobile-search">
-                                        <form method="get" id="searchform-mobile-menu" action="<?php $_SERVER['HTTP_HOST'] ?>">
+                                        <form method="get" id="searchform-mobile-menu" action="<?php echo home_url() ?>">
                                             <input type="text" class="searching" value="" name="s"
                                                 placeholder="Search the blog..." aria-label="Search"><button
                                                 type="submit" class="btn-submit search-icon"><?php _e('Search','aznonow')?></button>

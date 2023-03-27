@@ -93,7 +93,9 @@
             </div>
             <h2 class="most-recent"><?php _e('Most Recent Articles','azonow')?></h2>
         <?php endif;?>
-        <?php azonow_category_list($posts)?>
-        <?php azonow_pagination(8)?>
+        <?php get_template_part('content')?>
     </div>
 </div>
+<?php
+    get_footer();
+?>
