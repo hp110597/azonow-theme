@@ -15,4 +15,13 @@ jQuery(document).ready(function ($) {
     padding_body =parseInt(($('#footer').outerHeight(true))) + 64;
   }
   $('#body').css('padding-bottom',`${padding_body}px`);
+
+  let count_search = $('#container').data("count-search");
+  if(count_search == 0){
+    $('#body').removeClass('search-results');
+    $('#body').addClass('search-no-results');
+  }else if(count_search > 0){
+    $('#body').removeClass('search-no-results');
+    $('#body').addClass('search-results');
+  }
 });

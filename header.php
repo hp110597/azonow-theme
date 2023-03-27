@@ -32,7 +32,7 @@
                             <div class="top-menu-items">
                                 <?php 
                                     $menu_items = wp_get_menu_array('primary-menu');
-                                    if(is_array($menu_items) or is_object($menu_items)):
+                                    if((is_array($menu_items) or is_object($menu_items)) && !is_404()):
                                     foreach ($menu_items as $item) :
                                     if( !empty($item['children']) ):
                                 ?>
