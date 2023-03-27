@@ -74,7 +74,7 @@
                                     <form method="get" class="top-menu-item-search-form" id="top-menu-searchform-main"
                                         action="<?php $_SERVER['HTTP_HOST'] ?>">
                                         <div class="top-menu-item-search-container"> <input type="text"
-                                                class="searching" value="" name="search"
+                                                class="searching" value="" name="s"
                                                 placeholder="Search the blog..." aria-label="Search">
                                             <button type="submit" class="btn-submit search-icon">Search</button>
                                             <button type="reset" class="btn-reset cross-icon"></button>
@@ -157,17 +157,17 @@
                             <div class="mobile-menu-footer">
                                 <div class="mobile-menu-footer-wrap">
                                     <div class="languages-picker-mobile"> <select class="lang-select">
-                                            <option value="en" data-url="https://ahrefs.com/blog/" selected="selected">
-                                                English</option>
-                                            <option value="es" data-url="https://ahrefs.com/blog/es/">Español</option>
-                                            <option value="de" data-url="https://ahrefs.com/blog/de/">Deutsch</option>
-                                            <option value="ru" data-url="https://ahrefs.com/blog/ru/">Русский</option>
-                                            <option value="zh" data-url="https://ahrefs.com/blog/zh/">中文</option>
-                                            <option value="it" data-url="https://ahrefs.com/blog/it/">Italiano</option>
-                                            <option value="fr" data-url="https://ahrefs.com/blog/fr/">Français</option>
-                                            <option value="pt" data-url="https://ahrefs.com/blog/pt/">Português</option>
+                                            <option value="en" data-url="#" selected="selected">
+                                                <?php _e('Search','azonow')?></option>
+                                            <option value="es" data-url="#">Español</option>
+                                            <option value="de" data-url="#">Deutsch</option>
+                                            <option value="ru" data-url="#">Русский</option>
+                                            <option value="zh" data-url="#">中文</option>
+                                            <option value="it" data-url="#">Italiano</option>
+                                            <option value="fr" data-url="#">Français</option>
+                                            <option value="pt" data-url="#">Português</option>
                                         </select> <span class="select-button"></span></div> <a
-                                        class="btn btn-goto-subscribe" href="#">Subscribe</a>
+                                        class="btn btn-goto-subscribe" href="#"><?php _e('Subcribe','azonow')?></option></a>
                                 </div>
                                 <div class="widget-social">
                                     <div class="h3"> <a href="#" target="_blank"
@@ -186,6 +186,3 @@
             </div>
         </div>
     </header>
-    <?php 
-    ?>
-    <!-- Single button -->
