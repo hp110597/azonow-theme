@@ -28886,14 +28886,16 @@
             
 
             <?php
-                $group_categories = get_categories();
+                $categories = get_categories();
                 $group_categories_post_counts=[];
-                foreach ($group_categories as $cat) {
+                $mono_categories_post_counts=[];
+                foreach ($categories as $cat) {
                     $args = array(
                         'child_of' => $cat->term_id,
                         'taxonomy' => 'category'
                     );
                     $children = get_categories($args);
+                    $parent = $cat->parent;
                     if ($children) {
                         $args = array(
                             'cat' => $cat->term_id,
@@ -28901,33 +28903,52 @@
                             'post_status' => 'publish',
                             'posts_per_page' => -1
                         );
-                        $query = new WP_Query($args);
-                        $post_count = $query->post_count;
-                        if($post_count>0){
-                            $group_categories_post_counts[$cat->term_id]=$post_count;
+                        $query_1 = new WP_Query($args);
+                        $post_count_1 = $query_1->post_count;
+                        if($post_count_1>0){
+                            $group_categories_post_counts[$cat->term_id]=$post_count_1;
+                        }
+                    }
+                    if($parent==0 && empty($children)){
+                        $args = array(
+                            'cat' => $cat->term_id,
+                            'post_type' => 'post',
+                            'post_status' => 'publish',
+                            'posts_per_page' => -1
+                        );
+                        $query_2 = new WP_Query($args);
+                        $post_count_2 = $query_2->post_count;
+                        if($post_count_2>0){
+                            $mono_categories_post_counts[$cat->term_id]=$post_count_2;
                         }
                     }
                 }
                 arsort($group_categories_post_counts);
+                arsort($mono_categories_post_counts);
+
                 $top_group_categories=array_slice($group_categories_post_counts,0,3,true);
+                $top_mono_categories=array_slice($mono_categories_post_counts,0,2,true);
+
 
                 $top_group_categories_id=array_keys($top_group_categories);
+                $top_mono_categories_id=array_keys($top_mono_categories);
+
 
             ?>
             
 
-            <?php foreach($top_group_categories_id as $top_group_categorie_id ): ?>
+            <?php foreach($top_group_categories_id as $top_group_category_id ): ?>
             <div class="section section-category">
                 <div class="row">
                     <div class="form-bg" style="color:black;">
-                        <h2><?php echo get_cat_name($top_group_categorie_id); ?></h2>
-                        <p class="h5"><?php esc_html_e(wp_strip_all_tags(category_description($top_group_categorie_id)));  ?></p>
+                        <h2><?php echo get_cat_name($top_group_category_id); ?></h2>
+                        <p class="h5"><?php esc_html_e(wp_strip_all_tags(category_description($top_group_category_id)));  ?></p>
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                             aria-orientation="horizontal">
                             <div> 
                                 <?php 
                                 $categories = get_terms(array( 
-                                    'parent' => $top_group_categorie_id, 
+                                    'parent' => $top_group_category_id, 
                                     'taxonomy'=>'category', 
                                     'hide_empty' => false ));
                                 foreach($categories as $index=> $category):?>
@@ -28940,7 +28961,7 @@
                         <div class="tab-content" id="v-pills-tabContent">
                             <?php 
                             $categories = get_terms(array( 
-                                    'parent' => $top_group_categorie_id, 
+                                    'parent' => $top_group_category_id, 
                                     'taxonomy'=>'category', 
                                     'hide_empty' => false ));
                             foreach( $categories as $index=> $category): ?>
@@ -29033,92 +29054,63 @@
                     </div>
                 </div>
             </div>
-            <div class="section section-category after-subscription">
+
+            <?php foreach($top_mono_categories_id as $top_mono_category_id): $category=get_term($top_group_category_id); ?>
+            <div class="section section-category">
                 <div class="row">
                     <div class="form-bg" style="color:black;">
-                        <h2>Data &amp; Studies</h2>
-                        <p class="h5">Studies and data-driven insights are crucial for understanding the ever-changing
-                            search landscape. Check out the resources below to improve your SEO knowledge with unique
-                            data and insights.</p>
+                        <h2><?php echo get_cat_name($top_mono_category_id); ?></h2>
+                        <p class="h5"><?php esc_html_e(wp_strip_all_tags(category_description($top_mono_category_id)));  ?></p>
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade active in" id="v-pills-data-studies" role="tabpanel">
-                                <div id="post-130306" data-pos="70">
-                                    <header class="post-header"> <a
-                                            href="https://ahrefs.com/blog/how-ahrefs-counts-links/"
-                                            title="Permanent Link to How Ahrefs Counts Links and Domains">
-                                            <div class="post-thumbnail" style="background-color:#054ada"> <noscript><img
-                                                        width="800" height="400"
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links.png"
-                                                        class="attachment-header-thumbnail size-header-thumbnail" alt=""
-                                                        decoding="async"
-                                                        srcset="https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links.png 800w, https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links-400x200.png 400w"
-                                                        sizes="(max-width: 800px) 100vw, 800px" /></noscript><img
-                                                    width="800" height="400"
-                                                    src="https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links.png"
-                                                    data-src="https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links.png"
-                                                    class="attachment-header-thumbnail size-header-thumbnail lazy-loaded lazyloaded"
-                                                    alt="" decoding="async" data-srcset=""
-                                                    data-sizes="(max-width: 800px) 100vw, 800px" style=""
-                                                    sizes="(max-width: 800px) 100vw, 800px"
-                                                    srcset="https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links.png 800w, https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2021/01/blog-how-ahrefs-counts-links-400x200.png 400w">
+                            <div 
+                                class="tab-pane fade active in"
+                                id="v-pills-<?php esc_html_e($category->slug ); ?>" 
+                                role="tabpanel"
+                                aria-labelledby="v-pills-<?php esc_html_e($category->slug ); ?>-tab">
+                                <?php $args = array(
+                                        'category__in' => array( $top_mono_category_id ),
+                                        'posts_per_page' => 5,
+                                        'orderby' => 'date',
+                                        'order' => 'DESC'); 
+                                        $query = new WP_Query( $args );
+                                        $counter=0;
+                                        if ( $query->have_posts() ):
+                                            while ( $query->have_posts()): 
+                                                $query->the_post();
+                                                $counter++;
+                                ?>
+                                <?php if($counter==1): ?>
+                                <div>
+                                    <header class="post-header"> 
+                                        <a href="<?php the_permalink(); ?>"
+                                            title="<?php the_title(); ?>">
+                                            <div>
+                                                <?php the_post_thumbnail(); ?>
                                             </div>
-                                            <h3> How Ahrefs Counts Links and Domains</h3>
+                                            <h3><?php the_title(); ?></h3>
                                         </a>
-                                        <div class="post-meta"> <span> Every backlink tool stores different links. Learn
-                                                what we do and don't store. </span></div>
+                                        <div class="post-meta"> <span> <?php the_excerpt(); ?> </span></div>
                                     </header>
                                 </div>
-                                <div id="post-14254" data-pos="60">
+                                <?php else: ?>
+                                <div>
                                     <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/how-long-does-it-take-to-rank/"
-                                                title="Permanent Link to How long does it take to rank in Google? (A study by Ahrefs)">How
-                                                long does it take to rank in Google? (A study by Ahrefs)</a></h3>
-                                        <div class="post-meta"> <span> Make better SEO decisions by aligning your
-                                                ranking expectations with reality. </span></div>
+                                        <h3> <a href="<?php the_permalink(); ?>"
+                                                title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+                                        <div class="post-meta"> <span> <?php the_excerpt(); ?></span></div>
                                     </header>
                                 </div>
-                                <div id="post-15820" data-pos="50">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/also-rank-for-study/"
-                                                title="Permanent Link to How many keywords can you rank for with one page? (Ahrefs’ study of 3M searches)">How
-                                                many keywords can you rank for with one page? (Ahrefs’ study of 3M
-                                                searches)</a></h3>
-                                        <div class="post-meta"> <span> Learn how many keywords the average page ranks
-                                                for. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-11787" data-pos="40">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/anchor-text/"
-                                                title="Permanent Link to Anchor Text: A Data‐Driven Guide (384,614 Web Pages Studied)">Anchor
-                                                Text: A Data‐Driven Guide (384,614 Web Pages Studied)</a></h3>
-                                        <div class="post-meta"> <span> Understand the correlation between anchors and
-                                                rankings. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-21344" data-pos="30">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/search-traffic-study/"
-                                                title="Permanent Link to 90.63% of Content Gets No Traffic From Google. And How to Be in the Other 9.37% [New Research for 2020]">90.63%
-                                                of Content Gets No Traffic From Google. And How to Be in the Other 9.37%
-                                                [New Research for 2020]</a></h3>
-                                        <div class="post-meta"> <span> Learn why your pages might not be getting traffic
-                                                from Google. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-28270" data-pos="10">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/most-visited-websites/"
-                                                title="Permanent Link to Top 100 Most Visited Websites (US and Worldwide)">Top
-                                                100 Most Visited Websites (US and Worldwide)</a></h3>
-                                        <div class="post-meta"> <span> </span></div>
-                                    </header>
-                                </div>
+                                <?php endif; endwhile; endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>  
+
+
+
+            
             <div class="section section-show-more show-more-bottom">
                 <div class="row">
                     <div> <a class="btn-primary btn-more" href="https://ahrefs.com/blog/archive/">Show more posts</a>
