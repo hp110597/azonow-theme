@@ -109,8 +109,9 @@ if(!function_exists('wp_get_menu_array')){
     function wp_get_menu_array($current_menu) {
         $menu_name = $current_menu;
         $locations = get_nav_menu_locations();
-        $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-        if($menu !== false){
+        $menu="";
+        if(isset($locations[ $menu_name ])){
+            $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );        
             $array_menu = wp_get_nav_menu_items( $menu->term_id);
             $menu = array();
             foreach ($array_menu as $m) {
