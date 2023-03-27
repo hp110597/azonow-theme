@@ -80,93 +80,52 @@ add_action('after_setup_theme','register_menu');
 /**
  * @Template Function
  */
-function wp_get_menu_array($current_menu) {
-    $menu_name = $current_menu;
-    $locations = get_nav_menu_locations();
-    $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-    if($menu !== false){
-        $array_menu = wp_get_nav_menu_items( $menu->term_id);
-        $menu = array();
-        foreach ($array_menu as $m) {
-            if (empty($m->menu_item_parent)) {
-                $menu[$m->ID] = array();
-                $menu[$m->ID]['ID']      =   $m->ID;
-                $menu[$m->ID]['title']       =   $m->title;
-                $menu[$m->ID]['url']         =   $m->url;
-                $menu[$m->ID]['children']    =   array();
+if(!function_exists('wp_get_menu_array')){
+    function wp_get_menu_array($current_menu) {
+        $menu_name = $current_menu;
+        $locations = get_nav_menu_locations();
+        $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+        if($menu !== false){
+            $array_menu = wp_get_nav_menu_items( $menu->term_id);
+            $menu = array();
+            foreach ($array_menu as $m) {
+                if (empty($m->menu_item_parent)) {
+                    $menu[$m->ID] = array();
+                    $menu[$m->ID]['ID']      =   $m->ID;
+                    $menu[$m->ID]['title']       =   $m->title;
+                    $menu[$m->ID]['url']         =   $m->url;
+                    $menu[$m->ID]['children']    =   array();
+                }
+            }
+            $submenu = array();
+            foreach ($array_menu as $m) {
+                if ($m->menu_item_parent) {
+                    $submenu[$m->ID] = array();
+                    $submenu[$m->ID]['ID']       =   $m->ID;
+                    $submenu[$m->ID]['title']    =   $m->title;
+                    $submenu[$m->ID]['url']  =   $m->url;
+                    $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
+                }
             }
         }
-        $submenu = array();
-        foreach ($array_menu as $m) {
-            if ($m->menu_item_parent) {
-                $submenu[$m->ID] = array();
-                $submenu[$m->ID]['ID']       =   $m->ID;
-                $submenu[$m->ID]['title']    =   $m->title;
-                $submenu[$m->ID]['url']  =   $m->url;
-                $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
-            }
-        }
+    
+        return $menu;
     }
-
-    return $menu;
 }
 
-//Render Menu to web
-if(!function_exists('azonow_menu')){
-    function azonow_menu($menu){
-        $id_object_active = get_queried_object();
-        $id_object_active_url="";
-        if(isset($id_object_active->term_id)){
-            $id_object_active_id=$id_object_active->term_id;
-            $id_object_active_url = get_term_link($id_object_active_id);
+if(!function_exists('azonow_object_active_url')){
+    function azonow_object_active_url(){
+        $object_active = get_queried_object();
+        $object_active_url="";
+        if(isset($object_active->term_id)){
+            $object_active_id=$object_active->term_id;
+            $object_active_url = get_term_link($object_active_id);
         }
-        $menu_items = wp_get_menu_array($menu);
-        if(is_array($menu_items) or is_object($menu_items)):
-        foreach ($menu_items as $item) : ?>
-
-
-<?php if( !empty($item['children']) ):?>
-<div class="top-menu-item top-menu-item-hide-on-search">
-    <ul class="dropdown-menu dropdown-cat-item" aria-labelledby="top-menu-<?= $item['ID'] ?>" role="menu">
-        <?php $result=""?>
-        <?php foreach($item['children'] as $child): ?>
-        <?php
-            if ($id_object_active_url == $child['url']) {
-                $result="active";
-            }
-        ?>
-        <li>
-            <a href="<?= $child['url'] ?>">
-                <?= $child['title'] ?>
-            </a>
-        </li>
-        <?php endforeach; ?>
-    </ul>
-    <?php if(isset($item['ID'])):?>
-    <a href="#" class="top-menu-el <?php echo $result ?>" id="top-menu-<?= $item['ID'] ?> " type="button"
-        data-toggle="dropdown" aria-expanded="false">
-        <?= $item['title'] ?>
-        <span class="caret"></span>
-    </a>
-    <?php endif;?>
-</div>
-<?php else: ?>
-<div class="top-menu-item top-menu-item-hide-on-search">
-    <a href="<?= $item['url'] ?>" class="top-menu-el <?php  $result = $id_object_active_url == $item['url'] ? "active" :"";
-        echo $result ?>" type="button">
-        <?= $item['title'] ?>
-    </a>
-</div>
-<?php endif; ?>
-<?php endforeach; ?>
-<?php endif;?>
-<?php }
-   
+        return $object_active_url;
+    }
 }
- ?>
 
 
-<?php
 
 //Get highly rated post,quantity post depends on parameter
 if(!function_exists('azonow_post_high_vote')){

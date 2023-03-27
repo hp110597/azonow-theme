@@ -18,22 +18,61 @@
                         <div class="logo">
                             <div class="top-promo top-promo-desktop">
                                 <span class="full-width">
-                                    New to SEO? Read our <a href="https://ahrefs.com/seo">SEO guide</a>.
+                                    <?php _e('New to SEO? Read our','azonow')?> <a href="<?php $_SERVER['HTTP_HOST'] ?>"><?php _e('SEO guide','azonow')?></a>.
                                 </span>
-                                <span class="short-width"><a href="https://ahrefs.com/seo">SEO Guide</a></span>
+                                <span class="short-width"><a href="<?php $_SERVER['HTTP_HOST'] ?>"><?php _e('SEO guide','azonow')?></a></span>
                             </div>
                             <div class="logo-h2">&nbsp;
-                                <a class="ahrefs" href="<?php $_SERVER['HTTP_HOST'] ?>" title="SEO Blog by Ahrefs"
+                                <a class="ahrefs" href="<?php $_SERVER['HTTP_HOST'] ?>" title="<?php _e('SEO blog by azonow','azonow') ?>"
                                     style="--logo-web: url('<?php echo get_custom_logo()?>')"></a>
                             </div>
                         </div>
                         <div class="top-menu">
                             <div class="top-menu-items">
-                                <?php azonow_menu('primary-menu')?>
+                                <?php 
+                                    $menu_items = wp_get_menu_array('primary-menu');
+                                    if(is_array($menu_items) or is_object($menu_items)):
+                                    foreach ($menu_items as $item) :
+                                    if( !empty($item['children']) ):
+                                ?>
+                                <div class="top-menu-item top-menu-item-hide-on-search">
+                                    <ul class="dropdown-menu dropdown-cat-item" aria-labelledby="top-menu-<?= $item['ID'] ?>" role="menu">
+                                        <?php $result=""?>
+                                        <?php foreach($item['children'] as $child): ?>
+                                        <?php
+                                            if (azonow_object_active_url() == $child['url']) {
+                                                $result="active";
+                                            }
+                                        ?>
+                                        <li>
+                                            <a href="<?= $child['url'] ?>">
+                                                <?php  printf(__('%1$s','azonow'),$child['title']) ?>
+                                            </a>
+                                        </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                    <?php if(isset($item['ID'])):?>
+                                    <a href="#" class="top-menu-el <?php echo $result ?>" id="top-menu-<?= $item['ID'] ?> " type="button"
+                                        data-toggle="dropdown" aria-expanded="false">
+                                        <?php  printf(__('%1$s','azonow'),$item['title']) ?>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <?php endif;?>
+                                </div>
+                                <?php else: ?>
+                                <div class="top-menu-item top-menu-item-hide-on-search">
+                                    <a href="<?= $item['url'] ?>" class="top-menu-el <?php  $result = azonow_object_active_url() == $item['url'] ? "active" :"";
+                                        echo $result ?>" type="button">
+                                        <?php  printf(__('%1$s','azonow'),$item['title']) ?>
+                                    </a>
+                                </div>
+                                <?php endif; ?>
+                                <?php endforeach; ?>
+                                <?php endif;?>
                                 <?php if (!is_search()): ?>
                                 <div class="top-menu-item search-menu-form-list-item">
                                     <form method="get" class="top-menu-item-search-form" id="top-menu-searchform-main"
-                                        action="">
+                                        action="<?php $_SERVER['HTTP_HOST'] ?>">
                                         <div class="top-menu-item-search-container"> <input type="text"
                                                 class="searching" value="" name="search"
                                                 placeholder="Search the blog..." aria-label="Search">
@@ -41,82 +80,74 @@
                                             <button type="reset" class="btn-reset cross-icon"></button>
                                         </div>
                                     </form>
-                                    <span class="search-toggle-icon" id="searchToggle" tabindex="0">Search
+                                    <span class="search-toggle-icon" id="searchToggle" tabindex="0"><?php _e('Search','azonow')?>
                                     </span>
                                 </div>
                                 <?php endif;?>
 
                                 <div class="top-menu-item goto-subscribe-list-item"> <a class="btn btn-goto-subscribe"
-                                        href="#">Subscribe</a>
+                                        href="#"><?php _e('Subscribe','azonow')?></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="mobile-button-wrap"> <a href="#" id="sMobileMenuButton" class="mobile-button"
+                        <div class="mobile-button-wrap">
+                            <a href="#" id="sMobileMenuButton" class="mobile-button"
                                 role="button">
                                 <div class="menu-icons">
                                     <div class="icon-hamburger"></div>
                                     <div class="icon-cross"></div>
-                                </div> <span class="screen-reader-text">Menu</span>
+                                </div> <span class="screen-reader-text"><?php _e('Menu','azonow')?></span>
                             </a></div>
                         <div class="top-menu-mobile with-social-widget with-promo">
                             <div class="mobile-menu-header">
                                 <div class="logo">
-                                    <div class="logo-h2">&nbsp;<a class="ahrefs" href="https://ahrefs.com"
-                                            title="SEO Blog by Ahrefs"></a><a class="blog"
-                                            href="https://ahrefs.com/blog/" title="SEO Blog by Ahrefs"></a></div>
+                                    <div class="logo-h2">&nbsp;
+                                        <a class="ahrefs" href="<?php $_SERVER['HTTP_HOST'] ?>" title="<?php _e('SEO blog by azonow','azonow') ?>" style="--logo-web: url('<?php echo get_custom_logo()?>')">
+                                         </a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="top-promo top-promo-mobile"> New to SEO? Read our <a
-                                    href="https://ahrefs.com/seo">SEO guide</a>.</div>
+                            <div class="top-promo top-promo-mobile"> <?php _e('New to SEO? Read our','azonow')?> <a
+                                    href="<?php $_SERVER['HTTP_HOST'] ?>"><?php _e('SEO guide','azonow')?></a>.</div>
                             <div class="mobile-menu-wrap">
                                 <div>
                                     <div class="mobile-search">
-                                        <form method="get" id="searchform-mobile-menu" action="https://ahrefs.com/blog">
+                                        <form method="get" id="searchform-mobile-menu" action="<?php $_SERVER['HTTP_HOST'] ?>">
                                             <input type="text" class="searching" value="" name="s"
                                                 placeholder="Search the blog..." aria-label="Search"><button
-                                                type="submit" class="btn-submit search-icon">Search</button>
+                                                type="submit" class="btn-submit search-icon"><?php _e('Search','aznonow')?></button>
                                         </form>
                                     </div>
                                     <div class="mobile-menu-content">
-                                        <div class="mobile-menu-block"> <span
-                                                class="mobile-menu-item mobile-menu-parent mobile-menu-el"> SEO </span>
-                                            <a href="https://ahrefs.com/blog/category/general-seo/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el">General
-                                                SEO</a> <a href="https://ahrefs.com/blog/category/keyword-research/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el">Keyword
-                                                Research</a> <a href="https://ahrefs.com/blog/category/on-page-seo/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el">On-Page
-                                                SEO</a> <a href="https://ahrefs.com/blog/category/link-building/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el">Link
-                                                Building</a> <a href="https://ahrefs.com/blog/category/technical-seo/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el">Technical
-                                                SEO</a> <a href="https://ahrefs.com/blog/category/local-seo/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el">Local SEO</a>
+                                    <?php 
+                                    if(is_array($menu_items) or is_object($menu_items)):
+                                    foreach ($menu_items as $item) :
+                                    if( !empty($item['children']) ):
+                                    ?>
+                                        <div class="mobile-menu-block">
+                                            <span
+                                                class="mobile-menu-item mobile-menu-parent mobile-menu-el">
+                                                <?php printf(__('%1$s','azonow'),$item['title']) ?>
+                                            </span>
+                                            <?php foreach($item['children'] as $child): ?>
+                                                <a href="<?= $child['url'] ?>" class="mobile-menu-item mobile-menu-child mobile-menu-el">
+                                                    <?php  printf(__('%1$s','azonow'),$child['title']) ?>
+                                                </a>
+                                            <?php endforeach; ?>
                                         </div>
-                                        <div class="mobile-menu-block"> <span
-                                                class="mobile-menu-item mobile-menu-parent mobile-menu-el active">
-                                                Marketing </span> <a href="https://ahrefs.com/blog/category/marketing/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el active">General
-                                                Marketing</a> <a
-                                                href="https://ahrefs.com/blog/category/content-marketing/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el active">Content
-                                                Marketing</a> <a
-                                                href="https://ahrefs.com/blog/category/affiliate-marketing/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el active">Affiliate
-                                                Marketing</a> <a href="https://ahrefs.com/blog/category/paid-marketing/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el active">Paid
-                                                Marketing</a> <a
-                                                href="https://ahrefs.com/blog/category/video-marketing/"
-                                                class="mobile-menu-item mobile-menu-child mobile-menu-el active">Video
-                                                Marketing</a></div>
-                                        <div class="mobile-menu-block"> <a
-                                                href="https://ahrefs.com/blog/category/data-studies/"
+                                    <?php else:?>
+                                        <div class="mobile-menu-block">
+                                            <a
+                                                href="<?= $item['url'] ?>"
                                                 class="mobile-menu-item mobile-menu-parent top-menu-el" type="button">
-                                                Data &amp; Studies </a></div>
-                                        <div class="mobile-menu-block"> <a
-                                                href="https://ahrefs.com/blog/category/product-blog/"
-                                                class="mobile-menu-item mobile-menu-parent top-menu-el" type="button">
-                                                Product </a></div>
+                                                <?php  printf(__('%1$s','azonow'),$item['title']) ?>
+                                            </a>
+                                        </div>
+                                    <?php 
+                                        endif; 
+                                        endforeach; 
+                                        endif;
+                                    ?>
                                     </div>
                                 </div>
                             </div>
@@ -136,13 +167,13 @@
                                         class="btn btn-goto-subscribe" href="#">Subscribe</a>
                                 </div>
                                 <div class="widget-social">
-                                    <div class="h3"> <a href="https://www.facebook.com/Ahrefs" target="_blank"
+                                    <div class="h3"> <a href="#" target="_blank"
                                             rel="nofollow"><i class="fa fa-facebook"></i></a> <a
-                                            href="https://twitter.com/ahrefs" target="_blank" rel="nofollow"><i
+                                            href="#" target="_blank" rel="nofollow"><i
                                                 class="fa fa-twitter"></i></a> <a
-                                            href="https://www.youtube.com/c/ahrefscom" target="_blank" rel="nofollow"><i
+                                            href="#" target="_blank" rel="nofollow"><i
                                                 class="fa fa-youtube-play"></i></a> <a type="application/rss+xml"
-                                            href="https://ahrefs.com/blog/feed/" target="_blank"><i
+                                            href="#" target="_blank"><i
                                                 class="fa fa-rss"></i></a></div>
                                 </div>
                             </div>

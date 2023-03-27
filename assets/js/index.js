@@ -6,4 +6,8 @@ jQuery(document).ready(function ($) {
   $(document).on("click", ".btn-reset", function (e) {
     $(".top-menu-items").removeClass("open");
   });
+  $(document).on("click", "#sMobileMenuButton", function (e) {
+    e.preventDefault();
+    $("#header").toggleClass("open");
+  });
 });
