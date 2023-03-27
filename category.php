@@ -8,7 +8,9 @@
         $src_image_category = esc_url( $category_image ) ;
     }
     $post_hight_rate =  azonow_post_high_vote(5,$posts);
-    $image_post_vote_highest = $post_hight_rate[0]['thumbnail'] ? $post_hight_rate[0]['thumbnail'] : "/wp-content/themes/azonow-theme/assets/images/default_beauty.jpg" ;
+    if(isset($post_hight_rate[0])){
+        $image_post_vote_highest = $post_hight_rate[0]['thumbnail'] ? $post_hight_rate[0]['thumbnail'] : "/wp-content/themes/azonow-theme/assets/images/default_beauty.jpg" ;
+    }
 ?>
 <div id="container" class="archive-category">
     <div class="content">
@@ -42,6 +44,7 @@
                         <div class="form-bg">
                             <div class="tab-content">
                                 <div class="tab-pane active in">
+                                    <?php if(isset($post_hight_rate[0])):?>
                                     <div data-pos="<?php echo $post_hight_rate[0]['point'] ?>">
                                         <header class="post-header">
                                             <a href="<?php echo $post_hight_rate[0]['permalink'] ?>"
@@ -85,6 +88,7 @@
                                         </header>
                                     </div>
                                     <?php endfor;?>
+                                    <?php endif;?>
                                 </div>
                             </div>
                         </div>

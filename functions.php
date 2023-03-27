@@ -153,9 +153,17 @@ if(!function_exists('azonow_object_active_url')){
 
 //Get highly rated post,quantity post depends on parameter
 if(!function_exists('azonow_post_high_vote')){
-    function azonow_post_high_vote($number,$posts){
+    function azonow_post_high_vote($number){
         $posts_high_vote = [];
-        foreach ($posts as $key=>$post){
+        $args = array(
+            'post_type' => 'post',
+            'posts_per_page' => -1,
+            'category__in'=>get_queried_object_id(),
+            'orderby' => 'date',
+            'order' => 'DESC'
+        );
+        $query = new WP_Query( $args );
+        foreach($query->posts as $key =>$post){
             $point_rate = 0;
             if (get_post_meta($post->ID,'_azonow_point_data',true)){
                 $point_rate = (int)get_post_meta($post->ID,'_azonow_point_data',true);
@@ -177,24 +185,6 @@ if(!function_exists('azonow_post_high_vote')){
             }
         }
 
-        
-        if (count($posts_high_vote) < $number){
-            $args = array(
-                'post_type' => 'post',
-                'posts_per_page' => $number - count($posts_high_vote),
-                'category__not_in' => get_queried_object_id(),
-                'orderby' => 'date',
-                'order' => 'DESC'
-            );
-            $query = new WP_Query( $args );
-            foreach($query->posts as $key =>$post){
-                $point_rate = 0;
-                if (get_post_meta($post->ID,'_azonow_point_data',true)){
-                    $point_rate = (int)get_post_meta($post->ID,'_azonow_point_data',true);
-                }
-                $posts_high_vote[]=['title'=>$post->post_title,'excerpt'=>$post->post_excerpt !="" ? $post->post_excerpt : "Not the excerpt" ,'thumbnail'=>get_the_post_thumbnail_url($post->ID,'thumbnail'),'point'=>$point_rate,'permalink'=>get_permalink( $post->ID)];
-            }
-        }
         wp_reset_postdata();
         return  $posts_high_vote;
     }
