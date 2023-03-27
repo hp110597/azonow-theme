@@ -28822,7 +28822,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h1><?php the_title(); ?></h1>
-                            <p><?php the_excerpt(); ?> </p>
+                            <p><?php the_excerpt(); ?></p>
                         </div>
                     </div>
                 </div>
@@ -28884,17 +28884,50 @@
                 </div>
             </div>
             
+
+            <?php
+                $group_categories = get_categories();
+                $group_categories_post_counts=[];
+                foreach ($group_categories as $cat) {
+                    $args = array(
+                        'child_of' => $cat->term_id,
+                        'taxonomy' => 'category'
+                    );
+                    $children = get_categories($args);
+                    if ($children) {
+                        $args = array(
+                            'cat' => $cat->term_id,
+                            'post_type' => 'post',
+                            'post_status' => 'publish',
+                            'posts_per_page' => -1
+                        );
+                        $query = new WP_Query($args);
+                        $post_count = $query->post_count;
+                        if($post_count>0){
+                            $group_categories_post_counts[$cat->term_id]=$post_count;
+                        }
+                    }
+                }
+                arsort($group_categories_post_counts);
+                $top_group_categories=array_slice($group_categories_post_counts,0,3,true);
+
+                $top_group_categories_id=array_keys($top_group_categories);
+
+            ?>
+            
+
+            <?php foreach($top_group_categories_id as $top_group_categorie_id ): ?>
             <div class="section section-category">
                 <div class="row">
                     <div class="form-bg" style="color:black;">
-                        <h2><?php echo get_cat_name(81); ?></h2>
-                        <p class="h5"><?php esc_html_e(wp_strip_all_tags(category_description(81)));  ?></p>
+                        <h2><?php echo get_cat_name($top_group_categorie_id); ?></h2>
+                        <p class="h5"><?php esc_html_e(wp_strip_all_tags(category_description($top_group_categorie_id)));  ?></p>
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                             aria-orientation="horizontal">
                             <div> 
                                 <?php 
                                 $categories = get_terms(array( 
-                                    'parent' => 81, 
+                                    'parent' => $top_group_categorie_id, 
                                     'taxonomy'=>'category', 
                                     'hide_empty' => false ));
                                 foreach($categories as $index=> $category):?>
@@ -28907,7 +28940,7 @@
                         <div class="tab-content" id="v-pills-tabContent">
                             <?php 
                             $categories = get_terms(array( 
-                                    'parent' => 81, 
+                                    'parent' => $top_group_categorie_id, 
                                     'taxonomy'=>'category', 
                                     'hide_empty' => false ));
                             foreach( $categories as $index=> $category): ?>
@@ -28958,327 +28991,9 @@
                     </div>
                 </div>
             </div>
-            <div class="section section-category">
-                <div class="row">
-                    <div class="form-bg" style="color:black;">
-                        <h2>Marketing</h2>
-                        <p class="h5">Marketing is the process of generating awareness, interest, and desire for a
-                            product or service. Check out the resources below to improve your marketing knowledge and
-                            create effective marketing campaigns.</p>
-                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                            aria-orientation="horizontal">
-                            <div> <button class="nav-link active" id="v-pills-marketing-tab" data-toggle="pill"
-                                    href="#v-pills-marketing" role="tab" aria-controls="v-pills-marketing"
-                                    aria-selected="true">General Marketing</button><button class="nav-link "
-                                    id="v-pills-content-marketing-tab" data-toggle="pill"
-                                    href="#v-pills-content-marketing" role="tab"
-                                    aria-controls="v-pills-content-marketing" aria-selected="false">Content
-                                    Marketing</button><button class="nav-link " id="v-pills-affiliate-marketing-tab"
-                                    data-toggle="pill" href="#v-pills-affiliate-marketing" role="tab"
-                                    aria-controls="v-pills-affiliate-marketing" aria-selected="false">Affiliate
-                                    Marketing</button><button class="nav-link " id="v-pills-paid-marketing-tab"
-                                    data-toggle="pill" href="#v-pills-paid-marketing" role="tab"
-                                    aria-controls="v-pills-paid-marketing" aria-selected="false">Paid
-                                    Marketing</button><button class="nav-link " id="v-pills-video-marketing-tab"
-                                    data-toggle="pill" href="#v-pills-video-marketing" role="tab"
-                                    aria-controls="v-pills-video-marketing" aria-selected="false">Video
-                                    Marketing</button></div>
-                        </div>
-                        <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade active in" id="v-pills-marketing" role="tabpanel"
-                                aria-labelledby="v-pills-marketing-tab">
-                                <div id="post-132867" data-pos="70">
-                                    <header class="post-header"> <a href="https://ahrefs.com/blog/inbound-marketing/"
-                                            title="Permanent Link to What is Inbound Marketing? A Beginner's Guide">
-                                            <div class="post-thumbnail" style="background-color:#054ADA"> <noscript><img
-                                                        width="800" height="400"
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing.png"
-                                                        class="attachment-header-thumbnail size-header-thumbnail" alt=""
-                                                        decoding="async"
-                                                        srcset="https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing.png 800w, https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing-400x200.png 400w"
-                                                        sizes="(max-width: 800px) 100vw, 800px" /></noscript><img
-                                                    width="800" height="400"
-                                                    src="https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing.png"
-                                                    data-src="https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing.png"
-                                                    class="attachment-header-thumbnail size-header-thumbnail lazy-loaded lazyloaded"
-                                                    alt="" decoding="async" data-srcset=""
-                                                    data-sizes="(max-width: 800px) 100vw, 800px" style=""
-                                                    srcset="https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing.png 800w, https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2021/04/blog-inbound-marketing-400x200.png 400w"
-                                                    sizes="(max-width: 800px) 100vw, 800px"></div>
-                                            <h3> What is Inbound Marketing? A Beginner's Guide</h3>
-                                        </a>
-                                        <div class="post-meta"> <span> Create relevant and useful content to attract,
-                                                engage, and delight more customers. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-131828" data-pos="60">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/marketing-tactics/"
-                                                title="Permanent Link to 16 Marketing Tactics That Work">16 Marketing
-                                                Tactics That Work</a></h3>
-                                        <div class="post-meta"> <span> Use these tactics to help achieve your marketing
-                                                objectives. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-129983" data-pos="40">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/competitor-analysis/"
-                                                title="Permanent Link to How to Conduct a Competitive Analysis (Template Included)">How
-                                                to Conduct a Competitive Analysis (Template Included)</a></h3>
-                                        <div class="post-meta"> <span> Gain a competitive advantage by identifying and
-                                                researching competitors. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-31458" data-pos="30">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/quora-marketing/"
-                                                title="Permanent Link to Quora Marketing: ~1 Million Views Generated. Here's How to Replicate Our Success">Quora
-                                                Marketing: ~1 Million Views Generated. Here's How to Replicate Our
-                                                Success</a></h3>
-                                        <div class="post-meta"> <span> Follow in our footsteps to get more traffic from
-                                                Quora. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-132799" data-pos="20">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/how-to-promote-your-business/"
-                                                title="Permanent Link to 13 Free Ways to Promote Your Business">13 Free
-                                                Ways to Promote Your Business</a></h3>
-                                        <div class="post-meta"> <span> Get the tactics we used to grow Ahrefs by +65%
-                                                year-on-year. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-29373" data-pos="10">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/digital-marketing-strategies/"
-                                                title="Permanent Link to 7 Digital Marketing Strategies That Actually Work">7
-                                                Digital Marketing Strategies That Actually Work</a></h3>
-                                        <div class="post-meta"> <span> Ignore the noise and latest fads; focus on what
-                                                works. </span></div>
-                                    </header>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-content-marketing" role="tabpanel"
-                                aria-labelledby="v-pills-content-marketing-tab">
-                                <div id="post-130994" data-pos="70">
-                                    <header class="post-header"> <a href="https://ahrefs.com/blog/content-marketing/"
-                                            title="Permanent Link to Content Marketing: A Comprehensive Guide">
-                                            <div class="post-thumbnail" style="background-color:#054ada"> <noscript><img
-                                                        width="800" height="400"
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing.png"
-                                                        class="attachment-header-thumbnail size-header-thumbnail" alt=""
-                                                        decoding="async"
-                                                        srcset="https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing.png 800w, https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing-400x200.png 400w"
-                                                        sizes="(max-width: 800px) 100vw, 800px" /></noscript><img
-                                                    width="800" height="400"
-                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20800%20400%22%3E%3C/svg%3E"
-                                                    data-src="https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing.png"
-                                                    class="lazyload attachment-header-thumbnail size-header-thumbnail lazy-h"
-                                                    alt="" decoding="async"
-                                                    data-srcset="https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing.png 800w, https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2021/01/content_marketing-400x200.png 400w"
-                                                    data-sizes="(max-width: 800px) 100vw, 800px"
-                                                    style="max-height: 150px;"></div>
-                                            <h3> Content Marketing: A Comprehensive Guide</h3>
-                                        </a>
-                                        <div class="post-meta"> <span> Get more traffic and customers by creating and
-                                                promoting content. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-39322" data-pos="60">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/why-content-marketing-is-important/"
-                                                title="Permanent Link to Why is Content Marketing Important? 5 Reasons">Why
-                                                is Content Marketing Important? 5 Reasons</a></h3>
-                                        <div class="post-meta"> <span> Learn how content can positively impact your
-                                                business. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-9015" data-pos="50">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/content-marketing-strategy/"
-                                                title="Permanent Link to How to Build a Winning Content Marketing Strategy in 9 Steps">How
-                                                to Build a Winning Content Marketing Strategy in 9 Steps</a></h3>
-                                        <div class="post-meta"> <span> Get more traffic, leads and sales with a smart
-                                                content marketing strategy. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-9729" data-pos="10">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/content-marketing-examples/"
-                                                title="Permanent Link to 7 Inspiring Content Marketing Examples (And How to Replicate Them)">7
-                                                Inspiring Content Marketing Examples (And How to Replicate Them)</a>
-                                        </h3>
-                                        <div class="post-meta"> <span> Learn how to replicate content marketing
-                                                campaigns that worked. </span></div>
-                                    </header>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-affiliate-marketing" role="tabpanel"
-                                aria-labelledby="v-pills-affiliate-marketing-tab">
-                                <div id="post-32850" data-pos="40">
-                                    <header class="post-header"> <a href="https://ahrefs.com/blog/affiliate-marketing/"
-                                            title="Permanent Link to Affiliate Marketing For Beginners: What It Is + How to Succeed">
-                                            <div class="post-thumbnail" style="background-color:#054ADA"> <noscript><img
-                                                        width="800" height="400"
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing.png"
-                                                        class="attachment-header-thumbnail size-header-thumbnail" alt=""
-                                                        decoding="async"
-                                                        srcset="https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing.png 800w, https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing-400x200.png 400w"
-                                                        sizes="(max-width: 800px) 100vw, 800px" /></noscript><img
-                                                    width="800" height="400"
-                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20800%20400%22%3E%3C/svg%3E"
-                                                    data-src="https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing.png"
-                                                    class="lazyload attachment-header-thumbnail size-header-thumbnail lazy-h"
-                                                    alt="" decoding="async"
-                                                    data-srcset="https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing.png 800w, https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2020/01/blog_affiliate_marketing-400x200.png 400w"
-                                                    data-sizes="(max-width: 800px) 100vw, 800px"
-                                                    style="max-height: 150px;"></div>
-                                            <h3> Affiliate Marketing For Beginners: What It Is + How to Succeed</h3>
-                                        </a>
-                                        <div class="post-meta"> <span> Earn commissions online by promoting others'
-                                                products and services, step by step. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-40405" data-pos="30">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/affiliate-keyword-research/"
-                                                title="Permanent Link to How to Do Keyword Research for Affiliate Sites">How
-                                                to Do Keyword Research for Affiliate Sites</a></h3>
-                                        <div class="post-meta"> <span> Find the keywords people are searching for where
-                                                you can naturally plug products. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-36831" data-pos="20">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/amazon-affiliate-marketing/"
-                                                title="Permanent Link to How to Build a Successful Amazon Affiliate Site (Step by Step)">How
-                                                to Build a Successful Amazon Affiliate Site (Step by Step)</a></h3>
-                                        <div class="post-meta"> <span> Earn some extra dough by promoting Amazon
-                                                products on your website. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-32496" data-pos="10">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/amazon-affiliate-websites/"
-                                                title="Permanent Link to 7 Successful Amazon Affiliate Websites (That You Can Learn From)">7
-                                                Successful Amazon Affiliate Websites (That You Can Learn From)</a></h3>
-                                        <div class="post-meta"> <span> Replicate the successes of popular Amazon
-                                                affiliate websites. </span></div>
-                                    </header>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade count-le-3" id="v-pills-paid-marketing" role="tabpanel"
-                                aria-labelledby="v-pills-paid-marketing-tab">
-                                <div id="post-23796" data-pos="10">
-                                    <header class="post-header"> <a href="https://ahrefs.com/blog/podcast-advertising/"
-                                            title="Permanent Link to Podcast Advertising: $51,975 Spent. Here's What We Learned">
-                                            <div class="post-thumbnail" style="background-color:#BBEA5E"> <noscript><img
-                                                        width="1500" height="517"
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2018/11/podcast-sponsorship-header-1.png"
-                                                        class="attachment-header-thumbnail size-header-thumbnail" alt=""
-                                                        decoding="async"
-                                                        srcset="https://ahrefs.com/blog/wp-content/uploads/2018/11/podcast-sponsorship-header-1.png 1500w, https://ahrefs.com/blog/wp-content/uploads/2018/11/podcast-sponsorship-header-1-768x265.png 768w, https://ahrefs.com/blog/wp-content/uploads/2018/11/podcast-sponsorship-header-1-680x234.png 680w"
-                                                        sizes="(max-width: 1500px) 100vw, 1500px" /></noscript><img
-                                                    width="1500" height="517"
-                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201500%20517%22%3E%3C/svg%3E"
-                                                    data-src="https://ahrefs.com/blog/wp-content/uploads/2018/11/podcast-sponsorship-header-1.png"
-                                                    class="lazyload attachment-header-thumbnail size-header-thumbnail lazy-h"
-                                                    alt="" decoding="async"
-                                                    data-srcset="https://ahrefs.com/blog/wp-content/uploads/2018/11/podcast-sponsorship-header-1.png 1500w, https://ahrefs.com/blog/wp-content/uploads/2018/11/podcast-sponsorship-header-1-768x265.png 768w, https://ahrefs.com/blog/wp-content/uploads/2018/11/podcast-sponsorship-header-1-680x234.png 680w"
-                                                    data-sizes="(max-width: 1500px) 100vw, 1500px"
-                                                    style="max-height: 103.4px;"></div>
-                                            <h3> Podcast Advertising: $51,975 Spent. Here's What We Learned</h3>
-                                        </a>
-                                        <div class="post-meta"> <span> Learn how to market your business on podcasts.
-                                            </span></div>
-                                    </header>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-video-marketing" role="tabpanel"
-                                aria-labelledby="v-pills-video-marketing-tab">
-                                <div id="post-26370" data-pos="70">
-                                    <header class="post-header"> <a href="https://ahrefs.com/blog/youtube-seo/"
-                                            title="Permanent Link to YouTube SEO: How to Rank Your Videos From Start to Finish">
-                                            <div class="post-thumbnail" style="background-color:#054ADA"> <noscript><img
-                                                        width="800" height="400"
-                                                        src="https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo.png"
-                                                        class="attachment-header-thumbnail size-header-thumbnail" alt=""
-                                                        decoding="async"
-                                                        srcset="https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo.png 800w, https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo-400x200.png 400w"
-                                                        sizes="(max-width: 800px) 100vw, 800px" /></noscript><img
-                                                    width="800" height="400"
-                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20800%20400%22%3E%3C/svg%3E"
-                                                    data-src="https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo.png"
-                                                    class="lazyload attachment-header-thumbnail size-header-thumbnail lazy-h"
-                                                    alt="" decoding="async"
-                                                    data-srcset="https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo.png 800w, https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo-680x340.png 680w, https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo-768x384.png 768w, https://ahrefs.com/blog/wp-content/uploads/2019/03/blog-youtube-seo-400x200.png 400w"
-                                                    data-sizes="(max-width: 800px) 100vw, 800px"
-                                                    style="max-height: 150px;"></div>
-                                            <h3> YouTube SEO: How to Rank Your Videos From Start to Finish</h3>
-                                        </a>
-                                        <div class="post-meta"> <span> Follow our tried and tested strategy to increase
-                                                YouTube rankings and search views. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-32316" data-pos="60">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/video-seo/"
-                                                title="Permanent Link to Video SEO: How to Rank YouTube Videos on Google">Video
-                                                SEO: How to Rank YouTube Videos on Google</a></h3>
-                                        <div class="post-meta"> <span> Drive more views to your YouTube videos by
-                                                ranking them on Google. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-29433" data-pos="50">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/youtube-keyword-research/"
-                                                title="Permanent Link to How to Do YouTube Keyword Research in 3 Easy Steps">How
-                                                to Do YouTube Keyword Research in 3 Easy Steps</a></h3>
-                                        <div class="post-meta"> <span> Get more views by targeting the topics people are
-                                                searching for. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-105823" data-pos="40">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/how-to-get-youtube-subscribers/"
-                                                title="Permanent Link to 9 Ways to Get More YouTube Subscribers">9 Ways
-                                                to Get More YouTube Subscribers</a></h3>
-                                        <div class="post-meta"> <span> Grow your subscriber base with our tried and
-                                                tested tactics. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-36725" data-pos="30">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/how-to-get-more-views-on-youtube/"
-                                                title="Permanent Link to 14 Proven Ways to Get More Views on YouTube">14
-                                                Proven Ways to Get More Views on YouTube</a></h3>
-                                        <div class="post-meta"> <span> Get more video views with the tactics that worked
-                                                for us. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-29593" data-pos="20">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/youtube-keyword-tools/"
-                                                title="Permanent Link to 8 Best YouTube Keyword Tools (Free and Paid)">8
-                                                Best YouTube Keyword Tools (Free and Paid)</a></h3>
-                                        <div class="post-meta"> <span> Use the best tools to find keywords that drive
-                                                video views. </span></div>
-                                    </header>
-                                </div>
-                                <div id="post-31588" data-pos="10">
-                                    <header class="post-header">
-                                        <h3> <a href="https://ahrefs.com/blog/youtube-tags/"
-                                                title="Permanent Link to What are YouTube Tags and Which Ones Should You Add?">What
-                                                are YouTube Tags and Which Ones Should You Add?</a></h3>
-                                        <div class="post-meta"> <span> Follow our quick process for adding tags to
-                                                YouTube videos. </span></div>
-                                    </header>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>                        
+
+            
             <div class="section section-subscribe">
                 <div class="row">
                     <div><noscript><img
