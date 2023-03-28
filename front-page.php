@@ -444,5 +444,4 @@
     <script defer="" type="text/javascript"
         src="https://ahrefs.com/blog/wp-content/cache/autoptimize/js/autoptimize_single_764f80ce7b62103bfe17f5fbbc2bbb6a.js"
         id="Ahrefs-plugins-js"></script>
-
-</body>
+<?php get_footer()?>
