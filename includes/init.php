@@ -6,7 +6,9 @@
 function azonow_add_scripts_theme() {
     wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css' );
     wp_enqueue_style( 'index-css', get_stylesheet_directory_uri() . '/assets/css/index.css' );
-    wp_enqueue_style( '404-css', get_stylesheet_directory_uri() . '/assets/css/404.css' );
+    if(is_404()){
+        wp_enqueue_style( '404-css', get_stylesheet_directory_uri() . '/assets/css/404.css' );
+    }
     wp_enqueue_script( 'jquery.min-js', get_stylesheet_directory_uri() . '/assets/js/jquery.min.js');
     wp_enqueue_script( 'index-js', get_stylesheet_directory_uri() . '/assets/js/index.js');
     wp_enqueue_script( 'lazyloadxt-js', get_stylesheet_directory_uri() . '/assets/js/jquery.lazyloadxt.extra.min.js');
