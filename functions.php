@@ -99,7 +99,7 @@ if(!function_exists('azonow_class_body')){
             return "search search-results";
         }elseif(is_404()){
             return "error404 animated";
-        } elseif(is_page()){
+        } elseif(is_front_page()){
             return 'home page-template page-template-page-home page-template-page-home-php page';
         }elseif(is_author()){
             $name = get_the_author_meta('display_name');
