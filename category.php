@@ -95,9 +95,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <h2 class="most-recent"><?php _e('Most Recent Articles','azonow')?></h2>
+            </div>    
         <?php endif;?>
+        <h2 class="most-recent"><?php _e('Most Recent Articles','azonow')?></h2>
         <?php get_template_part('content')?>
     </div>
 </div>

@@ -4,7 +4,7 @@ function azonow_add_new_meta_box() {
     add_meta_box('infor',__('Rate the quality','azonow'),'infor_output','post','side','default');
 }
 
-add_action('add_meta_boxes','azonow_add_new_meta_box',10);
+add_action('add_meta_boxes','azonow_add_new_meta_box');
 
 function infor_output($post){
     $data = get_post_meta($post->ID,'_azonow_point_data',true);
@@ -16,6 +16,7 @@ function infor_output($post){
         _e('(*) Enter a rating to display the article in the high rating area of ​​the website, not required','azonow')
         ;
     }else{
+        echo
         '
         <input type="number" name="point-for-post"><br>
         ';
