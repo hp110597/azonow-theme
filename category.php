@@ -7,7 +7,7 @@
     if ( ! empty( $category_image ) ) {
         $src_image_category = esc_url( $category_image ) ;
     }
-    $post_hight_rate =  azonow_post_high_vote(5,$posts);
+    $post_hight_rate =  azonow_post_high_vote(5);
     if(isset($post_hight_rate[0])){
         $image_post_vote_highest = $post_hight_rate[0]['thumbnail'] ? $post_hight_rate[0]['thumbnail'] : "/wp-content/themes/azonow-theme/assets/images/default_beauty.jpg" ;
     }
@@ -50,7 +50,8 @@
                                             <a href="<?php echo $post_hight_rate[0]['permalink'] ?>"
                                                 title="Permalink to <?php echo $post_hight_rate[0]['title'] ?>">
                                                 <div class="post-thumbnail" style="background-color:#054ADA">
-                                                    <noscript><img width="800" height="400"
+                                                    <noscript>
+                                                        <img width="800" height="400"
                                                             src="<?php echo $image_post_vote_highest ?>"
                                                             class="attachment-header-thumbnail size-header-thumbnail" alt=""
                                                             decoding="async"
