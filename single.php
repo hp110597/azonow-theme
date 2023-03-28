@@ -3,7 +3,7 @@
   get_header();
   $category = get_the_category();
   $category_image = get_term_meta($category[0]->term_id, 'category_image', true);
-   $src_image_category = "/wp-content/themes/theme_clone/assets/images/default_category.png";
+  $src_image_category = "/wp-content/themes/theme_clone/assets/images/default_category.png";
   if (!empty($category_image)) {
     $src_image_category = $category_image;
   }
@@ -21,56 +21,56 @@
         while (have_posts()) {
           the_post();
           ?>
-          <div class="top-section with-icon">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <noscript
-                      ><img
-                        class="category-icon"
-                        src="<?php echo $src_image_category ?>" /></noscript>
-                    <img
-                      class="category-icon lazyloaded"
-                      src="<?php echo $src_image_category ?>"
-                      data-src="<?php echo $src_image_category ?>"
-                    />
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <header class="post-header">
-                      <div class="post-category">
-                        <a
-                          href="#"
-                          rel="tag"
-                          ><?php echo get_the_category_list(', '); ?></a
-                        >
+              <div class="top-section with-icon">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <noscript
+                          ><img
+                            class="category-icon"
+                            src="<?php echo $src_image_category ?>" /></noscript>
+                        <img
+                          class="category-icon lazyloaded"
+                          src="<?php echo $src_image_category ?>"
+                          data-src="<?php echo $src_image_category ?>"
+                        />
                       </div>
-                      <h1 class="entry-title">
-                        <?php the_title() ?>
-                      </h1>
-                      <div class="post-meta">
-                        <span class="post-author vcard author" itemprop="author">
-                          <a
-                            href="https://ahrefs.com/blog/author/bill-widmer/"
-                            title="Posts by <?php the_author() ?>"
-                            rel="author"
-                          >
-                            <span class="fn"><?php the_author() ?></span>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <header class="post-header">
+                          <div class="post-category">
+                            <a
+                              href="#"
+                              rel="tag"
+                              ><?php echo get_the_category_list(', '); ?></a
+                            >
+                          </div>
+                          <h1 class="entry-title">
+                            <?php the_title() ?>
+                          </h1>
+                          <div class="post-meta">
+                            <span class="post-author vcard author" itemprop="author">
+                              <a
+                                href="https://ahrefs.com/blog/author/bill-widmer/"
+                                title="Posts by <?php the_author() ?>"
+                                rel="author"
+                              >
+                                <span class="fn"><?php the_author() ?></span>
                           
-                          </a>
-                        </span>
-                        <span
-                          class="post-date published updated"
-                          itemprop="dateModified"
-                          >Updated: <?php the_time('F j, Y'); ?></span
-                        >
+                              </a>
+                            </span>
+                            <span
+                              class="post-date published updated"
+                              itemprop="dateModified"
+                              >Updated: <?php the_time('F j, Y'); ?></span
+                            >
+                          </div>
+                        </header>
                       </div>
-                    </header>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
         
-          <?php
+              <?php
         }
         ?>
 
@@ -235,86 +235,45 @@
                     </div>
                     <div id="nav-anchor"></div>
 
-                    <div class="post-navigation-left">
+                    <div class="post-navigation-left" style="display:none !important">
                       <div>
-                        <div class="nav-title" style="display: block">
+                        <!-- <div class="nav-title" style="display: block">
                           Contents
-                        </div>
-                        <ul>
+                        </div> -->
+                            
+                        <!-- <ul>
                           <li class="active">
                             <a
-                              title="Best WordPress plugins for website design"
                               href="#website-design"
-                              >Best WordPress plugins for website design</a
+                              ></a
                             >
                           </li>
-                          <li>
-                            <a
-                              title="Best WordPress plugins for website management &amp; security"
-                              href="#management-security"
-                              >Best WordPress plugins for website management
-                              &amp; security</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              title="Best WordPress plugins for site speed optimization"
-                              href="#site-speed-optimization"
-                              >Best WordPress plugins for site speed
-                              optimization</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              title="Best WordPress plugins for marketing section: marketing"
-                              href="#marketing"
-                              >Best WordPress plugins for marketing section:
-                              marketing</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              title="Best WordPress plugins for SEO section: seo"
-                              href="#seo"
-                              >Best WordPress plugins for SEO section: seo</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              title="Best WordPress plugins for affiliate marketing"
-                              href="#affiliate-marketing"
-                              >Best WordPress plugins for affiliate marketing</a
-                            >
-                          </li>
-                        </ul>
+                       
+                        </ul> -->
+                       
+                     
                       </div>
                     </div>
+
+                    <div class="menu-left">
+                      <div>
+                          <div class="menu-title" style="display: block">
+                          Contents
+                        </div>
+                            <?php
+                             my_post_sidebar()
+                             ?>  
+                      </div>
+                    </div>
+
+                  
                     <span
                       ><div class="intro-txt">
                         <?php the_excerpt() ?>
+                     
                       </div>
-                      <!-- <p>
-                        However,
-                        <a href="https://wordpress.org/plugins/"
-                          >over 60,000 WordPress plugins</a
-                        >
-                        are available, and more are released every day. Plus,
-                        installing too many plugins can cause slow website
-                        loading speeds, so you want to avoid adding too many of
-                        these plugins.
-                      </p>
-                      <p>
-                        To help you limit your installed plugins to only the
-                        most worthy, I’ve compiled this list of the 29 best
-                        WordPress plugins categorized by what they’re
-                        good&nbsp;for.&nbsp;
-                      </p>
-                      <p>
-                        This list comes from my more than 12 years of experience
-                        building WordPress websites and working closely with my
-                        WordPress developer.
-                      </p> -->
-                      <div class="intro-tok toc-closed" id="intro_tok" style="">
+                    
+                      <!-- <div class="intro-tok toc-closed" id="intro_tok" style="">
                         <div class="intro-title">Contents</div>
                         <ul>
                           <li>
@@ -366,12 +325,17 @@
                         <a href="#" class="expand-dots"
                           ><span></span><span></span><span></span
                         ></a>
-                      </div>
-                      <div
-                        class="post-nav-link clearfix 2>"
-                        id="website-design"
-                      >
-                        <a
+                      </div> -->
+
+                      <?php
+                      while (have_posts()) {
+                        the_post();
+                        ?>
+                          <div
+                            class="post-nav-link clearfix 2>"
+                            id="website-design"
+                          >
+                            <!-- <a
                           class="subhead-anchor"
                           data-tip="tooltip__copielink"
                           rel="#website-design"
@@ -388,20 +352,23 @@
                                 style=""
                               ></path>
                             </g></svg
-                        ></a>
-                        <div
-                          class="link-text"
-                          data-anchor="Best WordPress plugins for website design"
-                          data-section="website-design"
-                        >
-                          <h2>Best WordPress plugins for website design</h2>
-                        </div>
-                      </div>
-                      <p>
-                        First up, we have some plugins to help you design and
-                        add specific functionalities to your WordPress website.
-                      </p>
-                      <h3>Elementor</h3>
+                        ></a> -->
+
+                       
+                            <div
+                              class="link-text"
+                              data-anchor="Best WordPress plugins for website design"
+                              data-section="website-design"
+                            >
+                              <?php the_content() ?>
+                            </div>
+                          </div>
+                    
+                          <?php
+                      }
+                      ?>
+                 
+                      <!-- <h3>Elementor</h3>
                       <figure class="wp-block-image size-full">
                         <noscript
                           ><img
@@ -760,1171 +727,7 @@
                         support or use it to answer visitors’ questions
                         automatically using a bot—although that may
                         annoy&nbsp;them.
-                      </p>
-                      <div
-                        class="post-nav-link clearfix 2>"
-                        id="management-security"
-                      >
-                        <a
-                          class="subhead-anchor"
-                          data-tip="tooltip__copielink"
-                          rel="#management-security"
-                          ><svg
-                            width="19"
-                            height="19"
-                            viewBox="0 0 14 14"
-                            style=""
-                          >
-                            <g fill="none" fill-rule="evenodd">
-                              <path d="M0 0h14v14H0z"></path>
-                              <path
-                                d="M7.45 9.887l-1.62 1.621c-.92.92-2.418.92-3.338 0a2.364 2.364 0 0 1 0-3.339l1.62-1.62-1.273-1.272-1.62 1.62a4.161 4.161 0 1 0 5.885 5.884l1.62-1.62L7.45 9.886zM5.527 5.135L7.17 3.492c.92-.92 2.418-.92 3.339 0 .92.92.92 2.418 0 3.339L8.866 8.473l1.272 1.273 1.644-1.643A4.161 4.161 0 1 0 5.897 2.22L4.254 3.863l1.272 1.272zm-.66 3.998a.749.749 0 0 1 0-1.06l2.208-2.206a.749.749 0 1 1 1.06 1.06L5.928 9.133a.75.75 0 0 1-1.061 0z"
-                                style=""
-                              ></path>
-                            </g></svg
-                        ></a>
-                        <div
-                          class="link-text"
-                          data-anchor="Best WordPress plugins for website management &amp; security"
-                          data-section="management-security"
-                        >
-                          <h2>
-                            Best WordPress plugins for website management &amp;
-                            security
-                          </h2>
-                        </div>
-                      </div>
-                      <p>
-                        Next up, we’ve got a whole suite of plugins that help
-                        you make your website more secure and easier to manage.
-                        WordPress sites are often vulnerable to hacking, so
-                        these are important.
-                      </p>
-                      <h3>Wordfence</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="1999"
-                            height="970"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1.jpg"
-                            alt="Wordfence dashboard"
-                            class="wp-image-155447"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1.jpg          1999w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-680x330.jpg   680w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-768x373.jpg   768w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-1536x745.jpg 1536w
-                            "
-                            sizes="(max-width: 1999px) 100vw, 1999px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="1999"
-                          height="970"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%20970%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1.jpg"
-                          alt="Wordfence dashboard"
-                          class="lazyload wp-image-155447 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1.jpg 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-680x330.jpg 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-768x373.jpg 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image5-10-1-1536x745.jpg 1536w"
-                          data-sizes="(max-width: 1999px) 100vw, 1999px"
-                          data-fancybox="image-8"
-                          data-caption="Wordfence dashboard"
-                        />
-                      </figure>
-                      <p><strong>Cost: </strong>Free ($119/year for premium)</p>
-                      <p>
-                        <strong>Useful for: </strong>Keeping your website safe
-                        from hackers and malware
-                      </p>
-                      <p>
-                        <a href="https://www.wordfence.com/">Wordfence</a> adds
-                        a robust firewall and malware scanner to protect your
-                        site from hackers and malicious software. You can also
-                        use it to add two-factor login authentication, have rate
-                        limiting, and run security diagnostics on your site—to
-                        name a few of the features.&nbsp;
-                      </p>
-                      <h3>UpdraftPlus</h3>
-                      <p><strong>Cost: </strong>Free ($119/year for premium)</p>
-                      <p>
-                        <strong>Useful for: </strong>Backing up your WordPress
-                        website
-                      </p>
-                      <p>
-                        It’s important to back up your website every so often to
-                        avoid losing your content in the event of a plugin
-                        clash, hack, or even accidental deletion.
-                        <a href="https://updraftplus.com/">UpdraftPlus</a> makes
-                        this easy for&nbsp;you.
-                      </p>
-                      <h3>Wordable</h3>
-                      <figure
-                        class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"
-                      >
-                        <div class="wp-block-embed__wrapper">
-                          <div
-                            class="arve-wrapper arve-normal-wrapper arve-youtube-wrapper"
-                            itemprop="video"
-                            itemscope=""
-                            itemtype="http://schema.org/VideoObject"
-                          >
-                            <meta
-                              itemprop="description"
-                              content="Instantly export content to any website in 1-click with Wordable.  Save over 90% of publishing costs by automating recurring tasks and exporting in bulk.  Get 5 free exports with Wordable 👉 https://wordable.io/  ** PODCAST
-Check out our Marketing Routi"
-                            /><meta
-                              itemprop="name"
-                              content="Wordable.io - Content Management Simplified"
-                            /><meta
-                              itemprop="uploadDate"
-                              content="2022-05-05T14:24:48Z"
-                            /><meta
-                              itemprop="thumbnailUrl"
-                              content="//img.youtube.com/vi/I_7y3JvHuHk/0.jpg"
-                            /><meta
-                              itemprop="embedUrl"
-                              content="//www.youtube.com/embed/I_7y3JvHuHk?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent"
-                            />
-                            <div class="arve-embed-container">
-                              <iframe
-                                class="arve-inner"
-                                src="//www.youtube.com/embed/I_7y3JvHuHk?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent&amp;autoplay=0"
-                                frameborder="0"
-                                scrolling="no"
-                                webkitallowfullscreen=""
-                                mozallowfullscreen=""
-                                allowfullscreen=""
-                              ></iframe>
-                            </div>
-                          </div>
-                          <a
-                            href="https://www.youtube.com/watch?v=I_7y3JvHuHk"
-                            class="arve-hidden"
-                            >https://www.youtube.com/watch?v=I_7y3JvHuHk</a
-                          >
-                        </div>
-                      </figure>
-                      <p><strong>Cost: </strong>Free ($50/month for premium)</p>
-                      <p>
-                        <strong>Useful for: </strong>Uploading content from
-                        Google Docs to WordPress at the click of a button
-                      </p>
-                      <p>
-                        <a href="https://wordable.io/">Wordable</a> makes it
-                        easy to upload content from Google Docs to your
-                        WordPress website (including images, formatting, etc.,
-                        without any extra hidden code). It’s saved me a lot of
-                        time and money not needing to do it myself or having my
-                        virtual assistant to do&nbsp;it.
-                      </p>
-                      <h3>PublishPress</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="1398"
-                            height="769"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12.jpg"
-                            alt="PublishPress role capabilities dashboard"
-                            class="wp-image-155449"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12.jpg         1398w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12-680x374.jpg  680w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12-768x422.jpg  768w
-                            "
-                            sizes="(max-width: 1398px) 100vw, 1398px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="1398"
-                          height="769"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201398%20769%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12.jpg"
-                          alt="PublishPress role capabilities dashboard"
-                          class="lazyload wp-image-155449 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12.jpg 1398w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12-680x374.jpg 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image7-12-768x422.jpg 768w"
-                          data-sizes="(max-width: 1398px) 100vw, 1398px"
-                          data-fancybox="image-9"
-                          data-caption="PublishPress role capabilities dashboard"
-                        />
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$129–$399/year (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Managing a team of writers
-                        and editors on your website
-                      </p>
-                      <p>
-                        <a href="https://publishpress.com/">PublishPress</a>
-                        makes it easy to manage multiple writers and editors on
-                        your site, with the ability to manage their permissions
-                        of what they can do and see. It also includes an
-                        editorial calendar, new blocks for the Gutenberg editor,
-                        and&nbsp;more.
-                      </p>
-                      <h3>MemberPress</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="1024"
-                            height="634"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1.jpg"
-                            alt="Membership site built using MemberPress WordPress plugin"
-                            class="wp-image-155450"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1.jpg         1024w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1-680x421.jpg  680w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1-768x476.jpg  768w
-                            "
-                            sizes="(max-width: 1024px) 100vw, 1024px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="1024"
-                          height="634"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201024%20634%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1.jpg"
-                          alt="Membership site built using MemberPress WordPress plugin"
-                          class="lazyload wp-image-155450 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1.jpg 1024w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1-680x421.jpg 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image12-7-1-768x476.jpg 768w"
-                          data-sizes="(max-width: 1024px) 100vw, 1024px"
-                          data-fancybox="image-10"
-                          data-caption="Membership site built using MemberPress WordPress plugin"
-                        />
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$179.50–$399.50/year (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Creating a membership
-                        website
-                      </p>
-                      <p>
-                        <a href="https://memberpress.com/">MemberPress</a> makes
-                        it easy to turn your WordPress website into a paid
-                        membership site, allowing you to build and sell courses
-                        and forums and put them behind a paywall.
-                      </p>
-                      <h3>Uncanny Automator</h3>
-                      <figure
-                        class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"
-                      >
-                        <div class="wp-block-embed__wrapper">
-                          <div
-                            class="arve-wrapper arve-normal-wrapper arve-youtube-wrapper"
-                            itemprop="video"
-                            itemscope=""
-                            itemtype="http://schema.org/VideoObject"
-                          >
-                            <meta
-                              itemprop="description"
-                              content="Learn how to use Uncanny Automator, the #1 automation plugin for WordPress. Create powerful automations that connect your WordPress plugins, sites and apps together in under 10 minutes. Find out more at https://automatorplugin.com/.  00:00 Introduction
-00:"
-                            /><meta
-                              itemprop="name"
-                              content="Get Started with Uncanny Automator"
-                            /><meta
-                              itemprop="uploadDate"
-                              content="2021-12-21T18:29:41Z"
-                            /><meta
-                              itemprop="thumbnailUrl"
-                              content="//img.youtube.com/vi/LMR5YIPu2Kk/0.jpg"
-                            /><meta
-                              itemprop="embedUrl"
-                              content="//www.youtube.com/embed/LMR5YIPu2Kk?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent"
-                            />
-                            <div class="arve-embed-container">
-                              <iframe
-                                class="arve-inner"
-                                src="//www.youtube.com/embed/LMR5YIPu2Kk?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent&amp;autoplay=0"
-                                frameborder="0"
-                                scrolling="no"
-                                webkitallowfullscreen=""
-                                mozallowfullscreen=""
-                                allowfullscreen=""
-                              ></iframe>
-                            </div>
-                          </div>
-                          <a
-                            href="https://www.youtube.com/watch?v=LMR5YIPu2Kk"
-                            class="arve-hidden"
-                            >https://www.youtube.com/watch?v=LMR5YIPu2Kk</a
-                          >
-                        </div>
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$149–$399/year (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Automating tasks on your
-                        website
-                      </p>
-                      <p>
-                        <a href="https://automatorplugin.com/"
-                          >Uncanny Automator</a
-                        >
-                        is like Zapier but for WordPress. It can automate tasks
-                        like sharing a post to social media or in a newsletter
-                        when it’s published, track data in a spreadsheet
-                        whenever a product is purchased, and a million other
-                        things. Its only limit is your own creativity.
-                      </p>
-                      <h3>WP Simple Pay</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="1999"
-                            height="1404"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12.jpg"
-                            alt="WordPress payment forms using WP Simple Pay"
-                            class="wp-image-155452"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12.jpg           1999w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-605x425.jpg    605w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-768x539.jpg    768w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-1536x1079.jpg 1536w
-                            "
-                            sizes="(max-width: 1999px) 100vw, 1999px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="1999"
-                          height="1404"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%201404%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12.jpg"
-                          alt="WordPress payment forms using WP Simple Pay"
-                          class="lazyload wp-image-155452 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12.jpg 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-605x425.jpg 605w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-768x539.jpg 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image6-12-1536x1079.jpg 1536w"
-                          data-sizes="(max-width: 1999px) 100vw, 1999px"
-                          data-fancybox="image-11"
-                          data-caption="WordPress payment forms using WP Simple Pay"
-                        />
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$49.50–$299.50/year (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Adding a simple Stripe
-                        payment processor to your&nbsp;site
-                      </p>
-                      <p>
-                        <a href="https://wpsimplepay.com/">WP Simple Pay</a>
-                        makes it easy to accept Stripe payments on your website.
-                        This is great if you only sell a few products or
-                        services and want to avoid the trouble of setting up the
-                        WooCommerce plugin and connecting it with a payment
-                        processor and your&nbsp;bank.
-                      </p>
-                      <h3>WP Mail&nbsp;SMTP</h3>
-                      <p>
-                        <strong>Cost: </strong>$49–$399/year (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Improving email
-                        deliverability
-                      </p>
-                      <p>
-                        <a href="https://wpmailsmtp.com/">WP Mail SMTP</a>
-                        allows you to set up SMTP and PHP mail servers to
-                        improve your email deliverability whenever you send
-                        customers or visitors an email from your&nbsp;site.
-                      </p>
-                      <div
-                        class="post-nav-link clearfix 2>"
-                        id="site-speed-optimization"
-                      >
-                        <a
-                          class="subhead-anchor"
-                          data-tip="tooltip__copielink"
-                          rel="#site-speed-optimization"
-                          ><svg
-                            width="19"
-                            height="19"
-                            viewBox="0 0 14 14"
-                            style=""
-                          >
-                            <g fill="none" fill-rule="evenodd">
-                              <path d="M0 0h14v14H0z"></path>
-                              <path
-                                d="M7.45 9.887l-1.62 1.621c-.92.92-2.418.92-3.338 0a2.364 2.364 0 0 1 0-3.339l1.62-1.62-1.273-1.272-1.62 1.62a4.161 4.161 0 1 0 5.885 5.884l1.62-1.62L7.45 9.886zM5.527 5.135L7.17 3.492c.92-.92 2.418-.92 3.339 0 .92.92.92 2.418 0 3.339L8.866 8.473l1.272 1.273 1.644-1.643A4.161 4.161 0 1 0 5.897 2.22L4.254 3.863l1.272 1.272zm-.66 3.998a.749.749 0 0 1 0-1.06l2.208-2.206a.749.749 0 1 1 1.06 1.06L5.928 9.133a.75.75 0 0 1-1.061 0z"
-                                style=""
-                              ></path>
-                            </g></svg
-                        ></a>
-                        <div
-                          class="link-text"
-                          data-anchor="Best WordPress plugins for site speed optimization"
-                          data-section="site-speed-optimization"
-                        >
-                          <h2>
-                            Best WordPress plugins for site speed optimization
-                          </h2>
-                        </div>
-                      </div>
-                      <p>
-                        A quick-loading site is vital for audience retention,
-                        conversions, and SEO. To help you
-                        <a href="https://ahrefs.com/blog/speed-up-wordpress/"
-                          >speed up your WordPress site</a
-                        >, you can consider using these plugins.
-                      </p>
-                      <h3>NitroPack</h3>
-                      <figure
-                        class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"
-                      >
-                        <div class="wp-block-embed__wrapper">
-                          <div
-                            class="arve-wrapper arve-normal-wrapper arve-youtube-wrapper"
-                            itemprop="video"
-                            itemscope=""
-                            itemtype="http://schema.org/VideoObject"
-                          >
-                            <meta
-                              itemprop="description"
-                              content="NitroPack is a service that makes websites faster. This video covers a few topics, including how to set up NitroPack and where to find its most important features.  0:00 What is NitroPack?
-0:18 Setting up NitroPack on WordPress, OpenCart and Magento sites
-"
-                            /><meta
-                              itemprop="name"
-                              content="NitroPack Overview Demo | How to Set Up and Use NitroPack"
-                            /><meta
-                              itemprop="uploadDate"
-                              content="2021-05-27T09:34:20Z"
-                            /><meta
-                              itemprop="thumbnailUrl"
-                              content="//img.youtube.com/vi/B6PWisJXFqA/0.jpg"
-                            /><meta
-                              itemprop="embedUrl"
-                              content="//www.youtube.com/embed/B6PWisJXFqA?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent"
-                            />
-                            <div class="arve-embed-container">
-                              <iframe
-                                class="arve-inner"
-                                src="//www.youtube.com/embed/B6PWisJXFqA?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent&amp;autoplay=0"
-                                frameborder="0"
-                                scrolling="no"
-                                webkitallowfullscreen=""
-                                mozallowfullscreen=""
-                                allowfullscreen=""
-                              ></iframe>
-                            </div>
-                          </div>
-                          <a
-                            href="https://www.youtube.com/watch?v=B6PWisJXFqA"
-                            class="arve-hidden"
-                            >https://www.youtube.com/watch?v=B6PWisJXFqA</a
-                          >
-                        </div>
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$17.50–$146.67/month (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>An all-in-one tool to speed
-                        up your website
-                      </p>
-                      <p>
-                        <a href="https://nitropack.io/">NitroPack</a> is my
-                        favorite all-in-one speed enhancer, with smart caching,
-                        image optimization, a built-in CDN, and more—all without
-                        needing developer experience. However, it’s not cheap.
-                        If you need a more affordable option, look at the next
-                        two plugins.
-                      </p>
-                      <h3>WP Rocket</h3>
-                      <p>
-                        <strong>Cost: </strong>$59–$299/year (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p><strong>Useful for: </strong>Adding website caching</p>
-                      <p>
-                        <a href="https://wp-rocket.me/">WP Rocket</a> adds
-                        caching to your WordPress website, allowing you to
-                        improve your loading speeds and
-                        <a href="https://ahrefs.com/blog/core-web-vitals/"
-                          >Core Web Vitals</a
-                        >
-                        score. However, it doesn’t have image optimization or a
-                        CDN, so it’s missing features compared to NitroPack.
-                        That’s where the next plugin comes&nbsp;in.
-                      </p>
-                      <h3>Autoptimize</h3>
-                      <p><strong>Cost: </strong>Free</p>
-                      <p>
-                        <strong>Useful for: </strong>Adding website speed
-                        optimization features like image compression
-                      </p>
-                      <p>
-                        <a href="https://wordpress.org/plugins/autoptimize/"
-                          >Autoptimize</a
-                        >
-                        fills in the gaps left by WP Rocket. It can aggregate,
-                        minify and cache scripts and styles, inject CSS in the
-                        page head by default, optimize and lazy-load images, and
-                        much more. However, it does require some learning and
-                        tweaking, so it’s not very beginner-friendly.
-                      </p>
-                      <div class="post-nav-link clearfix 2>" id="marketing">
-                        <a
-                          class="subhead-anchor"
-                          data-tip="tooltip__copielink"
-                          rel="#marketing"
-                          ><svg
-                            width="19"
-                            height="19"
-                            viewBox="0 0 14 14"
-                            style=""
-                          >
-                            <g fill="none" fill-rule="evenodd">
-                              <path d="M0 0h14v14H0z"></path>
-                              <path
-                                d="M7.45 9.887l-1.62 1.621c-.92.92-2.418.92-3.338 0a2.364 2.364 0 0 1 0-3.339l1.62-1.62-1.273-1.272-1.62 1.62a4.161 4.161 0 1 0 5.885 5.884l1.62-1.62L7.45 9.886zM5.527 5.135L7.17 3.492c.92-.92 2.418-.92 3.339 0 .92.92.92 2.418 0 3.339L8.866 8.473l1.272 1.273 1.644-1.643A4.161 4.161 0 1 0 5.897 2.22L4.254 3.863l1.272 1.272zm-.66 3.998a.749.749 0 0 1 0-1.06l2.208-2.206a.749.749 0 1 1 1.06 1.06L5.928 9.133a.75.75 0 0 1-1.061 0z"
-                                style=""
-                              ></path>
-                            </g></svg
-                        ></a>
-                        <div
-                          class="link-text"
-                          data-anchor="Best WordPress plugins for marketing section: marketing"
-                          data-section="marketing"
-                        >
-                          <h2>Best WordPress plugins for marketing</h2>
-                        </div>
-                      </div>
-                      <p>
-                        Traffic is what makes your website valuable. Here are
-                        some of the best WordPress plugins to help you
-                        <a
-                          href="https://ahrefs.com/blog/how-to-promote-your-website/"
-                          >promote your site</a
-                        >.
-                      </p>
-                      <h3>PushEngage</h3>
-                      <figure
-                        class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"
-                      >
-                        <div class="wp-block-embed__wrapper">
-                          <div
-                            class="arve-wrapper arve-normal-wrapper arve-youtube-wrapper"
-                            itemprop="video"
-                            itemscope=""
-                            itemtype="http://schema.org/VideoObject"
-                          >
-                            <meta
-                              itemprop="description"
-                              content="Detect your visitor’s behavior to send automated push notifications to the right person at the right time."
-                            /><meta
-                              itemprop="name"
-                              content="Triggered Notifications"
-                            /><meta
-                              itemprop="uploadDate"
-                              content="2021-03-12T15:54:41Z"
-                            /><meta
-                              itemprop="thumbnailUrl"
-                              content="//img.youtube.com/vi/MDjDgjaNqGo/0.jpg"
-                            /><meta
-                              itemprop="embedUrl"
-                              content="//www.youtube.com/embed/MDjDgjaNqGo?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent"
-                            />
-                            <div class="arve-embed-container">
-                              <iframe
-                                class="arve-inner"
-                                src="//www.youtube.com/embed/MDjDgjaNqGo?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent&amp;autoplay=0"
-                                frameborder="0"
-                                scrolling="no"
-                                webkitallowfullscreen=""
-                                mozallowfullscreen=""
-                                allowfullscreen=""
-                              ></iframe>
-                            </div>
-                          </div>
-                          <a
-                            href="https://www.youtube.com/watch?v=MDjDgjaNqGo"
-                            class="arve-hidden"
-                            >https://www.youtube.com/watch?v=MDjDgjaNqGo</a
-                          >
-                        </div>
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>Free ($9–$49/month for premium)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Adding push notifications
-                        to your website
-                      </p>
-                      <p>
-                        <a href="https://www.pushengage.com/">PushEngage</a> is
-                        the best push notification plugin I’ve found. It lets
-                        you easily advertise push notification services to your
-                        visitors and sends the notifications in a way that is
-                        well designed and easy to&nbsp;use.&nbsp;
-                      </p>
-                      <p>
-                        Keep in mind that push notifications can be extremely
-                        annoying to visitors if you’re not cautious
-                        about&nbsp;them.
-                      </p>
-                      <h3>RafflePress</h3>
-                      <figure
-                        class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"
-                      >
-                        <div class="wp-block-embed__wrapper">
-                          <div
-                            class="arve-wrapper arve-normal-wrapper arve-youtube-wrapper"
-                            itemprop="video"
-                            itemscope=""
-                            itemtype="http://schema.org/VideoObject"
-                          >
-                            <meta
-                              itemprop="description"
-                              content="Welcome to RafflePress, we're here to help you create awesome giveaways on your site with the most powerful, user-friendly giveaway plugin on the market. We help you increase your site traffic, grow your email list, and even get more social media followers"
-                            /><meta
-                              itemprop="name"
-                              content="Getting Started with RafflePress"
-                            /><meta
-                              itemprop="uploadDate"
-                              content="2019-07-11T18:04:24Z"
-                            /><meta
-                              itemprop="thumbnailUrl"
-                              content="//img.youtube.com/vi/r62HgG6wzQw/0.jpg"
-                            /><meta
-                              itemprop="embedUrl"
-                              content="//www.youtube.com/embed/r62HgG6wzQw?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent"
-                            />
-                            <div class="arve-embed-container">
-                              <iframe
-                                class="arve-inner"
-                                src="//www.youtube.com/embed/r62HgG6wzQw?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent&amp;autoplay=0"
-                                frameborder="0"
-                                scrolling="no"
-                                webkitallowfullscreen=""
-                                mozallowfullscreen=""
-                                allowfullscreen=""
-                              ></iframe>
-                            </div>
-                          </div>
-                          <a
-                            href="https://www.youtube.com/watch?v=r62HgG6wzQw"
-                            class="arve-hidden"
-                            >https://www.youtube.com/watch?v=r62HgG6wzQw</a
-                          >
-                        </div>
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$39.50–$499.50/year (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Running viral raffles and
-                        giveaways
-                      </p>
-                      <p>
-                        <a
-                          href="https://rafflepress.com/.well-known/captcha/?r=%2F"
-                          >RafflePress</a
-                        >
-                        makes running raffles and giveaways on your site easy by
-                        giving visitors single-click options to earn entries.
-                        They can follow, subscribe, like, and comment just by
-                        clicking each button on your giveaway and get extra
-                        entries for each task they complete.
-                      </p>
-                      <h3>OptinMonster</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="1999"
-                            height="887"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8.png"
-                            alt="OptinMonster form editor"
-                            class="wp-image-155454"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8.png          1999w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8-680x302.png   680w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8-768x341.png   768w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8-1536x682.png 1536w
-                            "
-                            sizes="(max-width: 1999px) 100vw, 1999px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="1999"
-                          height="887"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%20887%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8.png"
-                          alt="OptinMonster form editor"
-                          class="lazyload wp-image-155454 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8.png 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8-680x302.png 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8-768x341.png 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image15-8-1536x682.png 1536w"
-                          data-sizes="(max-width: 1999px) 100vw, 1999px"
-                          data-fancybox="image-12"
-                          data-caption="OptinMonster form editor"
-                        />
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$9–$49/month (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Creating beautiful opt-in
-                        forms and gamified wheels
-                      </p>
-                      <p>
-                        <a href="https://optinmonster.com/">OptinMonster</a> is
-                        a form-builder plugin that helps you optimize
-                        conversions to
-                        <a href="https://ahrefs.com/blog/grow-email-list/"
-                          >grow your email list</a
-                        >. It also has gamified wheels, which I’ve never used.
-                        But it seems like a fun thing to test for e-commerce
-                        websites.
-                      </p>
-                      <h3>Thrive Quiz Builder</h3>
-                      <p>
-                        <strong>Cost: </strong>$99/year (or $299/year for the
-                        entire Thrive Suite)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Creating quizzes on your
-                        site that are easily shareable
-                      </p>
-                      <p>
-                        <a href="https://thrivethemes.com/quizbuilder/"
-                          >Thrive Quiz Builder</a
-                        >
-                        makes it easy to, well, build quizzes. You can use it to
-                        make one of those viral Facebook quizzes moms love to
-                        take and share their results.&nbsp;
-                      </p>
-                      <h3>Smash Balloon</h3>
-                      <p>
-                        <strong>Cost: </strong>$49–$299/year (depending on which
-                        feeds you&nbsp;want)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Adding social media feeds
-                        to your website
-                      </p>
-                      <p>
-                        <a href="https://smashballoon.com/">Smash Balloon</a>
-                        makes displaying feeds from your social media profiles
-                        on your WordPress website easy. This is helpful if you
-                        want to showcase your photography or video services or
-                        rely heavily on social media for sponsorships.&nbsp;
-                      </p>
-                      <div class="post-nav-link clearfix 2>" id="seo">
-                        <a
-                          class="subhead-anchor"
-                          data-tip="tooltip__copielink"
-                          rel="#seo"
-                          ><svg
-                            width="19"
-                            height="19"
-                            viewBox="0 0 14 14"
-                            style=""
-                          >
-                            <g fill="none" fill-rule="evenodd">
-                              <path d="M0 0h14v14H0z"></path>
-                              <path
-                                d="M7.45 9.887l-1.62 1.621c-.92.92-2.418.92-3.338 0a2.364 2.364 0 0 1 0-3.339l1.62-1.62-1.273-1.272-1.62 1.62a4.161 4.161 0 1 0 5.885 5.884l1.62-1.62L7.45 9.886zM5.527 5.135L7.17 3.492c.92-.92 2.418-.92 3.339 0 .92.92.92 2.418 0 3.339L8.866 8.473l1.272 1.273 1.644-1.643A4.161 4.161 0 1 0 5.897 2.22L4.254 3.863l1.272 1.272zm-.66 3.998a.749.749 0 0 1 0-1.06l2.208-2.206a.749.749 0 1 1 1.06 1.06L5.928 9.133a.75.75 0 0 1-1.061 0z"
-                                style=""
-                              ></path>
-                            </g></svg
-                        ></a>
-                        <div
-                          class="link-text"
-                          data-anchor="Best WordPress plugins for SEO section: seo"
-                          data-section="seo"
-                        >
-                          <h2>Best WordPress plugins for&nbsp;SEO</h2>
-                        </div>
-                      </div>
-                      <p>
-                        <a href="https://ahrefs.com/seo"
-                          >Search engine optimization (SEO)</a
-                        >
-                        is an important part of growing your website. In my
-                        experience, the following plugins are the best WordPress
-                        SEO plugins.
-                      </p>
-                      <h3>Yoast SEO/Rank Math/SEOPress</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="621"
-                            height="630"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image16-5.png"
-                            alt="Rank Math blog post SEO settings"
-                            class="wp-image-155456"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image16-5.png         621w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image16-5-419x425.png 419w
-                            "
-                            sizes="(max-width: 621px) 100vw, 621px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="621"
-                          height="630"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20621%20630%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image16-5.png"
-                          alt="Rank Math blog post SEO settings"
-                          class="lazyload wp-image-155456 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image16-5.png 621w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image16-5-419x425.png 419w"
-                          data-sizes="(max-width: 621px) 100vw, 621px"
-                          data-fancybox="image-13"
-                          data-caption="Rank Math blog post SEO settings"
-                        />
-                      </figure>
-                      <p><strong>Cost: </strong>Free (various paid options)</p>
-                      <p><strong>Useful for:</strong></p>
-                      <ul>
-                        <li>Basic on-page SEO</li>
-                        <li>Creating a robots.txt file and sitemap</li>
-                        <li>Easily editing metadata&nbsp;</li>
-                      </ul>
-                      <p>
-                        These types of plugins are essential for a WordPress
-                        website. They allow you to edit important SEO options on
-                        your pages and make implementing SEO on your site much
-                        easier and more streamlined.
-                      </p>
-                      <p>
-                        Of these three, my personal favorite is
-                        <a href="https://rankmath.com/">Rank Math</a>. I have
-                        used <a href="https://yoast.com/">Yoast SEO</a> and
-                        <a href="https://www.seopress.org/">SEOPress</a>, but I
-                        like the team behind Rank Math the most and find the
-                        plugin to be easy to use with a solid UI. They’re all
-                        great, however, and do pretty much the same things. Just
-                        pick&nbsp;one.
-                      </p>
-                      <h3>Ahrefs’ WordPress SEO Plugin</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="1999"
-                            height="1609"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2.jpg"
-                            alt="Ahrefs' WordPress SEO plugin dashboard"
-                            class="wp-image-155457"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2.jpg           1999w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2-528x425.jpg    528w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2-768x618.jpg    768w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2-1536x1236.jpg 1536w
-                            "
-                            sizes="(max-width: 1999px) 100vw, 1999px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="1999"
-                          height="1609"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%201609%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2.jpg"
-                          alt="Ahrefs' WordPress SEO plugin dashboard"
-                          class="lazyload wp-image-155457 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2.jpg 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2-528x425.jpg 528w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2-768x618.jpg 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image3-8-2-1536x1236.jpg 1536w"
-                          data-sizes="(max-width: 1999px) 100vw, 1999px"
-                          data-fancybox="image-14"
-                          data-caption="Ahrefs' WordPress SEO plugin dashboard"
-                        />
-                      </figure>
-                      <p><strong>Cost: </strong>Free</p>
-                      <p>
-                        <strong>Useful for: </strong>Suggesting ways to better
-                        optimize your content to rank higher in search results
-                      </p>
-                      <p>
-                        <a href="https://ahrefs.com/wordpress-seo-plugin"
-                          >Our SEO plugin</a
-                        >
-                        makes it easy to automate content audits, monitor
-                        backlinks, and grow organic traffic to your WordPress
-                        website. It’s free, so try it&nbsp;out.
-                      </p>
-                      <h3>MonsterInsights</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="1999"
-                            height="1242"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6.png"
-                            alt="MonsterInsights analytics overview dashboard"
-                            class="wp-image-155459"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6.png          1999w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6-680x422.png   680w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6-768x477.png   768w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6-1536x954.png 1536w
-                            "
-                            sizes="(max-width: 1999px) 100vw, 1999px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="1999"
-                          height="1242"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%201242%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6.png"
-                          alt="MonsterInsights analytics overview dashboard"
-                          class="lazyload wp-image-155459 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6.png 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6-680x422.png 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6-768x477.png 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image11-6-1536x954.png 1536w"
-                          data-sizes="(max-width: 1999px) 100vw, 1999px"
-                          data-fancybox="image-15"
-                          data-caption="MonsterInsights analytics overview dashboard"
-                        />
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$99.50–$399.50/year (depending
-                        on&nbsp;tier)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Gathering helpful insights
-                        into your site traffic&nbsp;
-                      </p>
-                      <p>
-                        <a href="https://www.monsterinsights.com/"
-                          >MonsterInsights</a
-                        >
-                        is a WordPress analytics plugin that shows you insights
-                        into how much traffic you’re getting, which pages people
-                        are visiting, and what they’re doing. It also provides
-                        e-commerce insights like goal conversions and also
-                        integrates with Google Analytics.&nbsp;
-                      </p>
-                      <div
-                        class="post-nav-link clearfix 2>"
-                        id="affiliate-marketing"
-                      >
-                        <a
-                          class="subhead-anchor"
-                          data-tip="tooltip__copielink"
-                          rel="#affiliate-marketing"
-                          ><svg
-                            width="19"
-                            height="19"
-                            viewBox="0 0 14 14"
-                            style=""
-                          >
-                            <g fill="none" fill-rule="evenodd">
-                              <path d="M0 0h14v14H0z"></path>
-                              <path
-                                d="M7.45 9.887l-1.62 1.621c-.92.92-2.418.92-3.338 0a2.364 2.364 0 0 1 0-3.339l1.62-1.62-1.273-1.272-1.62 1.62a4.161 4.161 0 1 0 5.885 5.884l1.62-1.62L7.45 9.886zM5.527 5.135L7.17 3.492c.92-.92 2.418-.92 3.339 0 .92.92.92 2.418 0 3.339L8.866 8.473l1.272 1.273 1.644-1.643A4.161 4.161 0 1 0 5.897 2.22L4.254 3.863l1.272 1.272zm-.66 3.998a.749.749 0 0 1 0-1.06l2.208-2.206a.749.749 0 1 1 1.06 1.06L5.928 9.133a.75.75 0 0 1-1.061 0z"
-                                style=""
-                              ></path>
-                            </g></svg
-                        ></a>
-                        <div
-                          class="link-text"
-                          data-anchor="Best WordPress plugins for affiliate marketing"
-                          data-section="affiliate-marketing"
-                        >
-                          <h2>
-                            Best WordPress plugins for affiliate marketing
-                          </h2>
-                        </div>
-                      </div>
-                      <p>
-                        Last but not least, the following plugins are excellent
-                        to help you
-                        <a href="https://ahrefs.com/blog/affiliate-marketing/"
-                          >make more money from affiliate marketing</a
-                        >.
-                      </p>
-                      <h3>Lasso</h3>
-                      <figure
-                        class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"
-                      >
-                        <div class="wp-block-embed__wrapper">
-                          <div
-                            class="arve-wrapper arve-normal-wrapper arve-youtube-wrapper"
-                            itemprop="video"
-                            itemscope=""
-                            itemtype="http://schema.org/VideoObject"
-                          >
-                            <meta
-                              itemprop="description"
-                              content="🌵 Lasso is the new way to grow your affiliate income with modern product displays that boost your CTR, broken link alerts, new monetization opportunities, and organized link management. We will even find new affiliate programs to join using your existin"
-                            /><meta
-                              itemprop="name"
-                              content="Lasso: The All-In-One Affiliate Plugin for WordPress"
-                            /><meta
-                              itemprop="uploadDate"
-                              content="2021-08-06T00:58:58Z"
-                            /><meta
-                              itemprop="thumbnailUrl"
-                              content="//img.youtube.com/vi/2T2rfrqaC8I/0.jpg"
-                            /><meta
-                              itemprop="embedUrl"
-                              content="//www.youtube.com/embed/2T2rfrqaC8I?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent"
-                            />
-                            <div class="arve-embed-container">
-                              <iframe
-                                class="arve-inner"
-                                src="//www.youtube.com/embed/2T2rfrqaC8I?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent&amp;autoplay=0"
-                                frameborder="0"
-                                scrolling="no"
-                                webkitallowfullscreen=""
-                                mozallowfullscreen=""
-                                allowfullscreen=""
-                              ></iframe>
-                            </div>
-                          </div>
-                          <a
-                            href="https://www.youtube.com/watch?v=2T2rfrqaC8I"
-                            class="arve-hidden"
-                            >https://www.youtube.com/watch?v=2T2rfrqaC8I</a
-                          >
-                        </div>
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$39–$299/month (depending on how
-                        many sites you want it&nbsp;for)
-                      </p>
-                      <p><strong>Useful for:&nbsp;</strong></p>
-                      <ul>
-                        <li>
-                          Tracking, managing, and automating your affiliate
-                          links
-                        </li>
-                        <li>
-                          Creating product display boxes and comparison tables
-                        </li>
-                        <li>Getting suggestions for new affiliate programs</li>
-                      </ul>
-                      <p>
-                        <a href="https://getlasso.co/">Lasso</a> gets my
-                        favorite plugin of the year award. It makes tracking,
-                        managing, and automating your affiliate links easy.
-                        Plus, you can create conversion-optimized product
-                        display boxes and tables, get suggestions for affiliate
-                        programs for products you’re mentioning but not
-                        affiliated with, and&nbsp;more.
-                      </p>
-                      <h3>AffiliateWP</h3>
-                      <figure class="wp-block-image size-full">
-                        <noscript
-                          ><img
-                            decoding="async"
-                            width="1999"
-                            height="1219"
-                            src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10.png"
-                            alt="AffiliateWP dashboard"
-                            class="wp-image-155460"
-                            srcset="
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10.png          1999w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10-680x415.png   680w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10-768x468.png   768w,
-                              https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10-1536x937.png 1536w
-                            "
-                            sizes="(max-width: 1999px) 100vw, 1999px" /></noscript
-                        ><img
-                          decoding="async"
-                          width="1999"
-                          height="1219"
-                          src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201999%201219%22%3E%3C/svg%3E"
-                          data-src="https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10.png"
-                          alt="AffiliateWP dashboard"
-                          class="lazyload wp-image-155460 img-fancybox"
-                          data-srcset="https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10.png 1999w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10-680x415.png 680w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10-768x468.png 768w, https://ahrefs.com/blog/wp-content/uploads/2023/03/image13-10-1536x937.png 1536w"
-                          data-sizes="(max-width: 1999px) 100vw, 1999px"
-                          data-fancybox="image-16"
-                          data-caption="AffiliateWP dashboard"
-                        />
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$39–$299/month (depending on how
-                        many sites you want it&nbsp;for)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Adding an affiliate program
-                        to your website
-                      </p>
-                      <p>
-                        <a href="https://affiliatewp.com/">AffiliateWP</a>
-                        allows you to create and manage your own affiliate
-                        program so you can have affiliates promote your products
-                        for&nbsp;you.
-                      </p>
-                      <h3>AdSanity</h3>
-                      <figure
-                        class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"
-                      >
-                        <div class="wp-block-embed__wrapper">
-                          <div
-                            class="arve-wrapper arve-normal-wrapper arve-youtube-wrapper"
-                            itemprop="video"
-                            itemscope=""
-                            itemtype="http://schema.org/VideoObject"
-                          >
-                            <meta
-                              itemprop="description"
-                              content="AdSanity makes placing ads on your WordPress website a piece of cake.  Whether you’re hosting ads made by your advertisers or pulling in ad code from an ad network, AdSanity provides a simple interface to place ads on your site.  Ads are easily placed by"
-                            /><meta
-                              itemprop="name"
-                              content="Getting Started with AdSanity"
-                            /><meta
-                              itemprop="uploadDate"
-                              content="2020-06-16T00:23:21Z"
-                            /><meta
-                              itemprop="thumbnailUrl"
-                              content="//img.youtube.com/vi/lSyNA-G7buo/0.jpg"
-                            /><meta
-                              itemprop="embedUrl"
-                              content="//www.youtube.com/embed/lSyNA-G7buo?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent"
-                            />
-                            <div class="arve-embed-container">
-                              <iframe
-                                class="arve-inner"
-                                src="//www.youtube.com/embed/lSyNA-G7buo?autohide=1&amp;iv_load_policy=3&amp;modestbranding=1&amp;rel=0&amp;wmode=transparent&amp;autoplay=0"
-                                frameborder="0"
-                                scrolling="no"
-                                webkitallowfullscreen=""
-                                mozallowfullscreen=""
-                                allowfullscreen=""
-                              ></iframe>
-                            </div>
-                          </div>
-                          <a
-                            href="https://www.youtube.com/watch?v=lSyNA-G7buo"
-                            class="arve-hidden"
-                            >https://www.youtube.com/watch?v=lSyNA-G7buo</a
-                          >
-                        </div>
-                      </figure>
-                      <p>
-                        <strong>Cost: </strong>$59–$179/year ($499 for lifetime
-                        access)
-                      </p>
-                      <p>
-                        <strong>Useful for: </strong>Managing ads on your
-                        WordPress website
-                      </p>
-                      <p>
-                        <a href="https://adsanityplugin.com/">AdSanity</a> makes
-                        it easy to manage ads on your site and add them using
-                        widgets, shortcodes, or template tags. It also gives you
-                        publishing options to create start and end dates,
-                        analytics reporting to see your ads’ effectiveness,
-                        and&nbsp;more.&nbsp;
-                      </p>
-                      <h2>Final thoughts</h2>
-                      <p>
-                        There are a <em>lot</em> of WordPress plugins out there.
-                        Many are unnecessary, and having too many can add code
-                        bloat and drastically slow down your website.
-                      </p>
-                      <p>
-                        Hopefully, you’ve found the right plugins in this list
-                        to install only the ones you really need and avoid
-                        others you&nbsp;don’t.&nbsp;
-                      </p>
-                    </span>
+                      </p> -->
                   </div>
                 </div>
               </div>

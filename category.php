@@ -7,7 +7,7 @@
     if ( ! empty( $category_image ) ) {
         $src_image_category = esc_url( $category_image ) ;
     }
-    $post_hight_rate =  azonow_post_high_vote(4,$posts);
+    $post_hight_rate =  azonow_post_high_vote(5,$posts);
     $image_post_vote_highest = $post_hight_rate[0]['thumbnail'] ? $post_hight_rate[0]['thumbnail'] : "/wp-content/themes/azonow-theme/assets/images/default_beauty.jpg" ;
 ?>
 <div id="container" class="archive-category">
@@ -34,8 +34,9 @@
         
         <?php if(max( 1, get_query_var('paged')) == 1):?>
             <div class="latest-articles">
-                <h2>Our Best Articles on <?php printf(__('%1$s','azonow'),single_cat_title('',false))?></h2>
-                We handpicked these from the <?php echo $count_post_category?>+ posts on the blog.
+                <h2><?php printf(__('Our Best Articles on %1$s'),single_cat_title('',false))?></h2>
+                <?php printf(__('We handpicked these from the %1$s+ posts on the blog.','azonow'),$count_post_category) ?>
+                
                 <div class="section section-category">
                     <div class="row">
                         <div class="form-bg">
@@ -63,9 +64,9 @@
                                                         srcset="<?php echo $image_post_vote_highest ?> 800w, <?php echo $image_post_vote_highest ?> 680w, <?php echo $image_post_vote_highest ?> 768w, <?php echo $image_post_vote_highest ?> 400w"
                                                         style="">
                                                 </div>
-                                                <h3> <?php echo $post_hight_rate[0]['title'] ?></h3>
+                                                <h3> <?php printf(__('%1$s','azonow'),$post_hight_rate[0]['title'])  ?></h3>
                                             </a>
-                                            <div class="post-meta"> <span> <?php echo $post_hight_rate[0]['excerpt'] ?>
+                                            <div class="post-meta"> <span> <?php printf(__('%1$s','azonow'),$post_hight_rate[0]['excerpt']) ?>
                                                 </span>
                                             </div>
                                         </header>
@@ -76,11 +77,11 @@
                                             <h3>
                                                 <a href="<?php echo $post_hight_rate[$i]['permalink'] ?>"
                                                     title="Permanent Link to <?php echo $post_hight_rate[$i]['title'] ?>">
-                                                    <?php echo $post_hight_rate[$i]['title'] ?>
+                                                    <?php printf(__('%1$s','azonow'),$post_hight_rate[$i]['title']) ?>
                                                 </a>
                                             </h3>
                                             <div class="post-meta"> <span>
-                                                    <?php echo $post_hight_rate[$i]['excerpt'] ?></span></div>
+                                                    <?php printf(__('%1$s','azonow'),$post_hight_rate[$i]['excerpt']) ?></span></div>
                                         </header>
                                     </div>
                                     <?php endfor;?>
@@ -90,9 +91,11 @@
                     </div>
                 </div>
             </div>
-            <h2 class="most-recent">Most Recent Articles</h2>
+            <h2 class="most-recent"><?php _e('Most Recent Articles','azonow')?></h2>
         <?php endif;?>
-        <?php azonow_category_list($posts)?>
-        <?php azonow_pagination(8)?>
+        <?php get_template_part('content')?>
     </div>
 </div>
+<?php
+    get_footer();
+?>
