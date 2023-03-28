@@ -7,8 +7,10 @@
     if ( ! empty( $category_image ) ) {
         $src_image_category = esc_url( $category_image ) ;
     }
-    $post_hight_rate =  azonow_post_high_vote(5,$posts);
-    $image_post_vote_highest = $post_hight_rate[0]['thumbnail'] ? $post_hight_rate[0]['thumbnail'] : "/wp-content/themes/azonow-theme/assets/images/default_beauty.jpg" ;
+    $post_hight_rate =  azonow_post_high_vote(5);
+    if(isset($post_hight_rate[0])){
+        $image_post_vote_highest = $post_hight_rate[0]['thumbnail'] ? $post_hight_rate[0]['thumbnail'] : "/wp-content/themes/azonow-theme/assets/images/default_beauty.jpg" ;
+    }
 ?>
 <div id="container" class="archive-category">
     <div class="content">
@@ -42,12 +44,14 @@
                         <div class="form-bg">
                             <div class="tab-content">
                                 <div class="tab-pane active in">
+                                    <?php if(isset($post_hight_rate[0])):?>
                                     <div data-pos="<?php echo $post_hight_rate[0]['point'] ?>">
                                         <header class="post-header">
                                             <a href="<?php echo $post_hight_rate[0]['permalink'] ?>"
                                                 title="Permalink to <?php echo $post_hight_rate[0]['title'] ?>">
                                                 <div class="post-thumbnail" style="background-color:#054ADA">
-                                                    <noscript><img width="800" height="400"
+                                                    <noscript>
+                                                        <img width="800" height="400"
                                                             src="<?php echo $image_post_vote_highest ?>"
                                                             class="attachment-header-thumbnail size-header-thumbnail" alt=""
                                                             decoding="async"
@@ -85,14 +89,15 @@
                                         </header>
                                     </div>
                                     <?php endfor;?>
+                                    <?php endif;?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <h2 class="most-recent"><?php _e('Most Recent Articles','azonow')?></h2>
+            </div>    
         <?php endif;?>
+        <h2 class="most-recent"><?php _e('Most Recent Articles','azonow')?></h2>
         <?php get_template_part('content')?>
     </div>
 </div>

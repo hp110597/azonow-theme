@@ -16,6 +16,7 @@ function infor_output($post){
         _e('(*) Enter a rating to display the article in the high rating area of ​​the website, not required','azonow')
         ;
     }else{
+        echo
         '
         <input type="number" name="point-for-post"><br>
         ';

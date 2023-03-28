@@ -32,7 +32,7 @@
                 <h2><?php _e("Oops, this page doesn't exist",'azonow')?></h2>
                 <p><?php _e('Explore hundreds of detailed tutorials, case studies and opinion pieces from our archives.','azonow')?></p>
                 <div class="link404">
-                    <a href="<?php echo home_url()?>/archive/" class="link404-a"><?php _e('Blog Archive →','azonow')?></a>
+                    <a href="<?php echo get_post_type_archive_link( 'post' ); ?>" class="link404-a"><?php _e('Blog Archive →','azonow')?></a>
                 </div>
                 <div class="div-img img-absolute image-planet-2">
 
