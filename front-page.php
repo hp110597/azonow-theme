@@ -242,7 +242,7 @@
             </div>
             
             <?php if(!empty($top_mono_categories_id)): ?>
-            <?php foreach($top_mono_categories_id as $top_mono_category_id): $category=get_term($top_group_category_id); ?>
+            <?php foreach($top_mono_categories_id as $top_mono_category_id): $category=get_term($top_mono_category_id); ?>
             <div class="section section-category">
                 <div class="row">
                     <div class="form-bg" style="color:black;">
