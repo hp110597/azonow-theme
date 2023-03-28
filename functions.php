@@ -103,6 +103,8 @@ if(!function_exists('azonow_class_body')){
             $name = get_the_author_meta('display_name');
             $id = get_the_author_meta('ID');
             return "archive author author-$name author-$id";
+        }elseif(is_home()){
+            return 'blog';
         }
     }
 }
