@@ -99,6 +99,10 @@ if(!function_exists('azonow_class_body')){
             return "search search-results";
         }elseif(is_404()){
             return "error404 animated";
+        }elseif(is_author()){
+            $name = get_the_author_meta('display_name');
+            $id = get_the_author_meta('ID');
+            return "archive author author-$name author-$id";
         }
     }
 }
@@ -189,5 +193,16 @@ if(!function_exists('azonow_post_high_vote')){
         return  $posts_high_vote;
     }
 }
+
+//Get role name by user ID
+if( !function_exists('get_user_role_name') ){
+    function get_user_role_name($user_ID){
+        global $wp_roles;
+        $user_data = get_userdata($user_ID);
+        $user_role_slug = $user_data->roles[0];
+        return translate_user_role($wp_roles->roles[$user_role_slug]['name']);
+    }
+}
+?>
 
 
