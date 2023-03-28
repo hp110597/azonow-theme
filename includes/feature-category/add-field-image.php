@@ -18,7 +18,7 @@ function azonow_add_category_image_field() {
 add_action( 'category_add_form_fields', 'azonow_add_category_image_field' );
 
 // Save image when create category
-function azonow_save_category_image_field( $term_id, $tt_id ) {
+function azonow_save_category_image_field( $term_id ) {
     if ( isset( $_POST['category_image'] ) && '' !== $_POST['category_image'] ) {
         $image_url = $_POST['category_image'];
         add_term_meta( $term_id, 'category_image', $image_url, true );
